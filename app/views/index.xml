@@ -19,15 +19,15 @@
 			<TableViewSection headerTitle="Credit">
 				<TableViewRow  color="white" Title="Identification" height="70">
 	   		  		<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="1000.00" />
-			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="45"  text="Last Credit on: 5/6/2015" />
-			   		<Button id="lastcredit_button" top="60" title="Please click for details > "/>
+			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35"  text="Last Credit on: 5/6/2015" />
+			   		<Button id="lastcredit_button" top="55" title="Please click for details > "/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Debit">
 				<TableViewRow  color="white" Title="Identification" height="70">
 		   		  	<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5"text="89.00" />
-			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="45" text="Last Debit on: 8/15/2015" />
-			   		<Button id="lastdebit_button" top="60" title="Please click for details > "/>
+			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35" text="Last Debit on: 8/15/2015" />
+			   		<Button id="lastdebit_button" top="55" title="Please click for details > "/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last 5 transaction">
