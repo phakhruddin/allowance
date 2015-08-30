@@ -1,0 +1,12 @@
+<Alloy>
+	<Tab>
+  <Window id="credit_window" backgroundColor="white" title="Credit">
+ 	<RightNavButton platform="ios">
+	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
+	</RightNavButton>
+ 	  <TableView id="credit_table" backgroundColor="transparent" >
+		  <TableViewRow id="credit_row" backgroundColor="transparent" opacity="0" title="row1"/>
+	  </TableView>
+  </Window>
+  </Tab>
+</Alloy>

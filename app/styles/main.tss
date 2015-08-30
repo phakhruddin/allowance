@@ -1,0 +1,63 @@
+".container": {
+	backgroundColor:"white"
+},
+
+"#label": {
+	font: {
+		fontSize: 12
+	}
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontFamily:'Helvetica',
+        fontWeight: 'normal'	}
+},
+"TableViewRow": {
+	width: Ti.UI.SIZE,
+	height: "36",
+	font: {
+		fontSize: '12',
+		fontStyle: 'bold',
+		color: "orange"
+	}
+},
+"TableViewSection": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "green",
+	backgroundColor: "transparent",
+	font: {
+		fontSize: '28',
+		fontStyle: 'bold'
+	}
+},
+"Tab":{
+	font: {
+		fontSize: '50dp',
+		fontWeight: 'bold',
+		textStyle : Ti.UI.TEXT_STYLE_HEADLINE
+	},
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+}
+"#header": {
+	color: 'blue',
+	font: {
+		fontSize: '30',
+		fontStyle: 'bold'
+	}
+},
+"#balance": {
+	font: {
+		fontSize: '30',
+		fontStyle: 'bold'
+	}
+},
+"#lastamount": {
+	font: {
+		fontSize: '30'
+	}
+}

@@ -1,0 +1,77 @@
+<Alloy>
+	<Tab id="main_tab" title="ATS">
+	<Window id="main_window" class="container" backgroundColor="transparent">	
+		<TableView backgroundColor="transparent" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE">
+			<TableViewSection headerTitle="Name">
+				<TableViewRow  color="white" Title="Identification" height="100">
+				  	<Label id="date" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text=" Sep 7, 2015" />
+	   		  		<Label id="header" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="Phakhruddin Abdullah" />
+			   		<Label id="studentid" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="65" text="123456789" />
+				</TableViewRow>
+			</TableViewSection>
+			<TableViewSection headerTitle="Account">
+				<TableViewRow  color="white" Title="Identification" height="100">
+				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789" />
+	   		  		<Label id="balance" color="green" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35" text="1500.00" />
+				</TableViewRow>
+			</TableViewSection>
+			<TableViewSection headerTitle="Credit">
+				<TableViewRow  color="white" Title="Identification" height="70">
+	   		  		<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="1000.00" />
+			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35"  text="Last Credit on: 5/6/2015" />
+			   		<Button id="lastcredit_button" top="55" title="Please click for details > "/>
+				</TableViewRow>
+			</TableViewSection>
+			<TableViewSection headerTitle="Debit">
+				<TableViewRow  color="white" Title="Identification" height="70">
+		   		  	<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5"text="89.00" />
+			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35" text="Last Debit on: 8/15/2015" />
+			   		<Button id="lastdebit_button" top="55" title="Please click for details > "/>
+				</TableViewRow>
+			</TableViewSection>
+			<TableViewSection headerTitle="Last 5 transaction">
+				<TableViewRow>
+					<Label left="20" text="Book1"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book2"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book3"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Food1"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Food2"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Stationery1"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book3"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book3"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book3"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+				<TableViewRow>
+					<Label left="20" text="Book3"/>
+					<Label left="300" text="134.50"/>
+				</TableViewRow>
+			</TableViewSection>
+		</TableView>
+	</Window>
+	</Tab>
+</Alloy>
