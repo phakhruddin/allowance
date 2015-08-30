@@ -1,0 +1,12 @@
+<Alloy>
+	<Tab>
+  <Window id="debit_window" backgroundColor="white" title="Debit">
+ 	<RightNavButton platform="ios">
+	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
+	</RightNavButton>
+ 	  <TableView id="debit_table" backgroundColor="transparent" >
+		  <TableViewRow id="debit_row" backgroundColor="transparent" opacity="0" title="row1"/>
+	  </TableView>
+  </Window>
+  </Tab>
+</Alloy>
