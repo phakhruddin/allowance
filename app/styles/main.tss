@@ -30,7 +30,7 @@
 	color: "green",
 	backgroundColor: "transparent",
 	font: {
-		fontSize: '28',
+		fontSize: '48',
 		fontStyle: 'bold'
 	}
 },
@@ -52,12 +52,12 @@
 },
 "#balance": {
 	font: {
-		fontSize: '30',
+		fontSize: '48',
 		fontStyle: 'bold'
 	}
 },
 "#lastamount": {
 	font: {
-		fontSize: '30'
+		fontSize: '24'
 	}
 }

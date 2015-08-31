@@ -4,8 +4,8 @@
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
- 	  <TableView id="debit_table" backgroundColor="transparent" >
-		  <TableViewRow id="debit_row" backgroundColor="transparent" opacity="0" title="row1"/>
+ 	  <TableView id="debit_table" height="Ti.UI.FILL" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"  backgroundColor="transparent" editable="true" moveable="true" >
+		  <!--TableViewRow id="debit_row" backgroundColor="transparent" opacity="0" title="row1"/-->
 	  </TableView>
   </Window>
   </Tab>
