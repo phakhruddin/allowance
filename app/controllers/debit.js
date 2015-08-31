@@ -7,6 +7,10 @@ function addHandler(e) {
 	console.log("JSON stringify addHandler(e): "+JSON.stringify(e));
 }
 
+function setDate(e){
+	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
+}
+
 function debitDetailAddRow (date,dateadded,category,amount) {
 		console.log("enterpayment.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" new Date(+dateadded): "+new Date(+dateadded));
 	    var debitrow = Ti.UI.createTableViewRow ({
@@ -28,13 +32,13 @@ function debitDetailAddRow (date,dateadded,category,amount) {
                 text : dateadded
         });
         var datespend = Ti.UI.createLabel ({
-                color : "blue",
+                color : "#0F84DE",
                 font : {
                 	fontSize : 12
                 },
                 left  : "20",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
-                top : "40",
+                top : "35",
                 text : date.toLocaleString()
        });
         var categorylabel = Ti.UI.createLabel ({
@@ -96,6 +100,43 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 };
 
 debitDetailAddRow("8/22/2015","8/1/2015","Grocery","$200.00");
-debitDetailAddRow("9/3/2015","9/2/2015","Book","$205.00");
+debitDetailAddRow("8/23/2015","8/2/2015","Book","$205.00");
+debitDetailAddRow("8/24/2015","8/3/2015","Book","$301.00");
+debitDetailAddRow("8/25/2015","8/4/2015","Book","$221.00");
+debitDetailAddRow("8/26/2015","8/5/2015","Book","$132.00");
 
+var picker = Ti.UI.createPicker({
+  top:80
+});
+var data = [];
+data[0]=Ti.UI.createPickerRow({title:'Book'});
+data[1]=Ti.UI.createPickerRow({title:'Grocery'});
+data[2]=Ti.UI.createPickerRow({title:'Transport'});
+data[3]=Ti.UI.createPickerRow({title:'Fee'});
+picker.add(data);
+picker.selectionIndicator = true;
+
+$.catLabel.color="blue";
+picker.addEventListener('change',function(e){
+  console.log("JSON stringify picker(e): "+JSON.stringify(e));
+  $.catLabel.text=e.row.title;
+  $.input_view.remove(picker);
+  $.input_view.add($.date_picker);
+});
+
+$.input_view.remove($.date_picker);
+$.input_view.add(picker);
+
+$.catLabel.addEventListener('click',function(e){
+  console.log("JSON stringify catLabel(e): "+JSON.stringify(e));
+  $.input_view.remove($.date_picker);
+  $.input_view.add(picker);
+});
+
+$.costLabel.addEventListener('click',function(e){
+  console.log("JSON stringify costLabel(e): "+JSON.stringify(e));
+  $.input_view.remove($.date_picker);
+  $.input_view.remove(picker);
+  $.costTF.show();
+});
 

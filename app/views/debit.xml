@@ -4,9 +4,20 @@
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
- 	  <TableView id="debit_table" height="Ti.UI.FILL" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"  backgroundColor="transparent" editable="true" moveable="true" >
-		  <!--TableViewRow id="debit_row" backgroundColor="transparent" opacity="0" title="row1"/-->
-	  </TableView>
-  </Window>
+ 	<TableView id="debit_table" height="Ti.UI.FILL" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"  backgroundColor="transparent" editable="true" moveable="true" >
+		<TableViewSection headerTitle="Please enter paid amount:">	
+		  	<FooterView>
+		        <View id="input_view" height="300" backgroundColor="white">
+			    	<ImageView top="25" left="20" image="blueline.png"/>
+			    	<Label id="catLabel" top="50" left="20" text="Select Category"/>
+			    	<Label id="costLabel" color="blue" top="50" right="40" text="Cost"/>
+		        	<TextArea id="notes_textarea" width="120" left="65%" height="44" top="45" borderWidth="1" borderColor="#bbb" borderRadius="5" 
+	        		color="#888" textAlign="left" hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD"/>
+			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME"/>
+		        </View>
+		    </FooterView>
+	    </TableViewSection>
+    </TableView>
+  </Window> 
   </Tab>
 </Alloy>
