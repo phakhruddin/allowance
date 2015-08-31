@@ -7,7 +7,7 @@ function addHandler(e) {
 	console.log("JSON stringify addHandler(e): "+JSON.stringify(e));
 }
 
-function debitDetailAddRow (date,dateadded) {
+function debitDetailAddRow (date,dateadded,category,amount) {
 		console.log("enterpayment.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" new Date(+dateadded): "+new Date(+dateadded));
 	    var debitrow = Ti.UI.createTableViewRow ({
                 backgroundColor: "white",
@@ -36,8 +36,27 @@ function debitDetailAddRow (date,dateadded) {
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
                 top : "50",
                 text : date.toLocaleString()
-                //text : date.toString().split(' ')[1]+" "+date.toString().split(' ')[2]+" "+date.toString().split(' ')[3]
-        });
+       });
+        var categorylabel = Ti.UI.createLabel ({
+                color : "#333",
+                font : {
+                	fontSize : 24
+                },
+                left  : "40",
+                textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
+                top : "50",
+                text : category
+       });
+        var amountlabel = Ti.UI.createLabel ({
+                color : "#333",
+                font : {
+                	fontSize : 24
+                },
+                right  : "50",
+                textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
+                top : "50",
+                text : amount
+          });
         var blueline = Ti.UI.createImageView ({
                 left  : "20",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
@@ -58,10 +77,12 @@ function debitDetailAddRow (date,dateadded) {
         });
         debitrow.add(datelabel);
         debitrow.add(datespend);
+        debitrow.add(categorylabel);
+        debitrow.add(amountlabel);
         debitrow.add(blueline);
+        
         debitrow.add(innerview);
-        debitrow.add(datelabel);
-        debitrow.add(blueline);
+    
         debitrow.metadata = dateadded; // add metadata info
         
         var debittable = Ti.UI.createTableView({
@@ -74,4 +95,6 @@ function debitDetailAddRow (date,dateadded) {
 
 };
 
-debitDetailAddRow("1/1/2008","2/1/2015");
+debitDetailAddRow("1/1/2008","2/1/2015","grocery","$200.00");
+
+
