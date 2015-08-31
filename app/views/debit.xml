@@ -9,10 +9,19 @@
 		  	<FooterView>
 		        <View id="input_view" height="300" backgroundColor="white">
 			    	<ImageView top="25" left="20" image="blueline.png"/>
-			    	<Label id="catLabel" top="50" left="20" text="Select Category"/>
-			    	<Label id="costLabel" color="blue" top="50" right="40" text="Cost"/>
-		        	<TextArea id="notes_textarea" width="120" left="65%" height="44" top="45" borderWidth="1" borderColor="#bbb" borderRadius="5" 
-	        		color="#888" textAlign="left" hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD"/>
+			    	<Label id="dateLabel" color="red" top="30" left="20" text="Date"/>
+			    	<Label id="catLabel" top="55" left="20" text="Select Category"/>
+			    	<Label id="costLabel" color="blue" top="55" left="70%" text="Cost"/>
+		        	<TextArea id="notes_textarea" width="100" left="65%" height="44" top="45" borderWidth="1" borderColor="red" borderRadius="5" 
+	        		color="#888" textAlign="left" value=" " hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" onFocus="notesAreaFocus">
+    			  	<KeyboardToolbar id="ktb_textarea">
+	        			<Toolbar>
+	        				<Items>
+            					<Button id="donebutton" title="DONE" onClick="blurIT"/>
+	        				</Items>
+	        			</Toolbar>
+	        		</KeyboardToolbar>
+	        		</TextArea>	  
 			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME"/>
 		        </View>
 		    </FooterView>

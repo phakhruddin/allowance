@@ -30,47 +30,12 @@
 			   		<Button id="lastdebit_button" right="60" image="right242.png" width="30" height="30" />
 				</TableViewRow>
 			</TableViewSection>
-			<TableViewSection headerTitle="Last 5 transactions">
-				<TableViewRow>
-					<Label left="20" text="Book1"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book2"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book3"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Food1"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Food2"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Stationery1"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book3"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book3"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book3"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
-				<TableViewRow>
-					<Label left="20" text="Book3"/>
-					<Label left="300" text="134.50"/>
-				</TableViewRow>
+			<TableViewSection headerTitle="Last transactions">
+				<FooterView>
+					<View id="transaction_view" height="250" width="Ti.UI.Fill">
+						<Require src="transaction"></Require>
+					</View>
+				</FooterView>	
 			</TableViewSection>
 		</TableView>
 	</Window>
