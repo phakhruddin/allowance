@@ -22,19 +22,19 @@ function debitDetailAddRow (date,dateadded,category,amount) {
                 font : {
                 	fontSize : 10
                 },
-                left  : "20",
+                right  : "40",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
                 top : "10",
                 text : dateadded
         });
         var datespend = Ti.UI.createLabel ({
-                color : "#333",
+                color : "blue",
                 font : {
-                	fontSize : 24
+                	fontSize : 12
                 },
                 left  : "20",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
-                top : "50",
+                top : "40",
                 text : date.toLocaleString()
        });
         var categorylabel = Ti.UI.createLabel ({
@@ -42,7 +42,7 @@ function debitDetailAddRow (date,dateadded,category,amount) {
                 font : {
                 	fontSize : 24
                 },
-                left  : "40",
+                left  : "20",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
                 top : "50",
                 text : category
@@ -95,6 +95,7 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 
 };
 
-debitDetailAddRow("1/1/2008","2/1/2015","grocery","$200.00");
+debitDetailAddRow("8/22/2015","8/1/2015","Grocery","$200.00");
+debitDetailAddRow("9/3/2015","9/2/2015","Book","$205.00");
 
 
