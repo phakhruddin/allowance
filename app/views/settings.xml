@@ -1,0 +1,24 @@
+<Alloy>
+	<Tab  title="Settings" icon="gear">
+  <Window id="settings_window" backgroundColor="white" title="settings">
+ 	<RightNavButton platform="ios">
+	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
+	</RightNavButton>
+ 	  <TableView id="settings_table" backgroundColor="transparent" >
+ 	  	<TableViewSection title="Name">
+ 	  		<TableViewRow>
+ 	  		<TextField width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith"  />
+ 	  		</TableViewRow>
+ 	  	</TableViewSection>
+ 	  	<TableViewSection title="Email">
+ 	  		<TableViewRow>
+ 	  		<TextField width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com"  />
+ 	  		</TableViewRow>
+ 	  	</TableViewSection>
+ 	  	<TableViewSection title="appearance">
+ 	  		<TableViewRow id="settings_row" backgroundColor="transparent" opacity="0" title="Change Skin Color"/>
+ 	  	</TableViewSection>
+	  </TableView>
+  </Window>
+  </Tab>
+</Alloy>

@@ -1,9 +1,9 @@
 <Alloy>
 	<Collection src="debitmodel"/>
-  <!--Collection src="client"/-->
-  <TabGroup backgroundColor="white">
-    <Require src="main"/>
-    <Require src="credit"/>  
-    <!--Require src="debit"/-->    
-  </TabGroup>
+	  <TabGroup backgroundColor="white">
+	    <Require src="main"/>
+	    <Require src="credit"/>  
+	    <Require src="debit"/>   
+	    <Require src="settings"/>   
+	  </TabGroup>
 </Alloy>

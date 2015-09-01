@@ -1,12 +1,31 @@
 <Alloy>
-	<Tab>
-  <Window id="credit_window" backgroundColor="white" title="Credit">
+	<Tab  title="Credit"  icon="banknotes.png">
+   <Window id="credit_window" backgroundColor="white" title="credit">
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
- 	  <TableView id="credit_table" backgroundColor="transparent" >
-		  <TableViewRow id="credit_row" backgroundColor="transparent" opacity="0" title="row1"/>
-	  </TableView>
-  </Window>
+ 	<TableView id="credit_table" height="Ti.UI.FILL" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"  backgroundColor="transparent" editable="true" moveable="true" >
+		<TableViewSection headerTitle="Please enter paid amount:">	
+		  	<FooterView>
+		        <View id="input_view" height="300" backgroundColor="white">
+			    	<ImageView top="25" left="20" image="blueline.png"/>
+			    	<Label id="dateLabel" color="red" top="30" left="20" text="Date"/>
+			    	<Label id="costLabel" color="blue" top="55" left="70%" text="Cost"/>
+		        	<TextArea id="notes_textarea" width="100" left="65%" height="44" top="45" borderWidth="1" borderColor="red" borderRadius="5" 
+	        		color="#888" textAlign="left" value=" " hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" onFocus="notesAreaFocus">
+    			  	<KeyboardToolbar id="ktb_textarea">
+	        			<Toolbar>
+	        				<Items>
+            					<Button id="donebutton" title="DONE" onClick="blurIT"/>
+	        				</Items>
+	        			</Toolbar>
+	        		</KeyboardToolbar>
+	        		</TextArea>	  
+			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME"/>
+		        </View>
+		    </FooterView>
+	    </TableViewSection>
+    </TableView>
+  </Window> 
   </Tab>
 </Alloy>
