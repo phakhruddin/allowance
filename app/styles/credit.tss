@@ -1,0 +1,37 @@
+".container": {
+	backgroundColor:"white"
+},
+
+"#catLabel": {
+	font: {
+		fontSize: 24
+	}
+},
+"#amountLabel": {
+	font: {
+		fontSize: 24
+	}
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontFamily:'Helvetica',
+        fontWeight: 'normal'	}
+},
+"#notes_textarea":{
+	font: {
+		fontSize: 24
+	}
+},
+"TextArea": {
+	font: {
+		left: 20
+	}
+},
+"#dateLabel" : { 
+	font: {
+		fontSize: 24
+	}
+}
