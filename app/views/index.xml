@@ -1,4 +1,5 @@
 <Alloy>
+	<Collection src="debitmodel"/>
   <!--Collection src="client"/-->
   <TabGroup backgroundColor="white">
     <Require src="main"/>

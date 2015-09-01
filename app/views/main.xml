@@ -1,4 +1,5 @@
 <Alloy>
+	<Collection src="debitmodel"/>
 	<Tab id="main_tab" title="ATS">
 	<Window id="main_window" class="container" backgroundColor="transparent">	
 		<TableView backgroundColor="transparent" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE">
@@ -17,14 +18,14 @@
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">
-				<TableViewRow  color="white" Title="Identification" height="64">
+				<TableViewRow  color="white" Title="lastcredit_row" height="64">
 	   		  		<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="1000.00" />
 			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33"  text="Last Credit on: 5/6/2015" />
 			   		<Button id="lastcredit_button" right="60" image="right242.png" width="30" height="30" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Debit">
-				<TableViewRow  color="white" Title="Identification" height="64">
+				<TableViewRow  color="white" Title="lastdebit_row" onClick="debitAction" height="64">
 		   		  	<Label id="lastamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5"text="89.00" />
 			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="Last Debit on: 8/15/2015" />
 			   		<Button id="lastdebit_button" right="60" image="right242.png" width="30" height="30" />
