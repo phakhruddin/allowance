@@ -17,7 +17,7 @@
     			  	<KeyboardToolbar id="ktb_textarea">
 	        			<Toolbar>
 	        				<Items>
-            					<Button id="donebutton" title="DONE" onClick="blurIT"/>
+            					<Button id="donebutton" title="DONE" onClick="Done"/>
 	        				</Items>
 	        			</Toolbar>
 	        		</KeyboardToolbar>

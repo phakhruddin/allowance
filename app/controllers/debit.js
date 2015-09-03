@@ -23,7 +23,9 @@ function addHandler(e) {
 function setDate(e){
 	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
 	var date = e.value;
-	$.dateLabel.text= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
+	var dateFormat = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
+	$.dateLabel.text= dateFormat;
+	$.donebutton.date = dateFormat;
 }
 
 function debitDetailAddRow (date,dateadded,category,amount) {
@@ -153,10 +155,11 @@ $.costLabel.addEventListener('click',function(e){
 function notesAreaFocus(e) {
 	console.log("JSON stringify notes_textarea(e): "+JSON.stringify(e));
 	$.notes_textarea.borderColor="#bbb";
+	//Alloy.Globals.updatemodelTable("debitmodel",col1,col2,col3,col4,col5,col6,col7,col8,col9);
 }
 
-function blurIT(e){
-	console.log("JSON stringify blurIT(e): "+JSON.stringify(e));
+function Done(e){
+	console.log("JSON stringify Done(e): "+JSON.stringify(e));
 	$.notes_textarea.blur();
 }
 

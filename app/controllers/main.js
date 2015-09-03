@@ -1,3 +1,6 @@
+//reset var
+var bal=0;
+
 $.lastcredit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
 	var tabViewOneController = Alloy.createController("credit");
@@ -22,3 +25,19 @@ function creditAction(e){
 	var type="creditmodel";
 	Alloy.Globals.updateType(url,type);
 }
+
+var creditmodel = Alloy.Collections.instance('creditmodel');
+creditmodel.fetch();
+var content = creditmodel.toJSON();
+console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
+
+for(i=0;i<content.length;i++){
+	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
+	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);
+}
+
+var someDummy = Alloy.Models.dummy;
+console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));
+someDummy.set('id', '1234');
+someDummy.fetch();
+someDummy.set('bal', bal);

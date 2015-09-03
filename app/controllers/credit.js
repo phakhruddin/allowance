@@ -1,13 +1,35 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.credit_window);
   Ti.API.info("This is child widow credit.js" +JSON.stringify(_tab));
- 
+	
 };
+
+//reset var
+var bal=0;
+
+$.credit_window.addEventListener("close",function(){
+	console.log("credit.js: close window");
+	someDummy.fetch();
+});
+
 
 var creditmodel = Alloy.Collections.instance('creditmodel');
 creditmodel.fetch();
 var content = creditmodel.toJSON();
 console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
+
+	
+//List table contents
+for(i=0;i<content.length;i++){
+	creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
+	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
+	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);	
+}
+var someDummy = Alloy.Models.dummy;
+console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
+someDummy.set('id', '1234');
+someDummy.fetch();
+someDummy.set('bal', bal);
 
 function addHandler(e) {
 	console.log("JSON stringify addHandler(e): "+JSON.stringify(e));
@@ -16,7 +38,8 @@ function addHandler(e) {
 function setDate(e){
 	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
 	var date = e.value;
-	$.dateLabel.text= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
+	$.dateLabel.text= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	$.timeLabel.text= Alloy.Globals.formatAMPM(date);
 }
 
 function creditDetailAddRow (date,dateadded,amount) {
@@ -96,10 +119,7 @@ function creditDetailAddRow (date,dateadded,amount) {
 
 };
 
-//List table contents
-for(i=0;i<content.length;i++){
-	creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
-}
+
 
 var picker = Ti.UI.createPicker({
   top:90
@@ -131,6 +151,6 @@ function blurIT(e){
 $.dateLabel.addEventListener('click',function(e){
   console.log("JSON stringify dateLabel(e): "+JSON.stringify(e));
   $.input_view.add($.date_picker);
-  $.dateLabel.color="blue";
+  $.dateLabel.color="#0066CC";
 });
 

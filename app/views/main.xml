@@ -1,5 +1,6 @@
 <Alloy>
 	<Collection src="debitmodel"/>
+	<Model src="dummy" />
 	<Tab id="main_tab" title="Home"  icon="home.png">
 	<Window id="main_window" class="container" backgroundColor="transparent">	
 		<TableView backgroundColor="transparent" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE">
@@ -14,7 +15,7 @@
 				<TableViewRow  color="white" Title="Identification" height="110">
 				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789" />
 					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="32" text="BAL" />
-	   		  		<Label id="balance" color="green" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="1500.00" />
+	   		  		<Label id="balance" color="green" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="{dummy.bal}" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">

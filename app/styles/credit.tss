@@ -35,3 +35,8 @@
 		fontSize: 24
 	}
 }
+"#timeLabel":{
+		font: {
+		fontSize: 14
+	}
+}
