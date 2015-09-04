@@ -5,17 +5,17 @@
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
  	  <TableView id="settings_table" backgroundColor="transparent" >
- 	  	<TableViewSection title="Name">
+ 	  	<TableViewSection headerTitle="Name">
  	  		<TableViewRow>
  	  		<TextField width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith"  />
  	  		</TableViewRow>
  	  	</TableViewSection>
- 	  	<TableViewSection title="Email">
+ 	  	<TableViewSection headerTitle="Email">
  	  		<TableViewRow>
  	  		<TextField width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com"  />
  	  		</TableViewRow>
  	  	</TableViewSection>
- 	  	<TableViewSection title="appearance">
+ 	  	<TableViewSection headerTitle="appearance">
  	  		<TableViewRow id="settings_row" backgroundColor="transparent" opacity="0" title="Change Skin Color"/>
  	  	</TableViewSection>
 	  </TableView>
