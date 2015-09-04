@@ -1,17 +1,17 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.credit_window);
   Ti.API.info("This is child widow credit.js" +JSON.stringify(_tab));
-	
+  	
 };
 
 //reset var
 var bal=0;
 
-$.credit_window.addEventListener("close",function(){
-	console.log("credit.js: close window");
-	someDummy.fetch();
+$.credit_window.addEventListener("close",function(e){
+	console.log("credit.js: close window: SON.stringify(e)"+JSON.stringify(e));
+	updateDummy(e.source.bal) ;
+	//someDummy.fetch();
 });
-
 
 var creditmodel = Alloy.Collections.instance('creditmodel');
 creditmodel.fetch();
@@ -23,13 +23,20 @@ console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 for(i=0;i<content.length;i++){
 	creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
 	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
-	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);	
+	$.notes_textarea.bal = bal;
+	$.credit_window.bal = bal;
+	//console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);	
 }
-var someDummy = Alloy.Models.dummy;
+
+function updateDummy(bal) {
+	var someDummy = Alloy.Models.dummy;
 console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
 someDummy.set('id', '1234');
 someDummy.fetch();
 someDummy.set('bal', bal);
+}
+updateDummy(bal) ;
+
 
 function addHandler(e) {
 	console.log("JSON stringify addHandler(e): "+JSON.stringify(e));
@@ -40,10 +47,12 @@ function setDate(e){
 	var date = e.value;
 	$.dateLabel.text= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
 	$.timeLabel.text= Alloy.Globals.formatAMPM(date);
+	console.log("credit.js:: put date to notest_textare: "+date);
+	$.notes_textarea.datepaid = date; // feeding date to notes_textare
 }
 
 function creditDetailAddRow (date,dateadded,amount) {
-		console.log("enterpayment.js::creditDetailAddRow: date: "+date+"  dateadded: "+dateadded+" new Date(+dateadded): "+new Date(+dateadded));
+		console.log("credit.js::creditDetailAddRow: date: "+date+"  dateadded: "+dateadded+" +dateadded: "+dateadded);
 	    var creditrow = Ti.UI.createTableViewRow ({
                 backgroundColor: "white",
                 opacity:"0",
@@ -116,7 +125,6 @@ function creditDetailAddRow (date,dateadded,amount) {
         credittable.add(creditrow);
         
         $.credit_table.appendRow(creditrow);
-
 };
 
 
@@ -154,3 +162,14 @@ $.dateLabel.addEventListener('click',function(e){
   $.dateLabel.color="#0066CC";
 });
 
+$.notes_textarea.addEventListener("blur",function(e){
+	console.log("JSON stringify notes_textarea blur(e): "+JSON.stringify(e));
+	var date=e.source.datepaid;
+	var dateMDY=(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	var amount=e.value;
+	creditDetailAddRow(dateMDY,dateMDY,amount);
+	var bal = parseFloat(amount)+ parseFloat(e.source.bal);
+	console.log("credit.js:: notes_textarea bal: "+bal);
+	$.credit_window.bal = bal;
+	//updateDummy(bal) ;
+});
