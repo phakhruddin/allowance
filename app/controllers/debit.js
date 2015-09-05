@@ -8,11 +8,31 @@ $.debit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('debitmodel');
 	console.log("debit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
 	console.log("debit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
+	var totalspent=displayRow();
 });
 
 //fething DB
 var content=Alloy.Globals.fetchingData('debitmodel');
 console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
+
+//updated debitamount
+if(content.length>1){
+	var lastdebit=content[(content.length-1)].col1;
+	var debitamount=content[(content.length-1)].col4;
+} else {
+	var lastdebit=0/0/0;
+	var debitamount=0;
+}
+console.log("debit.js::debitamount: "+debitamount);
+$.debit_window.debitamount=debitamount; //feed var to window
+
+function updateDummy(totalspent,amount,lastdebit) {
+	var someDummy = Alloy.Models.dummy;
+	someDummy.set({'id':'1234','totalspent': totalspent,'debitamount':amount,"lastdebit":lastdebit});
+	someDummy.fetch();
+	console.log("debit.js :: stringify dummy :"+JSON.stringify(someDummy));
+}
+updateDummy(totalspent,debitamount,lastdebit) ; //capture it
 
 $.catLabel.addEventListener('click',function(e){
 	  console.log("JSON stringify catLabel(e): "+JSON.stringify(e));
@@ -34,6 +54,9 @@ function setDate(e){
 	//$.donebutton.date = dateFormat;
 
 }
+
+//reset var
+var bal=0;var debitamount=0;var lastdebit=0;
 
 function debitDetailAddRow (date,dateadded,category,amount) {
 		console.log("enterpayment.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" +dateadded: "+dateadded);
@@ -83,7 +106,7 @@ function debitDetailAddRow (date,dateadded,category,amount) {
                 right  : "50",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
                 top : "50",
-                text : "$"+amount
+                text : amount
           });
         var blueline = Ti.UI.createImageView ({
                 left  : "20",
@@ -124,9 +147,22 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 };
 
 //List table contents
+/*
 for(i=content.length-1;i>=0;i--){
 	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4);
+}*/
+
+function displayRow(e){
+	var totalspent=0;
+	for(i=0;i<content.length;i++){
+		debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4);
+		var totalspent = parseFloat(content[i].col3)+ parseFloat(totalspent);
+		$.notes_textarea.totalspent = totalspent;
+		$.debit_window.totalspent = totalspent;		
+	}	
+	return totalspent;
 }
+var totalspent=displayRow();
 
 var picker = Ti.UI.createPicker({
   top:90
@@ -192,6 +228,13 @@ $.notes_textarea.addEventListener("blur",function(e){
 		debitDetailAddRow(dateMDY,dateMDY,catselected,amount);//add row
 		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,catselected,amount,"0","0","0","0","0","0");//update local DB
 	}
+});
+
+$.debit_window.addEventListener("close",function(e){
+	console.log("debit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
+});
+$.debit_tab.addEventListener("blur",function(e){
+	console.log("debit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));
 });
 
 

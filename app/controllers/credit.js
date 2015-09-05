@@ -23,7 +23,7 @@ var content=Alloy.Globals.fetchingData('creditmodel');
 console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 
 //reset var
-var bal=0;var creditamount=0;
+var bal=0;var creditamount=0;var lastcredit=0;
  
 //Table row contents and updated balance
 function displayRow(e){
@@ -40,19 +40,23 @@ var bal=displayRow();
 
 //updated creditamount
 if(content.length>1){
+	var lastcredit=content[(content.length-1)].col1;
 	var creditamount=content[(content.length-1)].col3;
-} else var creditamount=0;
+} else {
+	var lastcredit=0/0/0;
+	var creditamount=0;
+}
 console.log("credit.js::creditamount: "+creditamount);
 $.credit_window.creditamount=creditamount; //feed var to window
 
 //function to capture balance data for main summary screen
-function updateDummy(bal,amount) {
+function updateDummy(bal,amount,lastcredit) {
 	var someDummy = Alloy.Models.dummy;
-	someDummy.set({'id':'1234','bal': bal,'dcreditamount':amount});
+	someDummy.set({'id':'1234','bal': bal,'dcreditamount':amount,"lastcredit":lastcredit});
 	someDummy.fetch();
 	console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
 }
-updateDummy(bal,creditamount) ; //capture it
+updateDummy(bal,creditamount,lastcredit) ; //capture it
 
 
 function addHandler(e) {
@@ -192,8 +196,9 @@ $.notes_textarea.addEventListener("blur",function(e){
 		console.log("credit.js:: notes_textarea bal: "+bal);
 		$.credit_window.bal = bal;
 		$.credit_window.creditamount = amount;
-		console.log("updateDummy("+bal+","+amount+")");
-		updateDummy(bal,amount);
+		$.credit_window.lastcredit = lastcredit;
+		console.log("updateDummy("+bal+","+amount+","+lastcredit+")");
+		updateDummy(bal,amount,lastcredit);
 	}
 });
 
