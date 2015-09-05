@@ -30,9 +30,12 @@ function creditAction(e){
 var creditmodel = Alloy.Collections.instance('creditmodel');
 creditmodel.fetch();
 var content = creditmodel.toJSON();
-var maxrec=content.length-1;
-var lastcredit=content[maxrec].col1;
-var creditamount=content[maxrec].col3;
+if(content.length>0){
+	var maxrec=content.length-1;
+	var lastcredit=content[maxrec].col1;
+	var creditamount=content[maxrec].col3;
+} else var creditamount=0;
+
 console.log("main.js: lastcredit: "+lastcredit+", creditamount: "+creditamount);
 $.lastcredit.text="Last Credit on: "+lastcredit;
 //$.creditamount.text=creditamount;

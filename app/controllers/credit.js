@@ -26,7 +26,9 @@ for(i=0;i<content.length;i++){
 	$.credit_window.bal = bal;	
 }
 //updated creditamount
-var creditamount=content[(content.length-1)].col3;
+if(content.length>1){
+	var creditamount=content[(content.length-1)].col3;
+} else var creditamount=0;
 console.log("credit.js::creditamount: "+creditamount);
 $.credit_window.creditamount=creditamount; //feed var to window
 
