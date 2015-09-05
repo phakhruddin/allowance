@@ -8,6 +8,7 @@ $.credit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('creditmodel');
 	console.log("credit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
 	console.log("credit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
+	var bal=displayRow();
 });
 
 function fetchingData(type){
@@ -24,16 +25,19 @@ console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 //reset var
 var bal=0;var creditamount=0;
  
-
-
-	
 //Table row contents and updated balance
-for(i=0;i<content.length;i++){
-	creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
-	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
-	$.notes_textarea.bal = bal;
-	$.credit_window.bal = bal;	
+function displayRow(e){
+	var bal=0;
+	for(i=0;i<content.length;i++){
+		creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
+		var bal = parseFloat(content[i].col3)+ parseFloat(bal);
+		$.notes_textarea.bal = bal;
+		$.credit_window.bal = bal;		
+	}	
+	return bal;
 }
+var bal=displayRow();
+
 //updated creditamount
 if(content.length>1){
 	var creditamount=content[(content.length-1)].col3;
