@@ -7,7 +7,7 @@ exports.openMainWindow = function(_tab) {
 $.credit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('creditmodel');
 	console.log("credit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
-	console.log("credit.js::JSON stringify content after tab is clicked: "+JSON.stringify(content));
+	console.log("credit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
 });
 
 function fetchingData(type){
