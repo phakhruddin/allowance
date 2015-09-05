@@ -5,12 +5,10 @@ exports.openMainWindow = function(_tab) {
 };
 
 //reset var
-var bal=0;
+var bal=0;var creditamount=0;
 
 $.credit_window.addEventListener("close",function(e){
-	console.log("credit.js: close window: SON.stringify(e)"+JSON.stringify(e));
-	updateDummy(e.source.bal) ;
-	//someDummy.fetch();
+	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
 });
 
 //pulling data from the sqlite
@@ -20,23 +18,26 @@ var content = creditmodel.toJSON();
 console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 
 	
-//List table contents
-for(i=0;i<content.length-1;i++){
+//Table row contents and updated balance
+for(i=0;i<content.length;i++){
 	creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
 	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
 	$.notes_textarea.bal = bal;
 	$.credit_window.bal = bal;	
 }
+//updated creditamount
+var creditamount=content[(content.length-1)].col3;
+console.log("credit.js::creditamount: "+creditamount);
+$.credit_window.creditamount=creditamount; //feed var to window
 
 //function to capture balance data for main summary screen
-function updateDummy(bal) {
+function updateDummy(bal,amount) {
 	var someDummy = Alloy.Models.dummy;
-	console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
-	someDummy.set('id', '1234');
+	someDummy.set({'id':'1234','bal': bal,'dcreditamount':amount});
 	someDummy.fetch();
-	someDummy.set('bal', bal);
+	console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
 }
-updateDummy(bal) ; //capture it
+updateDummy(bal,creditamount) ; //capture it
 
 
 function addHandler(e) {
@@ -118,17 +119,15 @@ function creditDetailAddRow (date,dateadded,amount) {
         creditrow.add(innerview);
     
         creditrow.metadata = dateadded; // add metadata info
-        
+        /*
         var credittable = Ti.UI.createTableView({
                 backgroundColor: "white",
                 separatorStyle :"Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"
         });
-        credittable.add(creditrow);
+        credittable.add(creditrow);*/
         
-        $.credit_table.appendRow(creditrow);
-       // $.credit_table.insertRowAfter(1,creditrow);
+       $.credit_table.appendRow(creditrow);
 };
-
 
 
 var picker = Ti.UI.createPicker({
@@ -172,10 +171,13 @@ $.notes_textarea.addEventListener("blur",function(e){
 	} else alert("Please select date");
 	(e.value)?amount=e.value.trim():alert("Please enter value");
 	if (dateMDY && amount) {
-		creditDetailAddRow(dateMDY,dateMDY,amount);//add row
+		creditDetailAddRow(dateMDY,dateMDY,amount);//add row here with DATE and AMOUNT
 		Alloy.Globals.updatemodelTable("creditmodel",dateMDY,dateMDY,amount,"0","0","0","0","0","0");//update local DB
 		var bal = parseFloat(amount)+ parseFloat(e.source.bal);
 		console.log("credit.js:: notes_textarea bal: "+bal);
 		$.credit_window.bal = bal;
+		$.credit_window.creditamount = amount;
+		console.log("updateDummy("+bal+","+amount+")");
+		updateDummy(bal,amount);
 	}
 });

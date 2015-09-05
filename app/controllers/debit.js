@@ -23,13 +23,15 @@ function addHandler(e) {
 function setDate(e){
 	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
 	var date = e.value;
+	$.notes_textarea.datedebit = date;
 	var dateFormat = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
 	$.dateLabel.text= dateFormat;
-	$.donebutton.date = dateFormat;
+	//$.donebutton.date = dateFormat;
+
 }
 
 function debitDetailAddRow (date,dateadded,category,amount) {
-		console.log("enterpayment.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" new Date(+dateadded): "+new Date(+dateadded));
+		console.log("enterpayment.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" +dateadded: "+dateadded);
 	    var debitrow = Ti.UI.createTableViewRow ({
                 backgroundColor: "white",
                 opacity:"0",
@@ -76,7 +78,7 @@ function debitDetailAddRow (date,dateadded,category,amount) {
                 right  : "50",
                 textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
                 top : "50",
-                text : amount
+                text : "$"+amount
           });
         var blueline = Ti.UI.createImageView ({
                 left  : "20",
@@ -117,8 +119,8 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 };
 
 //List table contents
-for(i=0;i<content.length;i++){
-	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
+for(i=content.length-1;i>=0;i--){
+	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4);
 }
 
 var picker = Ti.UI.createPicker({
@@ -136,7 +138,9 @@ picker.selectionIndicator = true;
 $.catLabel.color="red";
 picker.addEventListener('change',function(e){
   console.log("JSON stringify picker(e): "+JSON.stringify(e));
-  $.catLabel.text=e.row.title;
+  var catselected = e.row.title;
+  $.catLabel.text=catselected;
+  $.notes_textarea.category = catselected;
   $.catLabel.color="blue";
   //$.input_view.remove(picker);
 });
@@ -158,6 +162,7 @@ function notesAreaFocus(e) {
 	//Alloy.Globals.updatemodelTable("debitmodel",col1,col2,col3,col4,col5,col6,col7,col8,col9);
 }
 
+//function when done button is clicked.
 function Done(e){
 	console.log("JSON stringify Done(e): "+JSON.stringify(e));
 	$.notes_textarea.blur();
@@ -168,4 +173,20 @@ $.dateLabel.addEventListener('click',function(e){
   $.input_view.add($.date_picker);
   $.dateLabel.color="blue";
 });
+
+$.notes_textarea.addEventListener("blur",function(e){
+	//update date and debit entered.
+	console.log("JSON stringify notes_textarea blur(e): "+JSON.stringify(e));
+	if (e.source.datedebit) {
+		var date = e.source.datedebit;
+		var dateMDY=(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	} else alert("Please select date");
+	(e.source.category)?catselected=e.source.category:alert("Please select category");
+	(e.value)?amount=e.value.trim():alert("Please enter value");
+	if (dateMDY && amount) {
+		debitDetailAddRow(dateMDY,dateMDY,catselected,amount);//add row
+		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,catselected,amount,"0","0","0","0","0","0");//update local DB
+	}
+});
+
 

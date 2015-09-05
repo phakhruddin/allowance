@@ -56,8 +56,23 @@
 		fontStyle: 'bold'
 	}
 },
-"#lastamount": {
+"#debitamount": {
 	font: {
 		fontSize: '24'
+	},
+},
+"#creditamount": {
+	font: {
+		fontSize: '24'
+	},
+},
+"#lastcredit": {
+	font: {
+		fontSize: '12'
+	}
+},
+"#lastdebit": {
+	font: {
+		fontSize: '12'
 	}
 }

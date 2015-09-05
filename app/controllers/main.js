@@ -1,5 +1,6 @@
 //reset var
-var bal=0;
+var bal=0;var creditamount=0;
+var someDummy = Alloy.Models.dummy;
 
 $.lastcredit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
@@ -29,15 +30,18 @@ function creditAction(e){
 var creditmodel = Alloy.Collections.instance('creditmodel');
 creditmodel.fetch();
 var content = creditmodel.toJSON();
-console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
+var maxrec=content.length-1;
+var lastcredit=content[maxrec].col1;
+var creditamount=content[maxrec].col3;
+console.log("main.js: lastcredit: "+lastcredit+", creditamount: "+creditamount);
+$.lastcredit.text="Last Credit on: "+lastcredit;
+//$.creditamount.text=creditamount;
+	
 
 for(i=0;i<content.length;i++){
 	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
 	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);
 }
-
-var someDummy = Alloy.Models.dummy;
-console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));
-someDummy.set('id', '1234');
+someDummy.set({"id":"1234","bal":bal,"dcreditamount":creditamount});
 someDummy.fetch();
-someDummy.set('bal', bal);
+console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));
