@@ -1,5 +1,5 @@
 <Alloy>
-	<Tab  title="Debit" title="Debit"  icon="debit.png">
+	<Tab  id="debit_tab" title="Debit"  icon="debit.png">
   <Window id="debit_window" backgroundColor="white" title="Debit">
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 

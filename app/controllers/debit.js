@@ -4,9 +4,14 @@ exports.openMainWindow = function(_tab) {
  
 };
 
-var debitmodel = Alloy.Collections.instance('debitmodel');
-debitmodel.fetch();
-var content = debitmodel.toJSON();
+$.debit_tab.addEventListener("focus",function(e){
+	var content=Alloy.Globals.fetchingData('debitmodel');
+	console.log("debit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
+	console.log("debit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
+});
+
+//fething DB
+var content=Alloy.Globals.fetchingData('debitmodel');
 console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
 
 $.catLabel.addEventListener('click',function(e){
