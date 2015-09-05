@@ -156,7 +156,7 @@ function displayRow(e){
 	var totalspent=0;
 	for(i=0;i<content.length;i++){
 		debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4);
-		var totalspent = parseFloat(content[i].col3)+ parseFloat(totalspent);
+		var totalspent = parseFloat(content[i].col4)+ parseFloat(totalspent);
 		$.notes_textarea.totalspent = totalspent;
 		$.debit_window.totalspent = totalspent;		
 	}	
@@ -226,7 +226,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 	(e.value)?amount=e.value.trim():alert("Please enter value");
 	if (dateMDY && amount) {
 		debitDetailAddRow(dateMDY,dateMDY,catselected,amount);//add row
-		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,catselected,amount,"0","0","0","0","0","0");//update local DB
+		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,dateMDY,catselected,amount,"0","0","0","0","0");//update local DB
 	}
 });
 
