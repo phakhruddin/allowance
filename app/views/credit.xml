@@ -1,7 +1,7 @@
 <Alloy>
 	<Model src="dummy"/>
 	<Collection src="creditmodel"/>
-	<Tab  title="Credit"  icon="banknotes.png">
+	<Tab id="credit_tab" title="Credit"  icon="banknotes.png">
    <Window id="credit_window" backgroundColor="white" title="credit">
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 

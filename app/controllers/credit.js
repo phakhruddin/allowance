@@ -1,21 +1,30 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.credit_window);
   Ti.API.info("This is child widow credit.js" +JSON.stringify(_tab));
-  	
+ 
 };
+// Whenever the tab is active, pull data from DB
+$.credit_tab.addEventListener("focus",function(e){
+	var content=Alloy.Globals.fetchingData('creditmodel');
+	console.log("credit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
+	console.log("credit.js::JSON stringify content after tab is clicked: "+JSON.stringify(content));
+});
+
+function fetchingData(type){
+	eval("var "+type+" = Alloy.Collections.instance(type);");
+	eval(type+".fetch();");
+	eval("var content = "+type+".toJSON();");
+	return content;
+}
+//pulling data from the sqlite
+var content=Alloy.Globals.fetchingData('creditmodel');
+//var content=fetchingData('creditmodel');
+console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 
 //reset var
 var bal=0;var creditamount=0;
+ 
 
-$.credit_window.addEventListener("close",function(e){
-	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
-});
-
-//pulling data from the sqlite
-var creditmodel = Alloy.Collections.instance('creditmodel');
-creditmodel.fetch();
-var content = creditmodel.toJSON();
-console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 
 	
 //Table row contents and updated balance
@@ -182,4 +191,12 @@ $.notes_textarea.addEventListener("blur",function(e){
 		console.log("updateDummy("+bal+","+amount+")");
 		updateDummy(bal,amount);
 	}
+});
+
+//Action when the user move away from the active screen
+$.credit_window.addEventListener("close",function(e){
+	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
+});
+$.credit_tab.addEventListener("blur",function(e){
+	console.log("credit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));
 });

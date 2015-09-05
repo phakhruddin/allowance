@@ -83,3 +83,11 @@ Alloy.Globals.updateType = function(url,type) {
 		xhr.open("GET", url);
 		xhr.send();
 };
+
+//Fetching Data Global Function
+Alloy.Globals.fetchingData = function(type){
+	eval("var "+type+" = Alloy.Collections.instance(type);");
+	eval(type+".fetch();");
+	eval("var content = "+type+".toJSON();");
+	return content;
+};
