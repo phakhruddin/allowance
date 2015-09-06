@@ -1,5 +1,5 @@
 //reset var
-var bal=0;var creditamount=0; var lastcredit=0;
+var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
 var someDummy = Alloy.Models.dummy;
 
 $.lastcredit_button.addEventListener ("click", function(e){
@@ -57,11 +57,19 @@ if(content.length>0){
 }
 console.log("main.js: lastdebit: "+lastdebit+", debitamount: "+debitamount);
 	
-
+/*
 for(i=0;i<content.length;i++){
 	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
 	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);
-}
+}*/
+
+var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);//get from persistent memory
+var totalspent = Titanium.App.Properties.getInt('totalspent',0);//get from persistent memory
+console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
+(Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = parseFloat(totalcredit)-parseFloat(totalspent);
+
+
+
 someDummy.set({"id":"1234",
 	"bal":bal,
 	"dcreditamount":creditamount,

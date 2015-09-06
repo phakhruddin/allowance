@@ -3,12 +3,14 @@ exports.openMainWindow = function(_tab) {
   Ti.API.info("This is child widow credit.js" +JSON.stringify(_tab));
  
 };
+//intial var
+var bal=Titanium.App.Properties.getInt('bal');
 // Whenever the tab is active, pull data from DB
 $.credit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('creditmodel');
 	console.log("credit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
 	console.log("credit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
-	var bal=displayRow();
+	var totalcredit=displayRow();
 });
 
 function fetchingData(type){
@@ -23,20 +25,21 @@ var content=Alloy.Globals.fetchingData('creditmodel');
 console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 
 //reset var
-var bal=0;var creditamount=0;var lastcredit=0;
+var totalcredit=0;var creditamount=0;var lastcredit=0;
  
 //Table row contents and updated balance
 function displayRow(e){
-	var bal=0;
+	var totalcredit=0;
 	for(i=0;i<content.length;i++){
 		creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
-		var bal = parseFloat(content[i].col3)+ parseFloat(bal);
-		$.notes_textarea.bal = bal;
-		$.credit_window.bal = bal;		
+		var totalcredit = parseFloat(content[i].col3)+ parseFloat(totalcredit);
+		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
+		$.notes_textarea.totalcredit = totalcredit;
+		$.credit_window.totalcredit = totalcredit;		
 	}	
-	return bal;
+	return totalcredit;
 }
-var bal=displayRow();
+var totalcredit=displayRow();
 
 //updated creditamount
 if(content.length>1){
@@ -50,13 +53,13 @@ console.log("credit.js::creditamount: "+creditamount);
 $.credit_window.creditamount=creditamount; //feed var to window
 
 //function to capture balance data for main summary screen
-function updateDummy(bal,amount,lastcredit) {
+function updateDummy(bal,totalcredit,amount,lastcredit) {
 	var someDummy = Alloy.Models.dummy;
-	someDummy.set({'id':'1234','bal': bal,'dcreditamount':amount,"lastcredit":lastcredit});
+	someDummy.set({'id':'1234','bal':bal,'totalcredit': totalcredit,'dcreditamount':amount,"lastcredit":lastcredit});
 	someDummy.fetch();
 	console.log("credit.js :: stringify dummy :"+JSON.stringify(someDummy));
 }
-updateDummy(bal,creditamount,lastcredit) ; //capture it
+updateDummy(bal,totalcredit,creditamount,lastcredit) ; //capture it
 
 
 function addHandler(e) {
@@ -192,13 +195,16 @@ $.notes_textarea.addEventListener("blur",function(e){
 	if (dateMDY && amount) {
 		creditDetailAddRow(dateMDY,dateMDY,amount);//add row here with DATE and AMOUNT
 		Alloy.Globals.updatemodelTable("creditmodel",dateMDY,dateMDY,amount,"0","0","0","0","0","0");//update local DB
-		var bal = parseFloat(amount)+ parseFloat(e.source.bal);
-		console.log("credit.js:: notes_textarea bal: "+bal);
-		$.credit_window.bal = bal;
+		var totalcredit = parseFloat(amount)+ parseFloat(e.source.totalcredit);
+		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
+		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(amount);
+		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
+		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
+		$.credit_window.totalcredit = totalcredit;
 		$.credit_window.creditamount = amount;
 		$.credit_window.lastcredit = lastcredit;
-		console.log("updateDummy("+bal+","+amount+","+lastcredit+")");
-		updateDummy(bal,amount,lastcredit);
+		console.log("updateDummy("+totalcredit+","+amount+","+lastcredit+")");
+		updateDummy(bal,totalcredit,amount,lastcredit);
 	}
 });
 
