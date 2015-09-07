@@ -6,6 +6,7 @@ exports.openMainWindow = function(_tab) {
 //intial var
 $.credit_window.data = {"totalcredit":"","creditamount":"","bal":"","lastcredit":""};
 var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
+var sid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
 var bal=Titanium.App.Properties.getInt('bal',0);
 var totalspent=Titanium.App.Properties.getInt('totalspent'); // feed the data to window
 $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
@@ -212,6 +213,32 @@ $.notes_textarea.addEventListener("blur",function(e){
 		$.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; // feed data to window
 		console.log("updateDummy("+totalcredit+","+creditamount+","+lastcredit+")");
 		updateDummy(bal,totalcredit,creditamount,lastcredit);
+		// test write spreadsheet
+		var zero = 0;
+		var xmldatastring = '<entry xmlns=\'http://www.w3.org/2005/Atom\' xmlns:gsx=\'http://schemas.google.com/spreadsheets/2006/extended\'>'
+		+'<gsx:col1>'+lastcredit+'</gsx:col1><gsx:col2>'+lastcredit+'</gsx:col2><gsx:col3>'
+		+creditamount+'</gsx:col3><gsx:col4>'+zero+'</gsx:col4><gsx:col5>'
+		+zero+'</gsx:col5><gsx:col6>'+zero+'</gsx:col6><gsx:col7>'+zero+'</gsx:col7><gsx:col8>'+zero+'</gsx:col8><gsx:col9>'+zero
+		+'</gsx:col9></entry>';
+		Ti.API.info('xmldatastring to POST: '+xmldatastring);
+		var xhr =  Titanium.Network.createHTTPClient({
+	    onload: function() {
+		    	try {
+		    		Ti.API.info(this.responseText); 
+		    	} catch(e){
+		    		Ti.API.info("cathing e: "+JSON.stringify(e));
+		    	}     
+		    },
+		    onerror: function(e) {
+		    	Ti.API.info("error e: "+JSON.stringify(e));
+		    }
+		});
+			//xhr.open("POST", 'https://spreadsheets.google.com/feeds/list/'+sid+'/od6/public/full');
+			xhr.open("POST", 'https://spreadsheets.google.com/feeds/list/'+sid+'/od6/private/full');
+		xhr.setRequestHeader("Content-type", "application/atom+xml");
+		//xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuth.getAccessToken());
+		xhr.send(xmldatastring);
+		Ti.API.info('done POSTed');
 	}
 });
 

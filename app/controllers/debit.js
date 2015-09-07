@@ -5,6 +5,7 @@ exports.openMainWindow = function(_tab) {
 };
 
 //intial var
+var sid = '11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE';
 var creditamount=0; var lastcredit=0;
 var bal=Titanium.App.Properties.getInt('bal',0);
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);
