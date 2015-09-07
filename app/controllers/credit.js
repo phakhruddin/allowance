@@ -252,3 +252,5 @@ $.credit_window.addEventListener("close",function(e){
 $.credit_tab.addEventListener("blur",function(e){
 	console.log("credit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));
 });
+
+//Google Auth
