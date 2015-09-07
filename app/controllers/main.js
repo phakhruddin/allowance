@@ -15,7 +15,7 @@ $.lastdebit_button.addEventListener ("click", function(e){
 });
 
 function debitAction(e){
-	var url="https://spreadsheets.google.com/feeds/list/11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE/od6/public/basic?hl=en_US&alt=json"
+	var url="https://spreadsheets.google.com/feeds/list/11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE/od6/public/basic?hl=en_US&alt=json";
 	var type="debitmodel";
 	Alloy.Globals.updateType(url,type);
 }
@@ -75,7 +75,9 @@ someDummy.set({"id":"1234",
 	"dcreditamount":creditamount,
 	"lastcredit":lastcredit,
 	"lastdebit":lastdebit,
-	"debitamount":debitamount
+	"debitamount":debitamount,
+	"totalspent":totalspent,
+	"totalcredit":totalcredit
 });
 someDummy.fetch();
 console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));

@@ -5,7 +5,11 @@ exports.openMainWindow = function(_tab) {
 };
 
 //intial var
-var bal=Titanium.App.Properties.getInt('bal');
+var creditamount=0; var lastcredit=0;
+var bal=Titanium.App.Properties.getInt('bal',0);
+var totalspent = Titanium.App.Properties.getInt('totalspent',0);
+var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);
+$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
 
 $.debit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('debitmodel');
@@ -29,7 +33,7 @@ if(content.length>1){
 	var debitamount=0;
 }
 console.log("debit.js::debitamount: "+debitamount);
-$.debit_window.debitamount=debitamount; //feed var to window
+$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit}; //feed var to window
 
 function updateDummy(bal,totalspent,amount,lastdebit) {
 	var someDummy = Alloy.Models.dummy;
@@ -59,9 +63,6 @@ function setDate(e){
 	//$.donebutton.date = dateFormat;
 
 }
-
-//reset var
-var bal=0;var debitamount=0;var lastdebit=0;
 
 function debitDetailAddRow (date,dateadded,category,amount) {
 		console.log("debit.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded+" +dateadded: "+dateadded);
@@ -162,12 +163,14 @@ function displayRow(e){
 	for(i=0;i<content.length;i++){
 		debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4);
 		var totalspent = parseFloat(content[i].col4)+ parseFloat(totalspent);
-		$.notes_textarea.totalspent = totalspent;
-		$.debit_window.totalspent = totalspent;		
+		if (i == (content.length-1)) { $.debit_window.lastdebit = content[i].col1;} // capture the last date
 	}	
 	return totalspent;
 }
 var totalspent=displayRow();
+$.notes_textarea.totalspent = totalspent;
+$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
+
 Titanium.App.Properties.setInt('totalspent',totalspent);
 console.log("debit.js: after row display totalspent: "+totalspent);
 
@@ -235,14 +238,14 @@ $.notes_textarea.addEventListener("blur",function(e){
 		debitDetailAddRow(dateMDY,dateMDY,catselected,amount);//add row
 		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,dateMDY,catselected,amount,"0","0","0","0","0");//update local DB
 		var totalspent = parseFloat(amount)+ parseFloat(e.source.totalspent);
+		console.log("debit.js: e.source.totalspent:  "+e.source.totalspent+" totalspent: "+totalspent+" amount: "+amount);
 		Titanium.App.Properties.setInt('totalspent', totalspent);//write to persistent memory
 		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount);
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("debit.js:: notes_textarea totalspent: "+totalspent);
 		//updateDUmmy
-		$.debit_window.totalspent = totalspent;
-		$.debit_window.debitamount = amount;
-		$.debit_window.lastdebit = dateMDY;
+		$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
+		$.notes_textarea.totalspent = totalspent;
 		console.log("updateDummy("+totalspent+","+amount+","+dateMDY+")");
 		updateDummy(bal,totalspent,amount,dateMDY) ;
 		
@@ -251,6 +254,9 @@ $.notes_textarea.addEventListener("blur",function(e){
 
 $.debit_window.addEventListener("close",function(e){
 	console.log("debit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
+	var bal = parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent);
+	Titanium.App.Properties.setInt('bal',bal);
+	updateDummy(bal,e.source.data.totalspent,e.source.data.debitamount,e.source.data.lastdebit);
 });
 $.debit_tab.addEventListener("blur",function(e){
 	console.log("debit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));
