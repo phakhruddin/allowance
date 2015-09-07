@@ -1,0 +1,165 @@
+
+Sun Sep 06 2015 23:56:46 GMT-0500 (CDT)
+
+Operating System
+  Name                        = Mac OS X
+  Version                     = 10.10.2
+  Architecture                = 64bit
+  # CPUs                      = 8
+  Memory                      = 17179869184
+
+Node.js
+  Node.js Version             = 0.10.37
+  npm Version                 = 
+
+Titanium CLI
+  CLI Version                 = 4.1.3
+
+Titanium SDK
+  SDK Version                 = 4.1.0.GA
+  SDK Path                    = /Users/dabdullah/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA
+  Target Platform             = iphone
+
+Command
+  /usr/local/bin/node /usr/local/bin/titanium build --platform iphone --sdk 4.1.0.GA --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode
+
+[DEBUG]  Detecting modules in /Users/dabdullah/Library/Application Support/Titanium/modules
+[DEBUG]  Detected android module: com.appcelerator.apm 1.1.1 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/com.appcelerator.apm/1.1.1
+[DEBUG]  Detected android module: facebook 3.0.3 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/facebook/3.0.3
+[DEBUG]  Detected android module: facebook 4.0.5 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/facebook/4.0.5
+[DEBUG]  Detected android module: ti.cloudpush 3.3.7 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/ti.cloudpush/3.3.7
+[DEBUG]  Detected android module: ti.cloudpush 3.3.8 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/ti.cloudpush/3.3.8
+[DEBUG]  Detected android module: ti.map 2.2.3 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/ti.map/2.2.3
+[DEBUG]  Detected android module: ti.map 2.3.1 @ /Users/dabdullah/Library/Application Support/Titanium/modules/android/ti.map/2.3.1
+[DEBUG]  Detected commonjs module: ti.cloud 3.2.7 @ /Users/dabdullah/Library/Application Support/Titanium/modules/commonjs/ti.cloud/3.2.7
+[DEBUG]  Detected commonjs module: ti.cloud 3.2.9 @ /Users/dabdullah/Library/Application Support/Titanium/modules/commonjs/ti.cloud/3.2.9
+[DEBUG]  Detected iphone module: com.appcelerator.apm 1.1.1 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/com.appcelerator.apm/1.1.1
+[DEBUG]  Detected iphone module: com.appcelerator.urlSession 1.1.0 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/com.appcelerator.urlSession/1.1.0
+[DEBUG]  Detected iphone module: com.appcelerator.urlSession 1.1.1 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/com.appcelerator.urlSession/1.1.1
+[DEBUG]  Detected iphone module: facebook 3.2.0 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/facebook/3.2.0
+[DEBUG]  Detected iphone module: facebook 4.0.5 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/facebook/4.0.5
+[DEBUG]  Detected iphone module: ti.coremotion 1.1.0 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/ti.coremotion/1.1.0
+[DEBUG]  Detected iphone module: ti.map 2.2.0 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/ti.map/2.2.0
+[DEBUG]  Detected iphone module: ti.map 2.3.1 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/ti.map/2.3.1
+[DEBUG]  Detected iphone module: ti.touchid 1.1.0 @ /Users/dabdullah/Library/Application Support/Titanium/modules/iphone/ti.touchid/1.1.0
+[DEBUG]  Looking for Titanium module id=ti.cloud version=latest platform=commonjs deploy-type=test
+[INFO]   Found Titanium module id=ti.cloud version=3.2.9 platform=commonjs deploy-type=test path=/Users/dabdullah/Library/Application Support/Titanium/modules/commonjs/ti.cloud/3.2.9
+[DEBUG]  Detecting plugins in /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/plugins
+[DEBUG]  Detected plugin: ti.alloy @ /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/plugins/ti.alloy
+[DEBUG]  Detecting plugins in /Users/dabdullah/Library/Application Support/Titanium/plugins
+[DEBUG]  Detected plugin: com.appcelerator.test @ /Users/dabdullah/Library/Application Support/Titanium/plugins/com.appcelerator.test
+[DEBUG]  Looking for Titanium plugin id=ti.alloy version=1.0
+[INFO]   Found Titanium plugin id=ti.alloy version=1.0 
+[DEBUG]  Titanium SDK iOS directory: /Users/dabdullah/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone
+[INFO]   Deploy type: test
+[INFO]   Building for target: device
+[INFO]   Building using iOS SDK: 8.2
+[INFO]   Performing build only
+[INFO]   Building for device family: iphone
+[DEBUG]  Setting Xcode target to Debug
+[DEBUG]  Setting Xcode build OS to iphoneos8.2
+[DEBUG]  Xcode installation: /Applications/Xcode.app/Contents/Developer
+[DEBUG]  iOS WWDR certificate: installed
+[INFO]   Minimum iOS version: 7.0
+[INFO]   Using default keychain
+[INFO]   Debugging disabled
+[INFO]   Profiler disabled
+[INFO]   Initiating Xcode pre-compile phase
+[DEBUG]  Ignoring /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default-568h@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default-568h@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default-667h@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default-667h@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default-Landscape-736h@3x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default-Landscape-736h@3x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default-Portrait-736h@3x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default-Portrait-736h@3x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/Default@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/Default@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-60.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-60.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-60@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-60@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-60@3x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-60@3x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-72.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-72.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-72@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-72@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-76.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-76.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-76@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-76@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small-40.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small-40.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small-40@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small-40@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small-50.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small-50.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small-50@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small-50@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon-Small@3x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon-Small@3x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/appicon@2x.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/appicon@2x.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/banknotes.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/banknotes.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/blueline.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/blueline.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/debit.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/debit.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/gear.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/gear.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/home.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/home.png
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/iTunesArtwork => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/iTunesArtwork
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/iTunesArtwork@2x => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/iTunesArtwork@2x
+[DEBUG]  Copying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/right242.png => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/right242.png
+[INFO]   Processing JavaScript files
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/CFG.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/CFG_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/app.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/app_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/backbone.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/backbone_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/constants.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/constants_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/BaseController.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/BaseController_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/credit.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/credit_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/debit.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/debit_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/index.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/index_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/main.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/main_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/settings.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/settings_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/controllers/transaction.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/controllers/transaction_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/models/Creditmodel.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/models/Creditmodel_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/models/Debitmodel.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/models/Debitmodel_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/models/Dummy.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/models/Dummy_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/models/Mastermodel.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/models/Mastermodel_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/credit.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/credit_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/debit.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/debit_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/index.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/index_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/main.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/main_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/settings.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/settings_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/styles/transaction.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/styles/transaction_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/sync/localStorage.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/sync/localStorage_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/sync/properties.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/sync/properties_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/sync/sql.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/sync/sql_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/underscore.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/underscore_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/widget.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy/widget_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/alloy_js
+[DEBUG]  Copying and minifying /Users/dabdullah/Library/Application Support/Titanium/modules/commonjs/ti.cloud/3.2.9/ti.cloud.js => /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets/ti_cloud_js
+[INFO]   Encrypting JavaScript files: /Users/dabdullah/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone/titanium_prep "com.idevice.allowance" "/Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/assets"
+[DEBUG]  Preparing alloy/CFG_js
+[DEBUG]  Preparing app_js
+[DEBUG]  Preparing alloy/backbone_js
+[DEBUG]  Preparing alloy/constants_js
+[DEBUG]  Preparing alloy/controllers/BaseController_js
+[DEBUG]  Preparing alloy/controllers/credit_js
+[DEBUG]  Preparing alloy/controllers/debit_js
+[DEBUG]  Preparing alloy/controllers/index_js
+[DEBUG]  Preparing alloy/controllers/main_js
+[DEBUG]  Preparing alloy/controllers/settings_js
+[DEBUG]  Preparing alloy/controllers/transaction_js
+[DEBUG]  Preparing alloy/models/Creditmodel_js
+[DEBUG]  Preparing alloy/models/Debitmodel_js
+[DEBUG]  Preparing alloy/models/Dummy_js
+[DEBUG]  Preparing alloy/models/Mastermodel_js
+[DEBUG]  Preparing alloy/styles/credit_js
+[DEBUG]  Preparing alloy/styles/debit_js
+[DEBUG]  Preparing alloy/styles/index_js
+[DEBUG]  Preparing alloy/styles/main_js
+[DEBUG]  Preparing alloy/styles/settings_js
+[DEBUG]  Preparing alloy/styles/transaction_js
+[DEBUG]  Preparing alloy/sync/localStorage_js
+[DEBUG]  Preparing alloy/sync/properties_js
+[DEBUG]  Preparing alloy/sync/sql_js
+[DEBUG]  Preparing alloy/underscore_js
+[DEBUG]  Preparing alloy/widget_js
+[DEBUG]  Preparing alloy_js
+[DEBUG]  Preparing ti_cloud_js
+[DEBUG]  Preparing _app_props__json
+[DEBUG]  Writing application routing source file: /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/ApplicationRouting.m
+[INFO]   Processing Titanium namespace resources
+[DEBUG]  Copying /Users/dabdullah/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone/modules/ui/images => /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app/modules/ui/images
+[DEBUG]  Titanium symbol file already up-to-date: /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/defines.h
+[INFO]   Optimizing all images in /Users/dabdullah/Library/Developer/Xcode/DerivedData/allowance-fpaugvsmktjktqeovghdbuiufajy/Build/Products/Debug-iphoneos/allowance.app
+[DEBUG]  Removing empty directories
+[INFO]   Image optimization complete
+[INFO]   Project built successfully in 2s 356ms
