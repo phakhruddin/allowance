@@ -86,8 +86,9 @@ function debitDetailAddRow (date,dateadded,category,amount) {
       $.transaction_table.appendRow(debitrow);
 };
 
-debitDetailAddRow("8/22/2015","8/1/2015","Grocery","$200.00");
-debitDetailAddRow("8/23/2015","8/2/2015","Book","$205.00");
-debitDetailAddRow("8/24/2015","8/3/2015","Book","$301.00");
-debitDetailAddRow("8/25/2015","8/4/2015","Book","$221.00");
-debitDetailAddRow("8/26/2015","8/5/2015","Book","$132.00");
+//fething DB
+var content=Alloy.Globals.fetchingData('debitmodel');
+console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
+for(i=0;i<content.length;i++){
+	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4); //display row
+}
