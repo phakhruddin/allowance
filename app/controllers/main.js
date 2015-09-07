@@ -1,6 +1,7 @@
 //reset var
 var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
 var someDummy = Alloy.Models.dummy;
+var balalert = Titanium.App.Properties.getInt('balalert',100);
 
 $.lastcredit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
@@ -77,7 +78,8 @@ someDummy.set({"id":"1234",
 	"lastdebit":lastdebit,
 	"debitamount":debitamount,
 	"totalspent":totalspent,
-	"totalcredit":totalcredit
+	"totalcredit":totalcredit,
+	"color": "#13CA13"
 });
 someDummy.fetch();
 console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));

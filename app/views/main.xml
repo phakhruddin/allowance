@@ -15,14 +15,14 @@
 				<TableViewRow  color="white" Title="Identification" height="110">
 				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789" />
 					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="32" text="BAL" />
-	   		  		<Label id="balance" color="green" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="{dummy.bal}" />
+	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="{dummy.bal}" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">
 				<TableViewRow  color="white" Title="lastcredit_row" onClick="creditAction" height="64">
 	   		  		<Label id="creditamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="{dummy.dcreditamount}"/>
 			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="last credit on: {dummy.lastcredit}"/>
-			   		<Button id="lastcredit_button" right="60" image="right242.png" width="30" height="30" />
+			   		<Button id="lastcredit_button" right="60" image="right242.png" width="30" height="30"/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Debit">

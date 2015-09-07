@@ -14,3 +14,5 @@ function addHandler(e) {
         error: e.hide
     });
 }
+
+Titanium.App.Properties.setInt('balalert',100);

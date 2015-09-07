@@ -10,6 +10,7 @@ var creditamount=0; var lastcredit=0;
 var bal=Titanium.App.Properties.getInt('bal',0);
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);
 var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);
+var balalert = Titanium.App.Properties.getInt('balalert',100);
 $.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
 
 $.debit_tab.addEventListener("focus",function(e){
@@ -36,9 +37,9 @@ if(content.length>1){
 console.log("debit.js::debitamount: "+debitamount);
 $.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit}; //feed var to window
 
-function updateDummy(bal,totalspent,amount,lastdebit) {
+function updateDummy(bal,totalspent,amount,lastdebit,color) {
 	var someDummy = Alloy.Models.dummy;
-	someDummy.set({'id':'1234','bal':bal,'totalspent': totalspent,'debitamount':amount,"lastdebit":lastdebit});
+	someDummy.set({'id':'1234','bal':bal,'totalspent': totalspent,'debitamount':amount,"lastdebit":lastdebit,"color":color});
 	someDummy.fetch();
 	console.log("debit.js :: stringify dummy :"+JSON.stringify(someDummy));
 }
@@ -242,13 +243,14 @@ $.notes_textarea.addEventListener("blur",function(e){
 		console.log("debit.js: e.source.totalspent:  "+e.source.totalspent+" totalspent: "+totalspent+" amount: "+amount);
 		Titanium.App.Properties.setInt('totalspent', totalspent);//write to persistent memory
 		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount);
+		var color = Alloy.Globals.setBalColor(bal); 
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("debit.js:: notes_textarea totalspent: "+totalspent);
 		//updateDUmmy
-		$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
+		$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":amount,"bal":bal,"lastdebit":lastdebit,"color":color};
 		$.notes_textarea.totalspent = totalspent;
 		console.log("updateDummy("+totalspent+","+amount+","+dateMDY+")");
-		updateDummy(bal,totalspent,amount,dateMDY) ;
+		updateDummy(bal,totalspent,amount,dateMDY,color) ;
 		
 	}
 });
@@ -256,8 +258,9 @@ $.notes_textarea.addEventListener("blur",function(e){
 $.debit_window.addEventListener("close",function(e){
 	console.log("debit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
 	var bal = parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent);
+	var color = Alloy.Globals.setBalColor(bal);
 	Titanium.App.Properties.setInt('bal',bal);
-	updateDummy(bal,e.source.data.totalspent,e.source.data.debitamount,e.source.data.lastdebit);
+	updateDummy(bal,e.source.data.totalspent,e.source.data.debitamount,e.source.data.lastdebit,color);
 });
 $.debit_tab.addEventListener("blur",function(e){
 	console.log("debit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));

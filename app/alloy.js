@@ -91,3 +91,10 @@ Alloy.Globals.fetchingData = function(type){
 	eval("var content = "+type+".toJSON();");
 	return content;
 };
+
+Alloy.Globals.setBalColor = function(bal) {
+	if ( bal > 0 ) {
+			(bal>100)?color="green":color="red";
+		} else var color = "red";
+		return color;
+};
