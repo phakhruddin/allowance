@@ -58,17 +58,12 @@ if(content.length>0){
 }
 console.log("main.js: lastdebit: "+lastdebit+", debitamount: "+debitamount);
 	
-/*
-for(i=0;i<content.length;i++){
-	var bal = parseFloat(content[i].col3)+ parseFloat(bal);
-	console.log("main.js: content[i].col3: "+content[i].col3+" bal : "+bal);
-}*/
-
+//calculate initial balance when app launched
 var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);//get from persistent memory
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);//get from persistent memory
 console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
 (Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = parseFloat(totalcredit)-parseFloat(totalspent);
-
+Alloy.Globals.setBalColor(bal);
 
 
 someDummy.set({"id":"1234",

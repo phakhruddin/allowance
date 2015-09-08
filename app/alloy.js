@@ -94,7 +94,7 @@ Alloy.Globals.fetchingData = function(type){
 
 Alloy.Globals.setBalColor = function(bal) {
 	if ( bal > 0 ) {
-			(bal>100)?color="green":color="red";
-		} else var color = "red";
+			(bal>100)?color="#00CC00":color="#FF8800";
+		} else var color = "#FF0000";
 		return color;
 };
