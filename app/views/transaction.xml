@@ -1,4 +1,4 @@
 <Alloy>
-	<TableView id="transaction_table" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE">
+	<TableView id="transaction_table">
 	</TableView>
 </Alloy>

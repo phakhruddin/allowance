@@ -30,9 +30,6 @@
 		left: 20
 	}
 },
-"TableView[platform=ios]": {
-	separatorStyle: "Titanium.UI.iPhone.TableViewSeparatorStyle.NONE" 
-},
 "#dateLabel" : { 
 	font: {
 		fontSize: 24

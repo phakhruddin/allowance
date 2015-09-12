@@ -4,7 +4,7 @@
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
- 	<TableView id="debit_table" height="Ti.UI.FILL" separatorStyle="Titanium.UI.iPhone.TableViewSeparatorStyle.NONE"  backgroundColor="transparent" editable="true" moveable="true" >
+ 	<TableView id="debit_table" height="Ti.UI.FILL" backgroundColor="transparent" editable="true" moveable="true" >
 		<TableViewSection headerTitle="Please enter paid amount:">	
 		  	<FooterView>
 		        <View id="input_view" height="300" backgroundColor="white">

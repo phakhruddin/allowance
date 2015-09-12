@@ -34,6 +34,9 @@
 		fontStyle: 'bold'
 	}
 },
+"TableView[platform=ios]": {
+	separatorStyle: "Titanium.UI.iPhone.TableViewSeparatorStyle.NONE" 
+},
 "Tab":{
 	font: {
 		fontSize: '50dp',

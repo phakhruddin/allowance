@@ -25,6 +25,9 @@
 		fontSize: 24
 	}
 },
+"TableView[platform=ios]": {
+	separatorStyle: "Titanium.UI.iPhone.TableViewSeparatorStyle.NONE" 
+},
 "TextArea": {
 	font: {
 		left: 20
