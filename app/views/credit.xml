@@ -16,7 +16,7 @@
 			    	<Label id="costLabel" color="blue" top="55" left="70%" text="Cost"/>
 		        	<TextArea id="notes_textarea" width="100" left="65%" height="44" top="45" borderWidth="1" borderColor="red" borderRadius="5" 
 	        		color="#888" textAlign="left" value=" " hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" onFocus="notesAreaFocus">
-    			  	<KeyboardToolbar id="ktb_textarea">
+    			  	<KeyboardToolbar platform="ios" id="ktb_textarea">
 	        			<Toolbar>
 	        				<Items>
             					<Button id="donebutton" title="DONE" onClick="blurIT"/>
