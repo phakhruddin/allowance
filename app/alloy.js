@@ -13,6 +13,8 @@
 //MasterRecord
 Titanium.App.Properties.setString('mastersid','16QfBs8Yn5ukMlVF8Tdl1iRzk2Uplwtop0ZSz2ktRZTE');
 Alloy.Globals.clientId = "120519987740-374ldi5ngogurkrt42sjfmpgs6pjepe6.apps.googleusercontent.com";
+Alloy.Globals.name = Titanium.App.Properties.getString('name',"Please set name");
+Alloy.Globals.email = Titanium.App.Properties.getString('email',"Please enter email address");
 
 //AMPM
 Alloy.Globals.formatAMPM = function(date){

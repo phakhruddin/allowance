@@ -1,7 +1,11 @@
 //reset var
 var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
 var someDummy = Alloy.Models.dummy;
+var someInfo = Alloy.Models.info;
 var balalert = Titanium.App.Properties.getInt('balalert',100);
+
+//set account name
+//$.name.text=Alloy.Globals.name;
 
 $.lastcredit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
@@ -65,6 +69,12 @@ console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
 (Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = parseFloat(totalcredit)-parseFloat(totalspent);
 Alloy.Globals.setBalColor(bal);
 
+someInfo.set({"id":"1234",
+	"namecolor": "black",
+	"name": Titanium.App.Properties.getString('name')
+});
+someInfo.fetch();
+console.log("main.js:: stringify info :"+JSON.stringify(someInfo));
 
 someDummy.set({"id":"1234",
 	"bal":bal,
@@ -91,6 +101,7 @@ var googleAuthSheet = new GoogleAuth({
 
 console.log('main.js:: googleAuthSheet.getAccessToken() Token: ' + googleAuthSheet.getAccessToken());
 
+//if user login. LOGOUT button.
 function login(e) {
 	//check if user is authorized
 	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
@@ -99,16 +110,19 @@ function login(e) {
 			console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 			Titanium.App.Properties.setString('needAuth',"false");
 			$.login_button.title="LOGOUT";
+			someDummy.set({"namecolor": "#13CA13"});
 		}, function() {
 			console.log('Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
 			googleAuthSheet.authorize();
 			$.login_button.title="LOGOUT";
+			someDummy.set({"namecolor": "#13CA13"});
 		});
 	} else {
 		Ti.API.info('Logout: ');
 		googleAuthSheet.deAuthorize();
 		$.login_button.title="LOGIN";
+		someDummy.set({"namecolor": "red"});
 	}
 
 }

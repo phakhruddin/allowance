@@ -46,7 +46,7 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 }
-"#header": {
+"#name": {
 	color: 'blue',
 	font: {
 		fontSize: '30',

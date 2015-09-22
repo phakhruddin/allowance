@@ -4,16 +4,17 @@
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
- 	  <TableView id="settings_table" backgroundColor="transparent" >
- 	  	<TableViewSection id="header_section" headerTitle="User Profile"/>
+ 	  <TableView id="settings_table" backgroundColor="transparent" style= "Titanium.UI.iPhone.TableViewStyle.PLAIN" 
+ 	  	separatorStyle="Ti.UI.iPhone.TableViewSeparatorStyle.NONE">
+ 	  	<TableViewSection headerTitle="User Profile"/>
  	  	<TableViewSection headerTitle="Name">
  	  		<TableViewRow>
- 	  			<TextField width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith" value=""  />
+ 	  			<TextField id="name_tf" width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith"/>
  	  		</TableViewRow>
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="GMail Account">
  	  		<TableViewRow>
- 	  			<TextField width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value="" />
+ 	  			<TextField id="email_tf" width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value=""/>
  	  		</TableViewRow>
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="Utilities">

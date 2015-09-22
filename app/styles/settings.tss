@@ -21,29 +21,9 @@
 		fontStyle: 'bold'
 	}
 },
-"TableViewSection": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	backgroundColor: "#202021",
-	color: "white",
-	font: {
-		fontSize: '52',
-		fontStyle: 'bold'
-	}
-},
-"#header_section": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	backgroundColor: "#5C5E61",
-	color: "white",
-	font: {
-		fontSize: '56',
-		fontStyle: 'bold'
-	}
-},
 "Tab":{
 	font: {
-		fontSize: '50dp',
+		fontSize: '56dp',
 		fontWeight: 'bold',
 		textStyle : Ti.UI.TEXT_STYLE_HEADLINE
 	},
