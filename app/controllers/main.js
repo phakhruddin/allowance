@@ -78,3 +78,38 @@ someDummy.set({"id":"1234",
 });
 someDummy.fetch();
 console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));
+
+
+//Google Auth Local
+var GoogleAuth = require('googleAuth');
+var googleAuthSheet = new GoogleAuth({
+	clientId : Alloy.Globals.clientId,
+	propertyName : 'googleToken',
+	scope : Alloy.Globals.scope,
+	quiet: false
+});
+
+console.log('main.js:: googleAuthSheet.getAccessToken() Token: ' + googleAuthSheet.getAccessToken());
+
+function login(e) {
+	//check if user is authorized
+	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
+	if (e.source.title == "LOGIN") {
+		googleAuthSheet.isAuthorized(function() {
+			console.log('Access Token: ' + googleAuthSheet.getAccessToken());
+			Titanium.App.Properties.setString('needAuth',"false");
+			$.login_button.title="LOGOUT";
+		}, function() {
+			console.log('Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
+			Titanium.App.Properties.setString('needAuth',"true");
+			googleAuthSheet.authorize();
+			$.login_button.title="LOGOUT";
+		});
+	} else {
+		Ti.API.info('Logout: ');
+		googleAuthSheet.deAuthorize();
+		$.login_button.title="LOGIN";
+	}
+
+}
+

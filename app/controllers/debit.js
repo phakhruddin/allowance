@@ -19,7 +19,7 @@ $.debit_tab.addEventListener("focus",function(e){
 	console.log("debit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
 	var totalspent=displayRow();
 	Titanium.App.Properties.setInt('totalspent',totalspent);//write to persistent memory
-	console.log("debit.js: tab focus: totalspent"+totalspent+" Titanium.App.Properties.getInt(totalspent): "+Titanium.App.Properties.setInt("totalspent"));
+	console.log("debit.js: tab focus: totalspent"+totalspent+" Titanium.App.Properties.getInt(totalspent): "+Titanium.App.Properties.getInt("totalspent"));
 });
 
 //fething DB

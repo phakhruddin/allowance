@@ -12,6 +12,7 @@
 
 //MasterRecord
 Titanium.App.Properties.setString('mastersid','16QfBs8Yn5ukMlVF8Tdl1iRzk2Uplwtop0ZSz2ktRZTE');
+Alloy.Globals.clientId = "120519987740-374ldi5ngogurkrt42sjfmpgs6pjepe6.apps.googleusercontent.com";
 
 //AMPM
 Alloy.Globals.formatAMPM = function(date){
@@ -24,6 +25,23 @@ Alloy.Globals.formatAMPM = function(date){
 	  var strTime = hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 };
+
+//Google Authorization stanza
+var scope = ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/drive'];
+scope.push ("https://www.googleapis.com/auth/drive.appdata");
+scope.push ("https://www.googleapis.com/auth/drive.apps.readonly");
+scope.push ("https://www.googleapis.com/auth/drive.file");
+scope.push ("https://www.googleapis.com/auth/plus.login");
+scope.push ("https://www.googleapis.com/auth/userinfo.profile");
+scope.push ("https://www.googleapis.com/auth/userinfo.email");
+Alloy.Globals.scope = scope;
+Alloy.Globals.GoogleAuth = require('googleAuth');
+Alloy.Globals.googleAuthSheet = new Alloy.Globals.GoogleAuth({
+	clientId : Alloy.Globals.clientId,
+	propertyName : 'googleToken',
+	scope : Alloy.Globals.scope,
+	quiet: false
+});
 
 console.log("Ti.Filesystem.tempDirectory: "+Ti.Filesystem.tempDirectory);
 Alloy.Globals.writeFile = function (content, filename){

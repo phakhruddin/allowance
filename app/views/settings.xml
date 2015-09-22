@@ -5,18 +5,28 @@
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
  	  <TableView id="settings_table" backgroundColor="transparent" >
+ 	  	<TableViewSection id="header_section" headerTitle="User Profile"/>
  	  	<TableViewSection headerTitle="Name">
  	  		<TableViewRow>
- 	  		<TextField width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith"  />
+ 	  			<TextField width="Ti.UI.Fill" left="20" hintText="Name: Zachary Smith" value=""  />
  	  		</TableViewRow>
  	  	</TableViewSection>
- 	  	<TableViewSection headerTitle="Email">
+ 	  	<TableViewSection headerTitle="GMail Account">
  	  		<TableViewRow>
- 	  		<TextField width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com"  />
+ 	  			<TextField width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value="" />
  	  		</TableViewRow>
  	  	</TableViewSection>
- 	  	<TableViewSection headerTitle="appearance">
- 	  		<TableViewRow id="settings_row" backgroundColor="transparent" opacity="0" title="Change Skin Color"/>
+ 	  	<TableViewSection headerTitle="Utilities">
+ 	  		<TableViewRow id="skin_row" backgroundColor="transparent" opacity="0" title="Change Skin Color"/>
+ 	  		<TableViewRow id="currency_row" backgroundColor="transparent" opacity="0" title="Currency"/>
+ 	  		<TableViewRow id="offline_row" opacity="0" title="Offline Mode">
+			 	<Switch id="offline_switch" right="20" titleOff="OFF" titleOn="ON" value="ON"/>
+ 	  		</TableViewRow>
+ 	  		<TableViewRow id="offline_row" opacity="0" title="Debug Mode">
+			 	<Switch id="offline_switch" right="20" titleOff="OFF" titleOn="ON" value="ON"/>
+ 	  		</TableViewRow>
+ 	  		<TableViewRow id="support_row" opacity="0" title="Email Support"/>
+ 	  		<TableViewRow id="advance_row" backgroundColor="transparent" opacity="0" title="Advance Option"/>
  	  	</TableViewSection>
 	  </TableView>
   </Window>

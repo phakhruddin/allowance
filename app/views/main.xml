@@ -2,7 +2,10 @@
 	<Collection src="debitmodel"/>
 	<Model src="dummy" />
 	<Tab id="main_tab" title="Home"  icon="home.png">
-	<Window id="main_window" class="container" backgroundColor="transparent">	
+	<Window id="main_window" class="container" backgroundColor="transparent">
+	  	<RightNavButton id="login_rightnavbutton" platform="ios">
+	   		<Button id="login_button" title="LOGIN" color="green" onClick="login"/>
+		</RightNavButton>	
 		<TableView backgroundColor="transparent">
 			<TableViewSection headerTitle="Name">
 				<TableViewRow  color="white" Title="Identification" height="100">

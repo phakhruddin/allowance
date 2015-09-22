@@ -2,35 +2,42 @@
 	backgroundColor:"white"
 },
 
-"#label": {
-	font: {
-		fontSize: 12
-	}
-},
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	font: {
-        fontFamily:'Helvetica',
-        fontWeight: 'normal'	}
+		color: "#5C5E61",
+        fontWeight: 'normal',
+        fontSize:"48"	
+        }
 },
 "TableViewRow": {
 	width: Ti.UI.SIZE,
 	height: "36",
+	color: "#5C5E61",
 	font: {
-		fontSize: '12',
-		fontStyle: 'bold',
-		color: "orange"
+		fontSize: '20',
+		fontStyle: 'bold'
 	}
 },
 "TableViewSection": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "green",
-	backgroundColor: "transparent",
+	backgroundColor: "#202021",
+	color: "white",
 	font: {
-		fontSize: '48',
+		fontSize: '52',
+		fontStyle: 'bold'
+	}
+},
+"#header_section": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	backgroundColor: "#5C5E61",
+	color: "white",
+	font: {
+		fontSize: '56',
 		fontStyle: 'bold'
 	}
 },
@@ -56,8 +63,11 @@
 		fontStyle: 'bold'
 	}
 },
-"#lastamount": {
+"TextField": {
+	width: Ti.UI.SIZE,
+	height: "36",
+	color: "#5C5E61",
 	font: {
-		fontSize: '24'
+		fontSize: '18'
 	}
-}
+},
