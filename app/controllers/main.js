@@ -71,7 +71,8 @@ Alloy.Globals.setBalColor(bal);
 
 someInfo.set({"id":"1234",
 	"namecolor": "black",
-	"name": Titanium.App.Properties.getString('name')
+	"name": Titanium.App.Properties.getString('name'),
+	"emailid": Titanium.App.Properties.getString('emailid')
 });
 someInfo.fetch();
 console.log("main.js:: stringify info :"+JSON.stringify(someInfo));
@@ -101,6 +102,33 @@ var googleAuthSheet = new GoogleAuth({
 
 console.log('main.js:: googleAuthSheet.getAccessToken() Token: ' + googleAuthSheet.getAccessToken());
 
+//get email address used to login 
+function getEmail(e){
+			var xhr = Ti.Network.createHTTPClient({
+		    onload: function(e) {
+		    try {
+		    		var json = JSON.parse(this.responseText);
+		    		Ti.API.info("response is: "+JSON.stringify(json));
+		    		var emailid = json.email;
+		    		Titanium.App.Properties.setString('emailid',emailid);
+		    		console.log("main.js::args inside getEmail: emailid "+emailid+" :: "+JSON.stringify(e));
+		    	} catch(e){
+					Ti.API.info("cathing e: "+JSON.stringify(e));
+				}
+				return emailid;
+				Titanium.App.Properties.setString('emailid',emailid);
+			}
+			});
+		xhr.onerror = function(e){
+			console.log('main::getEmail:: unable to get info for '+e);
+		};
+		console.log('main::getEmail:: URL:: https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.open("GET", 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.setRequestHeader("Content-type", "application/json");
+	    xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuthSheet.getAccessToken());
+		xhr.send();
+	}
+
 //if user login. LOGOUT button.
 function login(e) {
 	//check if user is authorized
@@ -110,19 +138,22 @@ function login(e) {
 			console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 			Titanium.App.Properties.setString('needAuth',"false");
 			$.login_button.title="LOGOUT";
-			someDummy.set({"namecolor": "#13CA13"});
+			someInfo.set({"namecolor": "#13CA13"});
+			getEmail();
 		}, function() {
 			console.log('Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
 			googleAuthSheet.authorize();
 			$.login_button.title="LOGOUT";
-			someDummy.set({"namecolor": "#13CA13"});
-		});
+			someInfo.set({"namecolor": "#13CA13"});
+			getEmail();
+		}
+		);
 	} else {
 		Ti.API.info('Logout: ');
 		googleAuthSheet.deAuthorize();
 		$.login_button.title="LOGIN";
-		someDummy.set({"namecolor": "red"});
+		someInfo.set({"namecolor": "red"});
 	}
 
 }

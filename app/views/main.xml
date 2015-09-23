@@ -11,7 +11,7 @@
 			<TableViewSection headerTitle="Name">
 				<TableViewRow  color="white" Title="Identification" height="100">
 	   		  		<Label id="name" color="{info.namecolor}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="{info.name}"/>
-			   		<Label id="studentid" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="65" text="id: 23442266" />
+			   		<Label id="studentid" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="65" text="id: {info.emailid}" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Account Status">

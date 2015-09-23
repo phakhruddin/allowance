@@ -14,7 +14,7 @@
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="GMail Account">
  	  		<TableViewRow>
- 	  			<TextField id="email_tf" width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value=""/>
+ 	  			<TextField id="emailid_tf" width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value=""/>
  	  		</TableViewRow>
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="Utilities">

@@ -34,10 +34,10 @@ $.name_tf.addEventListener('blur', function(e) {
 	console.log("main.js:: stringify dummy :"+JSON.stringify(someInfo));
  });
  
-$.email_tf.addEventListener('blur', function(e) {
-    var email = $.email_tf.value.trim();
-    Ti.API.info("settings:: entered is: "+email);
-    Titanium.App.Properties.setString('email',email);
-    Ti.API.info("settings:: email obtained is: "+Titanium.App.Properties.getString('email'));
+$.emailid_tf.addEventListener('blur', function(e) {
+    var emailid = $.emailid_tf.value.trim();
+    Ti.API.info("settings:: entered is: "+emailid);
+    Titanium.App.Properties.setString('emailid',emailid);
+    Ti.API.info("settings:: emailid obtained is: "+Titanium.App.Properties.getString('emailid'));
     console.log("settings:: JSON of textfield: "+JSON.stringify(e));
  });

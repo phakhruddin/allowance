@@ -24,7 +24,7 @@ var GoogleAuth = function(o) {
 		url : 'https://accounts.google.com/o/oauth2/auth',
 		scope : (o.scope) ? o.scope : ['https://www.googleapis.com/auth/tasks'],
 		closeTitle : (o.closeTitle) ? o.closeTitle : 'Close',
-		winTitle : (o.winTitle) ? o.winTitle : 'Google Account',
+		winTitle : (o.winTitle) ? o.winTitle : 'Authentication',
 		errorText : (o.errorText) ? o.errorText : 'Can not authorize user!',
 		winColor : (o.winColor) ? o.winColor : '#000',
 		quiet : ( typeof (o.quiet) === 'undefined') ? true : o.quiet
@@ -89,12 +89,19 @@ var GoogleAuth = function(o) {
 	function authorize(cb) {
 		cb = (cb) ? cb : function() {
 		};
+   		
 		win = Ti.UI.createWindow({
 			backgroundColor : 'white',
-			barColor : _opt.winColor,
+			//barColor : _opt.winColor,
 			modal : true,
 			title : _opt.winTitle
 		});
+		win1 = Titanium.UI.iOS.createNavigationWindow({
+			Title: "Authentication",
+			backgroundColor: "transparent",
+	   	  	window: win,
+	   	  	height: "85%"
+    	});
 		var spinner = Ti.UI.createActivityIndicator({
 			zIndex : 1,
 			height : 50,
@@ -111,7 +118,7 @@ var GoogleAuth = function(o) {
 		win.rightNavButton = close;
 
 		close.addEventListener('click', function() {
-			win.close();
+			win1.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
 		});
 		var url = prepareUrl();
 
@@ -135,7 +142,8 @@ var GoogleAuth = function(o) {
 				_prop.refreshToken = null;
 				_prop.tokenType = null;
 				_prop.expiresIn = 0;
-				win.close();
+				//win.close();
+				win1.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
 			}
 			var code = webview.evalJS('document.getElementById("code").value;');
 			if (code != '') {
@@ -148,10 +156,12 @@ var GoogleAuth = function(o) {
 			if (c > 10) {
 				//some error (to many requests :) )
 				log.debug('GoogleAuth: To many redirects...');
-				win.close();
+				//win.close();
+				win1.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
 			}
 		});
-		win.open();
+		//win.open();
+		win1.open();
 	}
 
 	function deAuthorize(cb) {
@@ -287,7 +297,8 @@ var GoogleAuth = function(o) {
 				_prop.expiresIn = resp.expires_in;
 				log.debug(_prop);
 				//alert('success');
-				win.close();
+				///win.close();
+				win1.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
 				//callback
 				cb();
 			},
@@ -300,7 +311,7 @@ var GoogleAuth = function(o) {
 					title : 'Error',
 					message : _opt.errorText
 				});
-				win.close();
+				win.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
 			},
 			timeout : 5000 /* in milliseconds */
 		});
