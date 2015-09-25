@@ -118,3 +118,52 @@ Alloy.Globals.setBalColor = function(bal) {
 		} else var color = "#FF0000";
 		return color;
 };
+
+Alloy.Globals.createSpreadsheet = function(filename,parentid){
+	console.log("alloy.js::create ss with filename: "+filename+" and parentid: "+parentid);
+	var jsonpost = '{'
+		 +'\"title\": \"'+filename+'\",'
+		 +'\"parents\": ['
+		  +'{'
+		   +'\"id\": \"'+parentid+'\"'
+		 +' }'
+		 +'],'
+		 +'\"mimeType\": \"application/vnd.google-apps.spreadsheet\"'
+		+'}';
+		var xhr = Ti.Network.createHTTPClient({
+	    onload: function(e) {
+	    try {
+	    		Ti.API.info("response is: "+this.responseText);
+	    		var json = JSON.parse(this.responseText);
+	    		var sid = json.id;
+	    		populatejoblogSIDtoDB(filename,sid);
+	    		Titanium.App.Properties.setString('sid',sid); // 1st sid created.
+	    		for (i=1;i<17;i++){
+						var value = "col"+i;
+						getSSCell(sid,1,i,value);
+					}
+					getSSCell(sid,2,1,"Date");
+					getSSCell(sid,2,2,"Notes");
+					var date = new Date();
+					for (r=3;r<6;r++) {
+						getSSCell(sid,r,1,date);
+						getSSCell(sid,r,2,"Please enter work logs.");
+						getSSCell(sid,r,16,Date.now()); //jobitemid
+					};
+					
+	    		console.log("projectdetail.js::sid : "+sid);
+	    	} catch(e){
+				Ti.API.info("cathing e: "+JSON.stringify(e));
+			}
+		}
+		});
+	xhr.onerror = function(e){
+		alert("projectdetail::createSpreadsheet::Unable to create spreadsheet.");
+		console.log("projectdetail::createSpreadsheet::Unable to createSpreadsheet with "+filename+".");
+	};
+	xhr.open("POST", 'https://www.googleapis.com/drive/v2/files');	
+	xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuthSheet.getAccessToken());
+    console.log("projectdetail.js::json post: "+jsonpost);
+	xhr.send(jsonpost);
+};

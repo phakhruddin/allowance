@@ -1,0 +1,12 @@
+<Alloy>
+	<Tab  title="advance" icon="gear">
+  <Window id="advance_window" backgroundColor="white" title="advance">
+ 	  <TableView id="advance_table" backgroundColor="transparent" style= "Titanium.UI.iPhone.TableViewStyle.PLAIN" 
+ 	  	separatorStyle="Ti.UI.iPhone.TableViewSeparatorStyle.NONE">
+ 	  	<TableViewSection height="10%" headerTitle="Utilities">
+ 	  		<TableViewRow id="createdir_row" backgroundColor="transparent" opacity="0" title="Create Directory"/>
+ 	  	</TableViewSection>
+	  </TableView>
+  </Window>
+  </Tab>
+</Alloy>

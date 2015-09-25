@@ -1,0 +1,53 @@
+".container": {
+	backgroundColor:"white"
+},
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+		color: "#5C5E61",
+        fontWeight: 'normal',
+        fontSize:"48"	
+        }
+},
+"TableViewRow": {
+	width: Ti.UI.SIZE,
+	height: "36",
+	color: "#5C5E61",
+	font: {
+		fontSize: '20',
+		fontStyle: 'bold'
+	}
+},
+"Tab":{
+	font: {
+		fontSize: '56dp',
+		fontWeight: 'bold',
+		textStyle : Ti.UI.TEXT_STYLE_HEADLINE
+	},
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+}
+"#header": {
+	color: 'blue',
+	font: {
+		fontSize: '30',
+		fontStyle: 'bold'
+	}
+},
+"#balance": {
+	font: {
+		fontSize: '48',
+		fontStyle: 'bold'
+	}
+},
+"TextField": {
+	width: Ti.UI.SIZE,
+	height: "36",
+	color: "#5C5E61",
+	font: {
+		fontSize: '18'
+	}
+},

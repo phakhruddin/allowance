@@ -1,5 +1,5 @@
 <Alloy>
-	<Tab  title="Settings" icon="gear">
+	<Tab id="settings_tab" title="Settings" icon="gear">
   <Window id="settings_window" backgroundColor="white" title="settings">
  	<RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
@@ -27,7 +27,7 @@
 			 	<Switch id="offline_switch" right="20" titleOff="OFF" titleOn="ON" value="ON"/>
  	  		</TableViewRow>
  	  		<TableViewRow id="support_row" opacity="0" title="Email Support"/>
- 	  		<TableViewRow id="advance_row" backgroundColor="transparent" opacity="0" title="Advance Option"/>
+ 	  		<TableViewRow id="advance_row" backgroundColor="transparent" opacity="0" title="Advance Option" onClick="gotoAdvance"/>
  	  	</TableViewSection>
 	  </TableView>
   </Window>

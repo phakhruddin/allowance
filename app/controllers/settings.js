@@ -41,3 +41,9 @@ $.emailid_tf.addEventListener('blur', function(e) {
     Ti.API.info("settings:: emailid obtained is: "+Titanium.App.Properties.getString('emailid'));
     console.log("settings:: JSON of textfield: "+JSON.stringify(e));
  });
+ 
+function gotoAdvance(e){
+	console.log("settings.js:: JSON.stringify(e)" +JSON.stringify(e));
+	var tabViewOneController = Alloy.createController("advance");
+	tabViewOneController.openMainWindow($.settings_tab);
+}
