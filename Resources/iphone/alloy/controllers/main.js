@@ -19,6 +19,58 @@ function Controller() {
         var type = "creditmodel";
         Alloy.Globals.updateType(url, type);
     }
+    function getEmail() {
+        var xhr = Ti.Network.createHTTPClient({
+            onload: function(e) {
+                try {
+                    var json = JSON.parse(this.responseText);
+                    Ti.API.info("response is: " + JSON.stringify(json));
+                    var emailid = json.email;
+                    Titanium.App.Properties.setString("emailid", emailid);
+                    console.log("main.js::args inside getEmail: emailid " + emailid + " :: " + JSON.stringify(e));
+                } catch (e) {
+                    Ti.API.info("cathing e: " + JSON.stringify(e));
+                }
+                return emailid;
+            }
+        });
+        xhr.onerror = function(e) {
+            console.log("main::getEmail:: unable to get info for " + e);
+        };
+        console.log("main::getEmail:: URL:: https://www.googleapis.com/oauth2/v1/userinfo?alt=json");
+        xhr.open("GET", "https://www.googleapis.com/oauth2/v1/userinfo?alt=json");
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + googleAuthSheet.getAccessToken());
+        xhr.send();
+    }
+    function login(e) {
+        console.log("main.js:: login/logout: JSON.stringify(e)" + JSON.stringify(e));
+        if ("LOGIN" == e.source.title) googleAuthSheet.isAuthorized(function() {
+            console.log("Access Token: " + googleAuthSheet.getAccessToken());
+            Titanium.App.Properties.setString("needAuth", "false");
+            $.login_button.title = "LOGOUT";
+            someInfo.set({
+                namecolor: "#13CA13"
+            });
+            getEmail();
+        }, function() {
+            console.log("Fr AlloyGlobal Authorized first, see next window: " + new Date());
+            Titanium.App.Properties.setString("needAuth", "true");
+            googleAuthSheet.authorize();
+            $.login_button.title = "LOGOUT";
+            someInfo.set({
+                namecolor: "#13CA13"
+            });
+            getEmail();
+        }); else {
+            Ti.API.info("Logout: ");
+            googleAuthSheet.deAuthorize();
+            $.login_button.title = "LOGIN";
+            someInfo.set({
+                namecolor: "red"
+            });
+        }
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "main";
     this.args = arguments[0] || {};
@@ -38,12 +90,20 @@ function Controller() {
     var __defers = {};
     Alloy.Collections.instance("debitmodel");
     Alloy.Models.instance("dummy");
+    Alloy.Models.instance("info");
     $.__views.main_window = Ti.UI.createWindow({
         backgroundColor: "transparent",
         id: "main_window"
     });
-    var __alloyId39 = [];
-    $.__views.__alloyId40 = Ti.UI.createTableViewSection({
+    $.__views.login_button = Ti.UI.createButton({
+        id: "login_button",
+        title: "LOGIN",
+        color: "green"
+    });
+    login ? $.__views.login_button.addEventListener("click", login) : __defers["$.__views.login_button!click!login"] = true;
+    $.__views.main_window.rightNavButton = $.__views.login_button;
+    var __alloyId43 = [];
+    $.__views.__alloyId44 = Ti.UI.createTableViewSection({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "green",
@@ -53,10 +113,10 @@ function Controller() {
             fontStyle: "bold"
         },
         headerTitle: "Name",
-        id: "__alloyId40"
+        id: "__alloyId44"
     });
-    __alloyId39.push($.__views.__alloyId40);
-    $.__views.__alloyId41 = Ti.UI.createTableViewRow({
+    __alloyId43.push($.__views.__alloyId44);
+    $.__views.__alloyId45 = Ti.UI.createTableViewRow({
         width: Ti.UI.SIZE,
         height: "100",
         font: {
@@ -66,24 +126,10 @@ function Controller() {
         },
         color: "white",
         Title: "Identification",
-        id: "__alloyId41"
+        id: "__alloyId45"
     });
-    $.__views.__alloyId40.add($.__views.__alloyId41);
-    $.__views.date = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-        font: {
-            fontFamily: "Helvetica",
-            fontWeight: "normal"
-        },
-        id: "date",
-        color: "#404040",
-        top: "10",
-        text: " Sep 7, 2015"
-    });
-    $.__views.__alloyId41.add($.__views.date);
-    $.__views.header = Ti.UI.createLabel({
+    $.__views.__alloyId44.add($.__views.__alloyId45);
+    $.__views.name = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
@@ -93,12 +139,10 @@ function Controller() {
             fontSize: "30",
             fontStyle: "bold"
         },
-        color: "#404040",
-        id: "header",
-        top: "25",
-        text: "Zachary Smith"
+        id: "name",
+        top: "25"
     });
-    $.__views.__alloyId41.add($.__views.header);
+    $.__views.__alloyId45.add($.__views.name);
     $.__views.studentid = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -109,11 +153,10 @@ function Controller() {
         },
         id: "studentid",
         color: "gray",
-        top: "65",
-        text: "123456789"
+        top: "65"
     });
-    $.__views.__alloyId41.add($.__views.studentid);
-    $.__views.__alloyId42 = Ti.UI.createTableViewSection({
+    $.__views.__alloyId45.add($.__views.studentid);
+    $.__views.__alloyId46 = Ti.UI.createTableViewSection({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "green",
@@ -123,10 +166,10 @@ function Controller() {
             fontStyle: "bold"
         },
         headerTitle: "Account Status",
-        id: "__alloyId42"
+        id: "__alloyId46"
     });
-    __alloyId39.push($.__views.__alloyId42);
-    $.__views.__alloyId43 = Ti.UI.createTableViewRow({
+    __alloyId43.push($.__views.__alloyId46);
+    $.__views.__alloyId47 = Ti.UI.createTableViewRow({
         width: Ti.UI.SIZE,
         height: "110",
         font: {
@@ -136,9 +179,9 @@ function Controller() {
         },
         color: "white",
         Title: "Identification",
-        id: "__alloyId43"
+        id: "__alloyId47"
     });
-    $.__views.__alloyId42.add($.__views.__alloyId43);
+    $.__views.__alloyId46.add($.__views.__alloyId47);
     $.__views.accountnumber = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -152,7 +195,7 @@ function Controller() {
         top: "10",
         text: "Account #: A1232789"
     });
-    $.__views.__alloyId43.add($.__views.accountnumber);
+    $.__views.__alloyId47.add($.__views.accountnumber);
     $.__views.baltext = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -166,7 +209,7 @@ function Controller() {
         top: "32",
         text: "BAL"
     });
-    $.__views.__alloyId43.add($.__views.baltext);
+    $.__views.__alloyId47.add($.__views.baltext);
     $.__views.balance = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -178,11 +221,10 @@ function Controller() {
             fontStyle: "bold"
         },
         id: "balance",
-        color: "green",
         top: "46"
     });
-    $.__views.__alloyId43.add($.__views.balance);
-    $.__views.__alloyId44 = Ti.UI.createTableViewSection({
+    $.__views.__alloyId47.add($.__views.balance);
+    $.__views.__alloyId48 = Ti.UI.createTableViewSection({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "green",
@@ -192,10 +234,10 @@ function Controller() {
             fontStyle: "bold"
         },
         headerTitle: "Last Credit",
-        id: "__alloyId44"
+        id: "__alloyId48"
     });
-    __alloyId39.push($.__views.__alloyId44);
-    $.__views.__alloyId45 = Ti.UI.createTableViewRow({
+    __alloyId43.push($.__views.__alloyId48);
+    $.__views.__alloyId49 = Ti.UI.createTableViewRow({
         width: Ti.UI.SIZE,
         height: "64",
         font: {
@@ -205,10 +247,10 @@ function Controller() {
         },
         color: "white",
         Title: "lastcredit_row",
-        id: "__alloyId45"
+        id: "__alloyId49"
     });
-    $.__views.__alloyId44.add($.__views.__alloyId45);
-    creditAction ? $.addListener($.__views.__alloyId45, "click", creditAction) : __defers["$.__views.__alloyId45!click!creditAction"] = true;
+    $.__views.__alloyId48.add($.__views.__alloyId49);
+    creditAction ? $.__views.__alloyId49.addEventListener("click", creditAction) : __defers["$.__views.__alloyId49!click!creditAction"] = true;
     $.__views.creditamount = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -222,7 +264,7 @@ function Controller() {
         color: "#333",
         top: "5"
     });
-    $.__views.__alloyId45.add($.__views.creditamount);
+    $.__views.__alloyId49.add($.__views.creditamount);
     $.__views.lastcredit = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -236,7 +278,7 @@ function Controller() {
         color: "gray",
         top: "33"
     });
-    $.__views.__alloyId45.add($.__views.lastcredit);
+    $.__views.__alloyId49.add($.__views.lastcredit);
     $.__views.lastcredit_button = Ti.UI.createButton({
         id: "lastcredit_button",
         right: "60",
@@ -244,8 +286,8 @@ function Controller() {
         width: "30",
         height: "30"
     });
-    $.__views.__alloyId45.add($.__views.lastcredit_button);
-    $.__views.__alloyId46 = Ti.UI.createTableViewSection({
+    $.__views.__alloyId49.add($.__views.lastcredit_button);
+    $.__views.__alloyId50 = Ti.UI.createTableViewSection({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "green",
@@ -255,10 +297,10 @@ function Controller() {
             fontStyle: "bold"
         },
         headerTitle: "Last Debit",
-        id: "__alloyId46"
+        id: "__alloyId50"
     });
-    __alloyId39.push($.__views.__alloyId46);
-    $.__views.__alloyId47 = Ti.UI.createTableViewRow({
+    __alloyId43.push($.__views.__alloyId50);
+    $.__views.__alloyId51 = Ti.UI.createTableViewRow({
         width: Ti.UI.SIZE,
         height: "64",
         font: {
@@ -268,10 +310,10 @@ function Controller() {
         },
         color: "white",
         Title: "lastdebit_row",
-        id: "__alloyId47"
+        id: "__alloyId51"
     });
-    $.__views.__alloyId46.add($.__views.__alloyId47);
-    debitAction ? $.addListener($.__views.__alloyId47, "click", debitAction) : __defers["$.__views.__alloyId47!click!debitAction"] = true;
+    $.__views.__alloyId50.add($.__views.__alloyId51);
+    debitAction ? $.__views.__alloyId51.addEventListener("click", debitAction) : __defers["$.__views.__alloyId51!click!debitAction"] = true;
     $.__views.debitamount = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -285,7 +327,7 @@ function Controller() {
         color: "#333",
         top: "5"
     });
-    $.__views.__alloyId47.add($.__views.debitamount);
+    $.__views.__alloyId51.add($.__views.debitamount);
     $.__views.lastdebit = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -299,7 +341,7 @@ function Controller() {
         color: "gray",
         top: "33"
     });
-    $.__views.__alloyId47.add($.__views.lastdebit);
+    $.__views.__alloyId51.add($.__views.lastdebit);
     $.__views.lastdebit_button = Ti.UI.createButton({
         id: "lastdebit_button",
         right: "60",
@@ -307,18 +349,18 @@ function Controller() {
         width: "30",
         height: "30"
     });
-    $.__views.__alloyId47.add($.__views.lastdebit_button);
+    $.__views.__alloyId51.add($.__views.lastdebit_button);
     $.__views.transaction_view = Ti.UI.createView({
         id: "transaction_view",
         height: "250",
         width: Ti.UI.Fill
     });
-    $.__views.__alloyId50 = Alloy.createController("transaction", {
-        id: "__alloyId50",
+    $.__views.__alloyId54 = Alloy.createController("transaction", {
+        id: "__alloyId54",
         __parentSymbol: $.__views.transaction_view
     });
-    $.__views.__alloyId50.setParent($.__views.transaction_view);
-    $.__views.__alloyId48 = Ti.UI.createTableViewSection({
+    $.__views.__alloyId54.setParent($.__views.transaction_view);
+    $.__views.__alloyId52 = Ti.UI.createTableViewSection({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "green",
@@ -329,16 +371,16 @@ function Controller() {
         },
         footerView: $.__views.transaction_view,
         headerTitle: "Last transactions",
-        id: "__alloyId48"
+        id: "__alloyId52"
     });
-    __alloyId39.push($.__views.__alloyId48);
-    $.__views.__alloyId38 = Ti.UI.createTableView({
-        data: __alloyId39,
+    __alloyId43.push($.__views.__alloyId52);
+    $.__views.__alloyId42 = Ti.UI.createTableView({
+        separatorStyle: "Titanium.UI.iPhone.TableViewSeparatorStyle.NONE",
+        data: __alloyId43,
         backgroundColor: "transparent",
-        separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE,
-        id: "__alloyId38"
+        id: "__alloyId42"
     });
-    $.__views.main_window.add($.__views.__alloyId38);
+    $.__views.main_window.add($.__views.__alloyId42);
     $.__views.main_tab = Ti.UI.createTab({
         font: {
             fontSize: "50dp",
@@ -353,7 +395,22 @@ function Controller() {
         icon: "home.png"
     });
     $.__views.main_tab && $.addTopLevelView($.__views.main_tab);
-    var __alloyId51 = function() {
+    var __alloyId55 = function() {
+        $.name.color = _.isFunction(Alloy.Models.info.transform) ? Alloy.Models.info.transform()["namecolor"] : _.template("<%=info.namecolor%>", {
+            info: Alloy.Models.info.toJSON()
+        });
+        $.name.text = _.isFunction(Alloy.Models.info.transform) ? Alloy.Models.info.transform()["name"] : _.template("<%=info.name%>", {
+            info: Alloy.Models.info.toJSON()
+        });
+        $.studentid.text = _.isFunction(Alloy.Models.info.transform) ? Alloy.Models.info.transform()["emailid"] : _.template("id: <%=info.emailid%>", {
+            info: Alloy.Models.info.toJSON()
+        });
+    };
+    Alloy.Models.info.on("fetch change destroy", __alloyId55);
+    var __alloyId56 = function() {
+        $.balance.color = _.isFunction(Alloy.Models.dummy.transform) ? Alloy.Models.dummy.transform()["color"] : _.template("<%=dummy.color%>", {
+            dummy: Alloy.Models.dummy.toJSON()
+        });
         $.balance.text = _.isFunction(Alloy.Models.dummy.transform) ? Alloy.Models.dummy.transform()["bal"] : _.template("<%=dummy.bal%>", {
             dummy: Alloy.Models.dummy.toJSON()
         });
@@ -370,9 +427,10 @@ function Controller() {
             dummy: Alloy.Models.dummy.toJSON()
         });
     };
-    Alloy.Models.dummy.on("fetch change destroy", __alloyId51);
+    Alloy.Models.dummy.on("fetch change destroy", __alloyId56);
     exports.destroy = function() {
-        Alloy.Models.dummy.off("fetch change destroy", __alloyId51);
+        Alloy.Models.info.off("fetch change destroy", __alloyId55);
+        Alloy.Models.dummy.off("fetch change destroy", __alloyId56);
     };
     _.extend($, $.__views);
     var bal = 0;
@@ -381,6 +439,8 @@ function Controller() {
     var totalspent = 0;
     var totalcredit = 0;
     var someDummy = Alloy.Models.dummy;
+    var someInfo = Alloy.Models.info;
+    Titanium.App.Properties.getInt("balalert", 100);
     $.lastcredit_button.addEventListener("click", function(e) {
         console.log("main.js:: JSON.stringify(e)" + JSON.stringify(e));
         var tabViewOneController = Alloy.createController("credit");
@@ -421,6 +481,15 @@ function Controller() {
     var totalspent = Titanium.App.Properties.getInt("totalspent", 0);
     console.log("main.js: totalcredit: " + totalcredit + ", totalspent: " + totalspent);
     bal = Titanium.App.Properties.getInt("bal") ? "NONE" : parseFloat(totalcredit) - parseFloat(totalspent);
+    Alloy.Globals.setBalColor(bal);
+    someInfo.set({
+        id: "1234",
+        namecolor: "black",
+        name: Titanium.App.Properties.getString("name"),
+        emailid: Titanium.App.Properties.getString("emailid")
+    });
+    someInfo.fetch();
+    console.log("main.js:: stringify info :" + JSON.stringify(someInfo));
     someDummy.set({
         id: "1234",
         bal: bal,
@@ -429,12 +498,22 @@ function Controller() {
         lastdebit: lastdebit,
         debitamount: debitamount,
         totalspent: totalspent,
-        totalcredit: totalcredit
+        totalcredit: totalcredit,
+        color: "#13CA13"
     });
     someDummy.fetch();
     console.log("main.js:: stringify dummy :" + JSON.stringify(someDummy));
-    __defers["$.__views.__alloyId45!click!creditAction"] && $.addListener($.__views.__alloyId45, "click", creditAction);
-    __defers["$.__views.__alloyId47!click!debitAction"] && $.addListener($.__views.__alloyId47, "click", debitAction);
+    var GoogleAuth = require("googleAuth");
+    var googleAuthSheet = new GoogleAuth({
+        clientId: Alloy.Globals.clientId,
+        propertyName: "googleToken",
+        scope: Alloy.Globals.scope,
+        quiet: false
+    });
+    console.log("main.js:: googleAuthSheet.getAccessToken() Token: " + googleAuthSheet.getAccessToken());
+    __defers["$.__views.login_button!click!login"] && $.__views.login_button.addEventListener("click", login);
+    __defers["$.__views.__alloyId49!click!creditAction"] && $.__views.__alloyId49.addEventListener("click", creditAction);
+    __defers["$.__views.__alloyId51!click!debitAction"] && $.__views.__alloyId51.addEventListener("click", debitAction);
     _.extend($, exports);
 }
 

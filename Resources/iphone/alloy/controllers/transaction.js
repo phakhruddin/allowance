@@ -106,8 +106,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.transaction_table = Ti.UI.createTableView({
-        id: "transaction_table",
-        separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+        id: "transaction_table"
     });
     $.__views.transaction_table && $.addTopLevelView($.__views.transaction_table);
     exports.destroy = function() {};

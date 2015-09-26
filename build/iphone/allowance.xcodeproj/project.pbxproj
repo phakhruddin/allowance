@@ -962,7 +962,7 @@
 		1D19459913FF3BE500E2B4D0 /* TIDOMDocumentTypeProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIDOMDocumentTypeProxy.h; sourceTree = "<group>"; };
 		1D19459A13FF3BE500E2B4D0 /* TIDOMDocumentTypeProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIDOMDocumentTypeProxy.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = allowance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "allowance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCC542D13FF0B0700DF3EE5 /* TIDOMCharacterDataProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIDOMCharacterDataProxy.h; sourceTree = "<group>"; };
 		1DCC542E13FF0B0800DF3EE5 /* TIDOMCharacterDataProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIDOMCharacterDataProxy.m; sourceTree = "<group>"; };
 		1DD9388A1609230900091777 /* TiBindingTiValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiBindingTiValue.h; sourceTree = "<group>"; };
@@ -1290,7 +1290,7 @@
 		24D0700411D0253D00F615D8 /* TiUIiOSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TiUIiOSProxy.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		24D0700511D0253D00F615D8 /* TiUIiOSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TiUIiOSProxy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		24D5C75811E6364F00F097E2 /* libtiverify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiverify.a; path = lib/libtiverify.a; sourceTree = SOURCE_ROOT; };
-		24D8E4B1119B9D8A00F8CAA6 /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = allowance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24D8E4B1119B9D8A00F8CAA6 /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "allowance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DD042A116A6C58006FD6E1 /* TiToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiToolbar.h; sourceTree = "<group>"; };
 		24DD0455116A6F02006FD6E1 /* TiTabGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiTabGroup.h; sourceTree = "<group>"; };
 		24DD0977116D8E07006FD6E1 /* TiToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiToolbarButton.h; sourceTree = "<group>"; };
@@ -1377,7 +1377,7 @@
 		312E36C0190B06D9008EAB8D /* libAPSAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPSAnalytics.a; sourceTree = "<group>"; };
 		3186097D192BDB4E00093482 /* AnalyticsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsModule.h; sourceTree = "<group>"; };
 		3186097E192BDB4E00093482 /* AnalyticsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsModule.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* allowance_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allowance_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* allowance_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "allowance_Prefix.pch"; sourceTree = "<group>"; };
 		4688700515E39A9D008FA326 /* TiUIiPhoneAlertDialogStyleProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiUIiPhoneAlertDialogStyleProxy.h; sourceTree = "<group>"; };
 		4688700615E39A9D008FA326 /* TiUIiPhoneAlertDialogStyleProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiUIiPhoneAlertDialogStyleProxy.m; sourceTree = "<group>"; };
 		4D3033A1136239B30034640F /* TiFilesystemFileStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TiFilesystemFileStreamProxy.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1557,7 +1557,7 @@
 		DAA72342156D642400757987 /* TiConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiConsole.m; sourceTree = "<group>"; };
 		DAA905CC11A359F10030B119 /* TiMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiMediaItem.h; sourceTree = "<group>"; };
 		DAA905CD11A359F10030B119 /* TiMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiMediaItem.m; sourceTree = "<group>"; };
-		DABB37BC12E8CB280026A6EA /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = allowance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DABB37BC12E8CB280026A6EA /* allowance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "allowance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABF3ECD134D210400836137 /* TiBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiBuffer.h; sourceTree = "<group>"; };
 		DABF3ECE134D210400836137 /* TiBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiBuffer.m; sourceTree = "<group>"; };
 		DABF3ED5134D2CA100836137 /* StreamModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamModule.h; sourceTree = "<group>"; };
@@ -1773,6 +1773,7 @@
 				24CA8A0A111161DC0084E2DE /* Utils */,
 				24CA8A0B111161E10084E2DE /* API */,
 			);
+			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -3055,7 +3056,7 @@
 			);
 			dependencies = (
 			);
-			name = allowance;
+			name = "allowance";
 			productName = allowance;
 			productReference = 1D6058910D05DD3D006BFB54 /* allowance.app */;
 			productType = "com.apple.product-type.application";
@@ -3166,7 +3167,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/usr/local/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
+			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/Users/dabdullah/.appcelerator/install/4.1.2/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
 		};
 		24CA8D03111169070084E2DE /* Post-Compile */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3194,7 +3195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/usr/local/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
+			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/Users/dabdullah/.appcelerator/install/4.1.2/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
 		};
 		24D8E4AD119B9D8A00F8CAA6 /* Post-Compile */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3222,7 +3223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/usr/local/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
+			shellScript = "export TITANIUM_PREFIX=\"_Prefix-*\"\necho \"Xcode Pre-Compile Phase: Removing $SHARED_PRECOMPS_DIR/$PROJECT$TITANIUM_PREFIX\"\nfind \"$SHARED_PRECOMPS_DIR\" -name \"$PROJECT$TITANIUM_PREFIX\" -print0 | xargs -0 rm -rf\nif [ \"x$TITANIUM_CLI_XCODEBUILD\" == \"x\" ]; then\n    /usr/local/bin/node \"/Users/dabdullah/.appcelerator/install/4.1.2/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium\" build --platform iphone --sdk \"4.1.0.GA\" --no-prompt --no-progress-bars --no-banner --no-colors --build-only --xcode\n    exit $?\nelse\n    echo \"skipping pre-compile phase\"\nfi";
 		};
 		DABB37B812E8CB280026A6EA /* Post-Compile */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4093,7 +4094,7 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
@@ -4107,7 +4108,7 @@
 					"-DDEBUG",
 					"-DTI_POST_1_2",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4122,7 +4123,7 @@
 				COPY_PHASE_STRIP = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
@@ -4132,7 +4133,7 @@
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4148,7 +4149,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4162,7 +4163,7 @@
 					"-DTI_POST_1_2",
 					"-DDEBUG",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -4175,7 +4176,7 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4188,7 +4189,7 @@
 					"-DIPAD",
 					"-DTI_POST_1_2",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4349,7 +4350,7 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
@@ -4363,7 +4364,7 @@
 					"-DDEBUG",
 					"-DTI_POST_1_2",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4379,7 +4380,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4393,7 +4394,7 @@
 					"-DTI_POST_1_2",
 					"-DDEBUG",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Developer;
@@ -4408,7 +4409,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4427,7 +4428,7 @@
 					"-DTI_POST_1_2",
 					"-DDEBUG",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4443,7 +4444,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4462,7 +4463,7 @@
 					"-DTI_POST_1_2",
 					"-DDEBUG",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4476,7 +4477,7 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = allowance_Prefix.pch;
+				GCC_PREFIX_HEADER = "allowance_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -4489,7 +4490,7 @@
 					"-DIPAD",
 					"-DTI_POST_1_2",
 				);
-				PRODUCT_NAME = allowance;
+				PRODUCT_NAME = "allowance";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

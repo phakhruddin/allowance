@@ -119,6 +119,37 @@ Alloy.Globals.setBalColor = function(bal) {
 		return color;
 };
 
+
+Alloy.Globals.populatesidtoDB = function(filename,sid) {
+	var needupdate = "yes";
+	var thesid = Alloy.Collections.instance('sid');
+	thesid.fetch();
+    if (thesid.length > 0) {
+    	var sidjson = thesid.toJSON();
+    	for( var i=0; i < sidjson.length; i++ ){
+    		var oldsid = sidjson[i].col2.trim();
+    		console.log("alloy.js::populatesidtoDB::compare sid : "+oldsid+" vs. "+sid);
+    		if ( sid == oldsid ){
+    			var needupdate = "no";
+    			console.log("alloy.js::populatesidtoDB::needupdate: "+needupdate+" , abort!");
+    			return;
+    		} 
+    	}
+    }   
+       	if (needupdate == "yes"){
+		    var dataModel = Alloy.createModel("sid",{
+	            col1 :  filename || "none",
+	            col2 : sid || "none",
+	            col3 : "none",
+	            col4 : "none"
+	    	});
+    		dataModel.save();
+    	}; 	
+	thesid.fetch();
+	Ti.API.info(" alloy.js::populatesidtoDB::needupdate "+needupdate+" with thesid: "+thesid.length+" : "+JSON.stringify(thesid));
+	};
+
+
 Alloy.Globals.createSpreadsheet = function(filename,parentid){
 	console.log("alloy.js::create ss with filename: "+filename+" and parentid: "+parentid);
 	var jsonpost = '{'
@@ -136,7 +167,7 @@ Alloy.Globals.createSpreadsheet = function(filename,parentid){
 	    		Ti.API.info("response is: "+this.responseText);
 	    		var json = JSON.parse(this.responseText);
 	    		var sid = json.id;
-	    		populatejoblogSIDtoDB(filename,sid);
+	    		Alloy.Globals.populatesidtoDB(filename,sid);
 	    		Titanium.App.Properties.setString('sid',sid); // 1st sid created.
 	    		for (i=1;i<17;i++){
 						var value = "col"+i;

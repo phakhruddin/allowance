@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/AFOpenFlow/UIImageExtras.m \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/AFOpenFlow/UIImageExtras.h
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/AFOpenFlow/UIImageExtras.m \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/AFOpenFlow/UIImageExtras.h

@@ -1,1 +1,1 @@
-/Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/sync/properties.js
+/Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/Resources/iphone/alloy/sync/properties.js

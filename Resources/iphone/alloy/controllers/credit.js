@@ -37,14 +37,15 @@ function Controller() {
         }
         return totalcredit;
     }
-    function updateDummy(bal, totalcredit, creditamount, lastcredit) {
+    function updateDummy(bal, totalcredit, creditamount, lastcredit, color) {
         var someDummy = Alloy.Models.dummy;
         someDummy.set({
             id: "1234",
             bal: bal,
             totalcredit: totalcredit,
             dcreditamount: creditamount,
-            lastcredit: lastcredit
+            lastcredit: lastcredit,
+            color: color
         });
         someDummy.fetch();
         console.log("credit.js ::updateDummy:: stringify dummy :" + JSON.stringify(someDummy));
@@ -151,25 +152,25 @@ function Controller() {
         backgroundColor: "white",
         title: "credit"
     });
-    $.__views.__alloyId5 = Ti.UI.createButton({
+    $.__views.__alloyId7 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.ADD,
-        id: "__alloyId5"
+        id: "__alloyId7"
     });
-    addHandler ? $.addListener($.__views.__alloyId5, "click", addHandler) : __defers["$.__views.__alloyId5!click!addHandler"] = true;
-    $.__views.credit_window.rightNavButton = $.__views.__alloyId5;
-    var __alloyId6 = [];
+    addHandler ? $.__views.__alloyId7.addEventListener("click", addHandler) : __defers["$.__views.__alloyId7!click!addHandler"] = true;
+    $.__views.credit_window.rightNavButton = $.__views.__alloyId7;
+    var __alloyId8 = [];
     $.__views.input_view = Ti.UI.createView({
         id: "input_view",
         height: "300",
         backgroundColor: "white"
     });
-    $.__views.__alloyId9 = Ti.UI.createImageView({
+    $.__views.__alloyId11 = Ti.UI.createImageView({
         top: "25",
         left: "20",
         image: "blueline.png",
-        id: "__alloyId9"
+        id: "__alloyId11"
     });
-    $.__views.input_view.add($.__views.__alloyId9);
+    $.__views.input_view.add($.__views.__alloyId11);
     $.__views.dateLabel = Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -217,23 +218,23 @@ function Controller() {
         text: "Cost"
     });
     $.__views.input_view.add($.__views.costLabel);
-    var __alloyId12 = [];
+    var __alloyId14 = [];
     $.__views.donebutton = Ti.UI.createButton({
         id: "donebutton",
         title: "DONE"
     });
-    __alloyId12.push($.__views.donebutton);
-    blurIT ? $.addListener($.__views.donebutton, "click", blurIT) : __defers["$.__views.donebutton!click!blurIT"] = true;
-    $.__views.__alloyId10 = Ti.UI.iOS.createToolbar({
-        items: __alloyId12,
-        id: "__alloyId10"
+    __alloyId14.push($.__views.donebutton);
+    blurIT ? $.__views.donebutton.addEventListener("click", blurIT) : __defers["$.__views.donebutton!click!blurIT"] = true;
+    $.__views.__alloyId12 = Ti.UI.iOS.createToolbar({
+        items: __alloyId14,
+        id: "__alloyId12"
     });
     $.__views.notes_textarea = Ti.UI.createTextArea({
         font: {
             left: 20,
             fontSize: 24
         },
-        keyboardToolbar: $.__views.__alloyId10,
+        keyboardToolbar: $.__views.__alloyId12,
         id: "notes_textarea",
         width: "100",
         left: "65%",
@@ -249,9 +250,9 @@ function Controller() {
         keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
     });
     $.__views.input_view.add($.__views.notes_textarea);
-    notesAreaFocus ? $.addListener($.__views.notes_textarea, "focus", notesAreaFocus) : __defers["$.__views.notes_textarea!focus!notesAreaFocus"] = true;
-    $.__views.__alloyId10 = Ti.UI.iOS.createToolbar({
-        keyboardToolbar: $.__views.__alloyId10,
+    notesAreaFocus ? $.__views.notes_textarea.addEventListener("focus", notesAreaFocus) : __defers["$.__views.notes_textarea!focus!notesAreaFocus"] = true;
+    $.__views.__alloyId12 = Ti.UI.iOS.createToolbar({
+        keyboardToolbar: $.__views.__alloyId12,
         id: "notes_textarea",
         width: "100",
         left: "65%",
@@ -274,18 +275,18 @@ function Controller() {
         type: Titanium.UI.PICKER_TYPE_DATE_AND_TIME
     });
     $.__views.input_view.add($.__views.date_picker);
-    setDate ? $.addListener($.__views.date_picker, "change", setDate) : __defers["$.__views.date_picker!change!setDate"] = true;
-    $.__views.__alloyId7 = Ti.UI.createTableViewSection({
+    setDate ? $.__views.date_picker.addEventListener("change", setDate) : __defers["$.__views.date_picker!change!setDate"] = true;
+    $.__views.__alloyId9 = Ti.UI.createTableViewSection({
         footerView: $.__views.input_view,
         headerTitle: "Please enter credit amount:",
-        id: "__alloyId7"
+        id: "__alloyId9"
     });
-    __alloyId6.push($.__views.__alloyId7);
+    __alloyId8.push($.__views.__alloyId9);
     $.__views.credit_table = Ti.UI.createTableView({
-        data: __alloyId6,
+        separatorStyle: "Titanium.UI.iPhone.TableViewSeparatorStyle.NONE",
+        data: __alloyId8,
         id: "credit_table",
         height: Ti.UI.FILL,
-        separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE,
         backgroundColor: "transparent",
         editable: "true",
         moveable: "true"
@@ -317,21 +318,8 @@ function Controller() {
     var totalcredit = 0;
     var sid = "1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
     var bal = Titanium.App.Properties.getInt("bal", 0);
+    var balalert = Titanium.App.Properties.getInt("balalert", 100);
     var totalspent = Titanium.App.Properties.getInt("totalspent");
-    $.credit_window.data = {
-        totalspent: totalspent,
-        totalcredit: totalcredit,
-        creditamount: creditamount,
-        bal: bal,
-        lastcredit: lastcredit
-    };
-    $.notes_textarea.data = {
-        totalspent: totalspent,
-        totalcredit: totalcredit,
-        creditamount: creditamount,
-        bal: bal,
-        lastcredit: lastcredit
-    };
     $.credit_tab.addEventListener("focus", function(e) {
         var content = Alloy.Globals.fetchingData("creditmodel");
         console.log("credit.js: tab focus: JSON.stringify(e)" + JSON.stringify(e));
@@ -403,6 +391,7 @@ function Controller() {
             Titanium.App.Properties.setInt("bal", bal);
             console.log("credit.js:: notes_textarea totalcredit: " + totalcredit);
             var bal = parseFloat(totalcredit) - parseFloat(e.source.data.totalspent);
+            var color = Alloy.Globals.setBalColor(bal);
             Titanium.App.Properties.setInt("bal", bal);
             $.credit_window.data = {
                 totalspent: totalspent,
@@ -412,7 +401,7 @@ function Controller() {
                 lastcredit: lastcredit
             };
             console.log("updateDummy(" + totalcredit + "," + creditamount + "," + lastcredit + ")");
-            updateDummy(bal, totalcredit, creditamount, lastcredit);
+            updateDummy(bal, totalcredit, creditamount, lastcredit, color);
             var zero = 0;
             var xmldatastring = "<entry xmlns='http://www.w3.org/2005/Atom' xmlns:gsx='http://schemas.google.com/spreadsheets/2006/extended'><gsx:col1>" + lastcredit + "</gsx:col1><gsx:col2>" + lastcredit + "</gsx:col2><gsx:col3>" + creditamount + "</gsx:col3><gsx:col4>" + zero + "</gsx:col4><gsx:col5>" + zero + "</gsx:col5><gsx:col6>" + zero + "</gsx:col6><gsx:col7>" + zero + "</gsx:col7><gsx:col8>" + zero + "</gsx:col8><gsx:col9>" + zero + "</gsx:col9></entry>";
             Ti.API.info("xmldatastring to POST: " + xmldatastring);
@@ -437,16 +426,31 @@ function Controller() {
     $.credit_window.addEventListener("close", function(e) {
         console.log("credit.js: close window: JSON.stringify(e)" + JSON.stringify(e));
         var bal = parseFloat(e.source.data.totalcredit) - parseFloat(e.source.data.totalspent);
+        var color = Alloy.Globals.setBalColor(bal);
         Titanium.App.Properties.setInt("bal", bal);
-        updateDummy(bal, e.source.data.totalcredit, e.source.data.creditamount, e.source.data.lastcredit);
+        updateDummy(bal, e.source.data.totalcredit, e.source.data.creditamount, e.source.data.lastcredit, color);
     });
     $.credit_tab.addEventListener("blur", function(e) {
         console.log("credit.js: tab blur: JSON.stringify(e)" + JSON.stringify(e));
     });
-    __defers["$.__views.__alloyId5!click!addHandler"] && $.addListener($.__views.__alloyId5, "click", addHandler);
-    __defers["$.__views.donebutton!click!blurIT"] && $.addListener($.__views.donebutton, "click", blurIT);
-    __defers["$.__views.notes_textarea!focus!notesAreaFocus"] && $.addListener($.__views.notes_textarea, "focus", notesAreaFocus);
-    __defers["$.__views.date_picker!change!setDate"] && $.addListener($.__views.date_picker, "change", setDate);
+    $.credit_window.data = {
+        totalspent: totalspent,
+        totalcredit: totalcredit,
+        creditamount: creditamount,
+        bal: bal,
+        lastcredit: lastcredit
+    };
+    $.notes_textarea.data = {
+        totalspent: totalspent,
+        totalcredit: totalcredit,
+        creditamount: creditamount,
+        bal: bal,
+        lastcredit: lastcredit
+    };
+    __defers["$.__views.__alloyId7!click!addHandler"] && $.__views.__alloyId7.addEventListener("click", addHandler);
+    __defers["$.__views.donebutton!click!blurIT"] && $.__views.donebutton.addEventListener("click", blurIT);
+    __defers["$.__views.notes_textarea!focus!notesAreaFocus"] && $.__views.notes_textarea.addEventListener("focus", notesAreaFocus);
+    __defers["$.__views.date_picker!change!setDate"] && $.__views.date_picker.addEventListener("change", setDate);
     _.extend($, exports);
 }
 

@@ -1,1 +1,1 @@
-/Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/app.js
+/var/folders/5h/pqbxvd1s5sdg52f18rnz6h6mp2txgq/T/liveview.js

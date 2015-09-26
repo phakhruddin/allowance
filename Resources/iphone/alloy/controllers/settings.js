@@ -11,6 +11,11 @@ function Controller() {
     function addHandler(e) {
         console.log("JSON stringify addHandler(e): " + JSON.stringify(e));
     }
+    function gotoAdvance(e) {
+        console.log("settings.js:: JSON.stringify(e)" + JSON.stringify(e));
+        var tabViewOneController = Alloy.createController("advance");
+        tabViewOneController.openMainWindow($.settings_tab);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "settings";
     this.args = arguments[0] || {};
@@ -33,129 +38,231 @@ function Controller() {
         backgroundColor: "white",
         title: "settings"
     });
-    $.__views.__alloyId53 = Ti.UI.createButton({
+    $.__views.__alloyId58 = Ti.UI.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.ADD,
-        id: "__alloyId53"
-    });
-    addHandler ? $.addListener($.__views.__alloyId53, "click", addHandler) : __defers["$.__views.__alloyId53!click!addHandler"] = true;
-    $.__views.settings_window.rightNavButton = $.__views.__alloyId53;
-    var __alloyId54 = [];
-    $.__views.__alloyId55 = Ti.UI.createTableViewSection({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "green",
-        backgroundColor: "transparent",
-        font: {
-            fontSize: "48",
-            fontStyle: "bold"
-        },
-        headerTitle: "Name",
-        id: "__alloyId55"
-    });
-    __alloyId54.push($.__views.__alloyId55);
-    $.__views.__alloyId56 = Ti.UI.createTableViewRow({
-        width: Ti.UI.SIZE,
-        height: "36",
-        font: {
-            fontSize: "12",
-            fontStyle: "bold",
-            color: "orange"
-        },
-        id: "__alloyId56"
-    });
-    $.__views.__alloyId55.add($.__views.__alloyId56);
-    $.__views.__alloyId57 = Ti.UI.createTextField({
-        width: Ti.UI.Fill,
-        left: "20",
-        hintText: "Name: Zachary Smith",
-        id: "__alloyId57"
-    });
-    $.__views.__alloyId56.add($.__views.__alloyId57);
-    $.__views.__alloyId58 = Ti.UI.createTableViewSection({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "green",
-        backgroundColor: "transparent",
-        font: {
-            fontSize: "48",
-            fontStyle: "bold"
-        },
-        headerTitle: "Email",
         id: "__alloyId58"
     });
-    __alloyId54.push($.__views.__alloyId58);
-    $.__views.__alloyId59 = Ti.UI.createTableViewRow({
-        width: Ti.UI.SIZE,
-        height: "36",
-        font: {
-            fontSize: "12",
-            fontStyle: "bold",
-            color: "orange"
-        },
-        id: "__alloyId59"
-    });
-    $.__views.__alloyId58.add($.__views.__alloyId59);
-    $.__views.__alloyId60 = Ti.UI.createTextField({
-        width: Ti.UI.Fill,
-        left: "20",
-        hintText: "email: Zachary.Smith@gmail.com",
+    addHandler ? $.__views.__alloyId58.addEventListener("click", addHandler) : __defers["$.__views.__alloyId58!click!addHandler"] = true;
+    $.__views.settings_window.rightNavButton = $.__views.__alloyId58;
+    var __alloyId59 = [];
+    $.__views.__alloyId60 = Ti.UI.createTableViewSection({
+        headerTitle: "User Profile",
         id: "__alloyId60"
     });
-    $.__views.__alloyId59.add($.__views.__alloyId60);
+    __alloyId59.push($.__views.__alloyId60);
     $.__views.__alloyId61 = Ti.UI.createTableViewSection({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "green",
-        backgroundColor: "transparent",
-        font: {
-            fontSize: "48",
-            fontStyle: "bold"
-        },
-        headerTitle: "appearance",
+        headerTitle: "Name",
         id: "__alloyId61"
     });
-    __alloyId54.push($.__views.__alloyId61);
-    $.__views.settings_row = Ti.UI.createTableViewRow({
+    __alloyId59.push($.__views.__alloyId61);
+    $.__views.__alloyId62 = Ti.UI.createTableViewRow({
         width: Ti.UI.SIZE,
         height: "36",
+        color: "#5C5E61",
         font: {
-            fontSize: "12",
-            fontStyle: "bold",
-            color: "orange"
+            fontSize: "20",
+            fontStyle: "bold"
         },
-        id: "settings_row",
+        id: "__alloyId62"
+    });
+    $.__views.__alloyId61.add($.__views.__alloyId62);
+    $.__views.name_tf = Ti.UI.createTextField({
+        width: Ti.UI.Fill,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "18"
+        },
+        id: "name_tf",
+        left: "20",
+        hintText: "Name: Zachary Smith"
+    });
+    $.__views.__alloyId62.add($.__views.name_tf);
+    $.__views.__alloyId63 = Ti.UI.createTableViewSection({
+        headerTitle: "GMail Account",
+        id: "__alloyId63"
+    });
+    __alloyId59.push($.__views.__alloyId63);
+    $.__views.__alloyId64 = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "__alloyId64"
+    });
+    $.__views.__alloyId63.add($.__views.__alloyId64);
+    $.__views.emailid_tf = Ti.UI.createTextField({
+        width: Ti.UI.Fill,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "18"
+        },
+        id: "emailid_tf",
+        left: "20",
+        hintText: "email: Zachary.Smith@gmail.com",
+        value: ""
+    });
+    $.__views.__alloyId64.add($.__views.emailid_tf);
+    $.__views.__alloyId65 = Ti.UI.createTableViewSection({
+        headerTitle: "Utilities",
+        id: "__alloyId65"
+    });
+    __alloyId59.push($.__views.__alloyId65);
+    $.__views.skin_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "skin_row",
         backgroundColor: "transparent",
         opacity: "0",
         title: "Change Skin Color"
     });
-    $.__views.__alloyId61.add($.__views.settings_row);
+    $.__views.__alloyId65.add($.__views.skin_row);
+    $.__views.currency_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "currency_row",
+        backgroundColor: "transparent",
+        opacity: "0",
+        title: "Currency"
+    });
+    $.__views.__alloyId65.add($.__views.currency_row);
+    $.__views.offline_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "offline_row",
+        opacity: "0",
+        title: "Offline Mode"
+    });
+    $.__views.__alloyId65.add($.__views.offline_row);
+    $.__views.offline_switch = Ti.UI.createSwitch({
+        value: false,
+        id: "offline_switch",
+        right: "20",
+        titleOff: "OFF",
+        titleOn: "ON"
+    });
+    $.__views.offline_row.add($.__views.offline_switch);
+    $.__views.offline_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "offline_row",
+        opacity: "0",
+        title: "Debug Mode"
+    });
+    $.__views.__alloyId65.add($.__views.offline_row);
+    $.__views.offline_switch = Ti.UI.createSwitch({
+        value: false,
+        id: "offline_switch",
+        right: "20",
+        titleOff: "OFF",
+        titleOn: "ON"
+    });
+    $.__views.offline_row.add($.__views.offline_switch);
+    $.__views.support_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "support_row",
+        opacity: "0",
+        title: "Email Support"
+    });
+    $.__views.__alloyId65.add($.__views.support_row);
+    $.__views.advance_row = Ti.UI.createTableViewRow({
+        width: Ti.UI.SIZE,
+        height: "36",
+        color: "#5C5E61",
+        font: {
+            fontSize: "20",
+            fontStyle: "bold"
+        },
+        id: "advance_row",
+        backgroundColor: "transparent",
+        opacity: "0",
+        title: "Advance Option"
+    });
+    $.__views.__alloyId65.add($.__views.advance_row);
+    gotoAdvance ? $.__views.advance_row.addEventListener("click", gotoAdvance) : __defers["$.__views.advance_row!click!gotoAdvance"] = true;
     $.__views.settings_table = Ti.UI.createTableView({
-        data: __alloyId54,
+        data: __alloyId59,
         id: "settings_table",
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        style: Titanium.UI.iPhone.TableViewStyle.PLAIN,
+        separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
     });
     $.__views.settings_window.add($.__views.settings_table);
-    $.__views.settings = Ti.UI.createTab({
+    $.__views.settings_tab = Ti.UI.createTab({
         font: {
-            fontSize: "50dp",
+            fontSize: "56dp",
             fontWeight: "bold",
             textStyle: Ti.UI.TEXT_STYLE_HEADLINE
         },
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         window: $.__views.settings_window,
+        id: "settings_tab",
         title: "Settings",
-        icon: "gear",
-        id: "settings"
+        icon: "gear"
     });
-    $.__views.settings && $.addTopLevelView($.__views.settings);
+    $.__views.settings_tab && $.addTopLevelView($.__views.settings_tab);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openMainWindow = function(_tab) {
         _tab.open($.settings_window);
         Ti.API.info("This is child widow settings.js" + JSON.stringify(_tab));
     };
-    __defers["$.__views.__alloyId53!click!addHandler"] && $.addListener($.__views.__alloyId53, "click", addHandler);
+    Alloy.Models.dummy;
+    var someInfo = Alloy.Models.info;
+    Titanium.App.Properties.setInt("balalert", 100);
+    $.name_tf.addEventListener("blur", function(e) {
+        var name = $.name_tf.value.trim();
+        Ti.API.info("settings:: entered is: " + name);
+        Titanium.App.Properties.setString("name", name);
+        Ti.API.info("settings:: name obtained is: " + Titanium.App.Properties.getString("name"));
+        console.log("settings:: JSON of textfield: " + JSON.stringify(e));
+        someInfo.set({
+            id: "1234",
+            name: name
+        });
+        someInfo.fetch();
+        console.log("main.js:: stringify dummy :" + JSON.stringify(someInfo));
+    });
+    $.emailid_tf.addEventListener("blur", function(e) {
+        var emailid = $.emailid_tf.value.trim();
+        Ti.API.info("settings:: entered is: " + emailid);
+        Titanium.App.Properties.setString("emailid", emailid);
+        Ti.API.info("settings:: emailid obtained is: " + Titanium.App.Properties.getString("emailid"));
+        console.log("settings:: JSON of textfield: " + JSON.stringify(e));
+    });
+    __defers["$.__views.__alloyId58!click!addHandler"] && $.__views.__alloyId58.addEventListener("click", addHandler);
+    __defers["$.__views.advance_row!click!gotoAdvance"] && $.__views.advance_row.addEventListener("click", gotoAdvance);
     _.extend($, exports);
 }
 

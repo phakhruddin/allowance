@@ -1,1 +1,1 @@
-/Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/Resources/iphone/alloy/constants.js
+/Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/Resources/iphone/alloy/constants.js

@@ -25,33 +25,33 @@ function Controller() {
     var $ = this;
     var exports = {};
     Alloy.Collections.instance("debitmodel");
-    var __alloyId26 = [];
-    $.__views.__alloyId27 = Alloy.createController("main", {
-        id: "__alloyId27"
-    });
-    __alloyId26.push($.__views.__alloyId27.getViewEx({
-        recurse: true
-    }));
-    $.__views.__alloyId30 = Alloy.createController("credit", {
+    var __alloyId29 = [];
+    $.__views.__alloyId30 = Alloy.createController("main", {
         id: "__alloyId30"
     });
-    __alloyId26.push($.__views.__alloyId30.getViewEx({
+    __alloyId29.push($.__views.__alloyId30.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId31 = Alloy.createController("debit", {
-        id: "__alloyId31"
-    });
-    __alloyId26.push($.__views.__alloyId31.getViewEx({
-        recurse: true
-    }));
-    $.__views.__alloyId33 = Alloy.createController("settings", {
+    $.__views.__alloyId33 = Alloy.createController("credit", {
         id: "__alloyId33"
     });
-    __alloyId26.push($.__views.__alloyId33.getViewEx({
+    __alloyId29.push($.__views.__alloyId33.getViewEx({
+        recurse: true
+    }));
+    $.__views.__alloyId34 = Alloy.createController("debit", {
+        id: "__alloyId34"
+    });
+    __alloyId29.push($.__views.__alloyId34.getViewEx({
+        recurse: true
+    }));
+    $.__views.__alloyId35 = Alloy.createController("settings", {
+        id: "__alloyId35"
+    });
+    __alloyId29.push($.__views.__alloyId35.getViewEx({
         recurse: true
     }));
     $.__views.index = Ti.UI.createTabGroup({
-        tabs: __alloyId26,
+        tabs: __alloyId29,
         backgroundColor: "white",
         id: "index"
     });

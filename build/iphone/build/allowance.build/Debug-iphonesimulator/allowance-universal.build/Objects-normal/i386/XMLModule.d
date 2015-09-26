@@ -1,11 +1,11 @@
 dependencies: \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/XMLModule.m \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/XMLModule.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiModule.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiProxy.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiEvaluator.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/KrollContext.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiToJS.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/XMLModule.m \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/XMLModule.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiModule.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiProxy.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiEvaluator.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/KrollContext.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiToJS.h \
   headers/JavaScriptCore/TiCore.h headers/JavaScriptCore/Ti.h \
   headers/JavaScriptCore/TiBase.h headers/JavaScriptCore/TiContextRef.h \
   headers/JavaScriptCore/TiObjectRef.h \
@@ -13,21 +13,21 @@ dependencies: \
   headers/JavaScriptCore/WebKitAvailability.h \
   headers/JavaScriptCore/TiStringRef.h \
   headers/JavaScriptCore/TiStringRefCF.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/KrollCallback.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/KrollObject.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiBindingRunLoop.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiUtils.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiDimension.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiBase.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiThreading.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiPublicAPI.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiColor.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/WebFont.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiFile.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiBuffer.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiBlob.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiDOMDocumentProxy.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/GDataXMLNode.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/KrollCallback.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/KrollObject.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiBindingRunLoop.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiUtils.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiDimension.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiBase.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiThreading.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiPublicAPI.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiColor.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/WebFont.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiFile.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiBuffer.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiBlob.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiDOMDocumentProxy.h \
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/GDataXMLNode.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/tree.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/xmlversion.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/xmlexports.h \
@@ -51,4 +51,4 @@ dependencies: \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/SAX2.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/xpath.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.2.sdk/usr/include/libxml2/libxml/xpathInternals.h \
-  /Users/dabdullah/Documents/Titanium_Studio_Workspace/allowance/build/iphone/Classes/TiDOMNodeProxy.h
+  /Users/dabdullah/Documents/Appcelerator_Studio_Workspace/allowance/build/iphone/Classes/TiDOMNodeProxy.h
