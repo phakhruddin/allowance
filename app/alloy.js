@@ -149,6 +149,42 @@ Alloy.Globals.populatesidtoDB = function(filename,sid) {
 	Ti.API.info(" alloy.js::populatesidtoDB::needupdate "+needupdate+" with thesid: "+thesid.length+" : "+JSON.stringify(thesid));
 	};
 
+Alloy.Globals.createFolder = function(filename,parentid){
+	console.log("alloy.js::create ss with filename: "+filename+" and parentid: "+parentid);
+	var jsonpost = '{'
+		 +'\"title\": \"'+filename+'\",'
+		 +'\"parents\": ['
+		  +'{'
+		   +'\"id\": \"'+parentid+'\"'
+		 +' }'
+		 +'],'
+		 +'\"mimeType\": \"application/vnd.google-apps.folder\"'
+		+'}';
+		var xhr = Ti.Network.createHTTPClient({
+	    onload: function(e) {
+	    try {
+	    		Ti.API.info("response is: "+this.responseText);
+	    		var json = JSON.parse(this.responseText);
+	    		var sid = json.id;
+	    		Alloy.Globals.populatesidtoDB(filename,sid);
+	    		Titanium.App.Properties.setString('sid',sid);
+	    		console.log("projectdetail.js::sid : "+sid);
+	    	} catch(e){
+				Ti.API.info("cathing e: "+JSON.stringify(e));
+			}
+		}
+		});
+	xhr.onerror = function(e){
+		alert("projectdetail::createFolder::Unable to create Folder.");
+		console.log("projectdetail::createFolder::Unable to createFolder with "+filename+".");
+	};
+	xhr.open("POST", 'https://www.googleapis.com/drive/v2/files');	
+	xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuthSheet.getAccessToken());
+    console.log("projectdetail.js::json post: "+jsonpost);
+	xhr.send(jsonpost);
+};
+
 
 Alloy.Globals.createSpreadsheet = function(filename,parentid){
 	console.log("alloy.js::create ss with filename: "+filename+" and parentid: "+parentid);
