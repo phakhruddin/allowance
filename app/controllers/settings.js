@@ -40,6 +40,11 @@ $.emailid_tf.addEventListener('blur', function(e) {
     Titanium.App.Properties.setString('emailid',emailid);
     Ti.API.info("settings:: emailid obtained is: "+Titanium.App.Properties.getString('emailid'));
     console.log("settings:: JSON of textfield: "+JSON.stringify(e));
+       someInfo.set({"id":"1234",
+		"emailid": emailid
+	});
+	someInfo.fetch();
+	console.log("main.js:: stringify dummy :"+JSON.stringify(someInfo));
  });
  
 function gotoAdvance(e){

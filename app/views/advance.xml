@@ -4,7 +4,10 @@
  	  <TableView id="advance_table" backgroundColor="transparent" style= "Titanium.UI.iPhone.TableViewStyle.PLAIN" 
  	  	separatorStyle="Ti.UI.iPhone.TableViewSeparatorStyle.NONE">
  	  	<TableViewSection height="10%" headerTitle="Utilities">
- 	  		<TableViewRow id="createdir_row" backgroundColor="transparent" opacity="0" title="Create Directory"/>
+ 	  		<TableViewRow id="getmaster_row" backgroundColor="transparent" opacity="0" title="get Master" onClick="getMaster"/>
+ 	  		<TableViewRow id="createdir_row" backgroundColor="transparent" opacity="0" title="Create Directory" onClick="createDir"/>
+ 	  		<TableViewRow id="setprivate_row" backgroundColor="transparent" opacity="0" title="Set Private" onClick="setPrivate"/>
+ 	  		<TableViewRow id="checkinfo_row" backgroundColor="transparent" opacity="0" title="Check Info" onClick="checkInfo"/>
  	  	</TableViewSection>
 	  </TableView>
   </Window>
