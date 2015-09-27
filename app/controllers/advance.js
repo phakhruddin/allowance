@@ -30,3 +30,10 @@ function getMaster(){
 function setPrivate() {
 	Alloy.Globals.setPrivate(sid);
 }
+
+function createCreditDebit() {
+	var info=JSON.parse(JSON.stringify(someInfo));
+	var name = info.name.replace(/ /g,"_");
+	console.log("advance::checkInfo: name: "+name);
+	Alloy.Globals.locateIndexCreateSpreadsheet(name);
+}

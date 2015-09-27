@@ -8,6 +8,7 @@
  	  		<TableViewRow id="createdir_row" backgroundColor="transparent" opacity="0" title="Create Directory" onClick="createDir"/>
  	  		<TableViewRow id="setprivate_row" backgroundColor="transparent" opacity="0" title="Set Private" onClick="setPrivate"/>
  	  		<TableViewRow id="checkinfo_row" backgroundColor="transparent" opacity="0" title="Check Info" onClick="checkInfo"/>
+ 	  		<TableViewRow id="createcreditdebit_row" backgroundColor="transparent" opacity="0" title="Create Credit and Debit" onClick="createCreditDebit"/>
  	  	</TableViewSection>
 	  </TableView>
   </Window>

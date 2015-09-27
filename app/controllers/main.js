@@ -141,7 +141,7 @@ function login(e) {
 			someInfo.set({"namecolor": "#13CA13"});
 			getEmail();
 		}, function() {
-			console.log('Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
+			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
 			googleAuthSheet.authorize();
 			$.login_button.title="LOGOUT";
