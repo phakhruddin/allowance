@@ -3,6 +3,19 @@ var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcre
 var someDummy = Alloy.Models.dummy;
 var someInfo = Alloy.Models.info;
 var balalert = Titanium.App.Properties.getInt('balalert',100);
+$.main_window.login="no";
+
+$.main_window.addEventListener ("open", function(e){
+	console.log("main.js:: main_window open JSON.stringify(e)" +JSON.stringify(e));
+	if (e.source.login = "no"){
+		$.status_view.show();
+		$.status_label.text="Please click login above.";
+	} else {
+		$.status_view.height="1";
+		$.status_view.backgroundColor="green";
+	}
+	
+});
 
 //set account name
 //$.name.text=Alloy.Globals.name;
@@ -131,7 +144,7 @@ function getEmail(e){
 
 //if user login. LOGOUT button.
 function login(e) {
-	//check if user is authorized
+	//check if user is authorized. If authorized, load user info, and create datastore if not yet existed.
 	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
 	if (e.source.title == "LOGIN") {
 		googleAuthSheet.isAuthorized(function() {
@@ -139,7 +152,13 @@ function login(e) {
 			Titanium.App.Properties.setString('needAuth',"false");
 			$.login_button.title="LOGOUT";
 			someInfo.set({"namecolor": "#13CA13"});
+			Alloy.Globals.getMaster(); // Load user info
 			getEmail();
+			Alloy.Globals.initialUserSetup(); //setup datastore if it is not yet done
+			alert("Logged in successfully with "+Titanium.App.Properties.getString('emailid')+" ");
+			$.main_window.login="yes";
+			$.status_view.height="1";
+			$.status_view.backgroundColor="green";
 		}, function() {
 			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
@@ -147,7 +166,11 @@ function login(e) {
 			$.login_button.title="LOGOUT";
 			someInfo.set({"namecolor": "#13CA13"});
 			getEmail();
-		}
+			alert("Logged in successfully with "+Titanium.App.Properties.getString('emailid')+" ");
+			$.main_window.login="yes";
+			$.status_view.height="1";
+			$.status_view.backgroundColor="green";
+			}
 		);
 	} else {
 		Ti.API.info('Logout: ');

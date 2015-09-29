@@ -229,48 +229,74 @@ Alloy.Globals.setPrivate = function(sid){
 Alloy.Globals.createFolder = function(name,parentid){
 	Alloy.Globals.checkgoogleisAuthorized();
 	var foldername = name+"_dir";
-	console.log("alloy.js::create folder with folder: "+foldername+" and parentid: "+parentid);
-	var jsonpost = '{'
-		 +'\"title\": \"'+foldername+'\",'
-		 +'\"parents\": ['
-		  +'{'
-		   +'\"id\": \"'+parentid+'\"'
-		 +' }'
-		 +'],'
-		 +'\"mimeType\": \"application/vnd.google-apps.folder\",'
-		 +'\"shared\": \"false\"'
-		+'}';
-		var xhr = Ti.Network.createHTTPClient({
-	    onload: function(e) {
-	    try {
-	    		Ti.API.info("response is: "+this.responseText);
-	    		var json = JSON.parse(this.responseText);
-	    		var sid = json.id;
-	    		Alloy.Globals.populatesidtoDB(foldername,sid);
-	    		Titanium.App.Properties.setString('sid',sid);
-	    		console.log("alloy.js::sid : "+sid+" setting it to private ");
-	    		Alloy.Globals.setPrivate(sid);
-	    		var ssindexname = name+"_index";  		
-	    		Alloy.Globals.createSpreadsheet(ssindexname,sid,"yes");
-	    		/*
-	    		Alloy.Globals.createSpreadsheet(name+"_credit",sid,"no");
-	    		Alloy.Globals.updateSpreadsheet(indexsid,name+"_credit",creditsid,"0","0","0","0","0","0");
-	    		Alloy.Globals.createSpreadsheet(name+"_debit",sid,"no");
-	    		Alloy.Globals.updateSpreadsheet(indexsid,name+"_debit",debitsid,"0","0","0","0","0","0");*/
-	    	} catch(e){
-				Ti.API.info("cathing e: "+JSON.stringify(e));
+		var xhr0 = Ti.Network.createHTTPClient({
+			onload: function(e) {
+			    try {
+		    		var jsonlist = JSON.parse(this.responseText);
+		    		Ti.API.info("Alloy.Globals.createFolder::response of jsonlist is: "+JSON.stringify(jsonlist));	
+		    	} catch(e){
+					Ti.API.info("Alloy.Globals.createFolder::cathing e: "+JSON.stringify(e));
+				}
+			console.log("alloy.js::Alloy.Globals.createFolder::jsonlist.items.length: "+jsonlist.items.length);
+			if (jsonlist.items.length == "0" ){
+				console.log("alloy.js::Alloy.Globals.createFolder:: Folder "+foldername+" does not exist, will create one.");
+				//Create folder if it does not yet exist
+				console.log("alloy.js::create folder with folder: "+foldername+" and parentid: "+parentid);
+				var jsonpost = '{'
+					 +'\"title\": \"'+foldername+'\",'
+					 +'\"parents\": ['
+					  +'{'
+					   +'\"id\": \"'+parentid+'\"'
+					 +' }'
+					 +'],'
+					 +'\"mimeType\": \"application/vnd.google-apps.folder\",'
+					 +'\"shared\": \"false\"'
+					+'}';
+				var xhr = Ti.Network.createHTTPClient({
+			    onload: function(e) {
+			    try {
+			    		Ti.API.info("response is: "+this.responseText);
+			    		var json = JSON.parse(this.responseText);
+			    		var sid = json.id;
+			    		Alloy.Globals.populatesidtoDB(foldername,sid);
+			    		Titanium.App.Properties.setString('sid',sid);
+			    		console.log("alloy.js::sid : "+sid+" setting it to private ");
+			    		Alloy.Globals.setPrivate(sid);
+			    		var ssindexname = name+"_index";  		
+			    		Alloy.Globals.createSpreadsheet(ssindexname,sid,"yes");
+			    		/*
+			    		Alloy.Globals.createSpreadsheet(name+"_credit",sid,"no");
+			    		Alloy.Globals.updateSpreadsheet(indexsid,name+"_credit",creditsid,"0","0","0","0","0","0");
+			    		Alloy.Globals.createSpreadsheet(name+"_debit",sid,"no");
+			    		Alloy.Globals.updateSpreadsheet(indexsid,name+"_debit",debitsid,"0","0","0","0","0","0");*/
+			    	} catch(e){
+						Ti.API.info("cathing e: "+JSON.stringify(e));
+					}
+				}
+				});
+				xhr.onerror = function(e){
+					alert("alloy::createFolder::Unable to create Folder.");
+					console.log("alloy::createFolder::Unable to createFolder with "+foldername+".");
+				};
+				xhr.open("POST", 'https://www.googleapis.com/drive/v2/files');	
+				xhr.setRequestHeader("Content-type", "application/json");
+			    xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
+			    console.log("alloy.js::json post: "+jsonpost);
+				xhr.send(jsonpost);				
+			} else {
+				console.log("alloy.js::Alloy.Globals.createFolder:: Folder "+foldername+" ALREADY EXIST, SKIPPED.");
+				}			
 			}
-		}
 		});
-	xhr.onerror = function(e){
-		alert("projectdetail::createFolder::Unable to create Folder.");
-		console.log("projectdetail::createFolder::Unable to createFolder with "+foldername+".");
-	};
-	xhr.open("POST", 'https://www.googleapis.com/drive/v2/files');	
-	xhr.setRequestHeader("Content-type", "application/json");
-    xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
-    console.log("alloy.js::json post: "+jsonpost);
-	xhr.send(jsonpost);
+		xhr0.onerror = function(e){
+			alert("alloy::checkFolderexist::Unable to create Folder.");
+			console.log("alloy::checkFolderexist::Unable to createFolder with "+foldername+".");
+		};	
+	var rawquerystring = '?q=title+%3D+\''+foldername+'\'+and+mimeType+%3D+\'application%2Fvnd.google-apps.folder\'+and+trashed+%3D+false&fields=items(id%2CmimeType%2Clabels%2Cparents%2Ctitle)';
+	xhr0.open("GET", 'https://www.googleapis.com/drive/v2/files'+rawquerystring);
+	xhr0.setRequestHeader("Content-type", "application/json");
+    xhr0.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
+	xhr0.send();
 };
 
 Alloy.Globals.createPubFolder = function(filename,parentid){
@@ -555,4 +581,66 @@ Alloy.Globals.locateIndexCreateSpreadsheet = function(name){
     xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
 	xhr.send();
 	console.log("alloy.js::::JSON.stringify(Alloy.Globals.Status) :"+JSON.stringify(Alloy.Globals.Status)+" Titanium.App.Properties.getString(\"status\"): " +Titanium.App.Properties.getString("status"));	
+};
+
+Alloy.Globals.getEmail = function(e){
+			var xhr = Ti.Network.createHTTPClient({
+		    onload: function(e) {
+		    try {
+		    		var json = JSON.parse(this.responseText);
+		    		Ti.API.info("response is: "+JSON.stringify(json));
+		    		var emailid = json.email;
+		    		Titanium.App.Properties.setString('emailid',emailid);
+		    		console.log("main.js::args inside getEmail: emailid "+emailid+" :: "+JSON.stringify(e));
+		    	} catch(e){
+					Ti.API.info("cathing e: "+JSON.stringify(e));
+				}
+				return emailid;
+				Titanium.App.Properties.setString('emailid',emailid);
+			}
+			});
+		xhr.onerror = function(e){
+			console.log('main::getEmail:: unable to get info for '+e);
+		};
+		console.log('main::getEmail:: URL:: https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.open("GET", 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.setRequestHeader("Content-type", "application/json");
+	    xhr.setRequestHeader("Authorization", 'Bearer '+Alloy.Globals.googleAuthSheet.getAccessToken());
+		xhr.send();
+};
+
+Alloy.Globals.initialUserSetup = function(e){
+			var xhr = Ti.Network.createHTTPClient({
+		    onload: function(e) {
+		    try {
+		    		var json = JSON.parse(this.responseText);
+		    		Ti.API.info("response is: "+JSON.stringify(json));
+		    		var emailid = json.email;		    		
+					//create datastore START
+					var name = emailid.split('@')[0].trim(); //use emailid for uniqueness
+					console.log("advance::checkInfo: name: "+name);
+					if(Alloy.Globals.license == "demo"){
+						var parentid=Titanium.App.Properties.getString("publicrepo");
+						} else var parentid=Titanium.App.Properties.getString("privaterepo") ;
+					console.log("advance:createDir::  createFolder("+name+","+parentid+"): ");
+					Alloy.Globals.createFolder(name,parentid); Alloy.Globals.locateIndexCreateSpreadsheet(name);
+					Alloy.Globals.locateIndexCreateSpreadsheet(name); 
+					//create datastore END		    		
+		    		Titanium.App.Properties.setString('emailid',emailid);
+		    		console.log("main.js::args inside getEmail: emailid "+emailid+" :: "+JSON.stringify(e));
+		    	} catch(e){
+					Ti.API.info("cathing e: "+JSON.stringify(e));
+				}
+				return emailid;
+				Titanium.App.Properties.setString('emailid',emailid);
+			}
+			});
+		xhr.onerror = function(e){
+			console.log('main::getEmail:: unable to get info for '+e);
+		};
+		console.log('main::getEmail:: URL:: https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.open("GET", 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
+		xhr.setRequestHeader("Content-type", "application/json");
+	    xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
+		xhr.send();
 };

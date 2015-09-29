@@ -161,7 +161,10 @@ var GoogleAuth = function(o) {
 			}
 		});
 		//win.open();
-		win1.open();
+		//win1.open();
+		var tw = setTimeout(function() {
+			win1.open();
+		}, 5000);
 	}
 
 	function deAuthorize(cb) {

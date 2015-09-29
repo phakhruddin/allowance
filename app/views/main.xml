@@ -8,7 +8,12 @@
 	   		<Button id="login_button" title="LOGIN" color="green" onClick="login"/>
 		</RightNavButton>	
 		<TableView backgroundColor="transparent">
-			<TableViewSection headerTitle="Name">
+			<HeaderView id="main_headerview">
+				<View height="5%" id="status_view" backgroundColor="red">
+					<Label id="status_label" color="white" text="Please click login above" textAlign="right"/>				
+				</View>
+			</HeaderView>
+			<TableViewSection id="name_section" headerTitle="Name">			
 				<TableViewRow  color="white" Title="Identification" height="100">
 	   		  		<Label id="name" color="{info.namecolor}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="{info.name}"/>
 			   		<Label id="studentid" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="65" text="id: {info.emailid}" />
