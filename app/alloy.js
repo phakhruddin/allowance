@@ -32,7 +32,7 @@ Alloy.Globals.getMaster = function() {
 						var col2= json.feed.entry[i].content.$t.split(',')[0].split(':')[1].trim() || "none";
 						if(col1 && col2){
 							eval("Titanium.App.Properties.setString(\""+col1+"\",col2)");
-							if(col1=="publicrepo"){Titanium.App.Properties.setString("publicrepo",col2);};
+							if(col1=="publicrepo"){Titanium.App.Properties.setString("publicrepo",col2); };
 							if(col1=="privaterepo"){Titanium.App.Properties.setString("privaterepo",col2);};
 							if(col1=="userindex1"){Titanium.App.Properties.setString("userindex1",col2);};
 							console.log("alloy::getMaster:: Titanium.App.Properties.getString("+col1+"): "+eval("Titanium.App.Properties.getString(col1)"));
@@ -491,8 +491,8 @@ Alloy.Globals.locateIndexCreateSpreadsheet = function(name){
 				Titanium.App.Properties.setString("status","failed"); 	
 			} else {
 				var fileexist = "true";
-				var indexsid = jsonlist.items[0].id;
-				var parentid = jsonlist.items[0].parents[0].id;
+				var indexsid = jsonlist.items[0].id; Titanium.App.Properties.setString("indexsid",indexsid);
+				var parentid = jsonlist.items[0].parents[0].id; Titanium.App.Properties.setString("parentid",parentid)
 				console.log("alloy.js::Alloy.Globals.locateIndexCreateSpreadsheet::File exist. indexsid is: "+indexsid+" parentid:"+parentid);
 				// Create Credit and Debit START
 				//var filenamearray = [name+"_debit",name+"_credit"];
@@ -643,4 +643,48 @@ Alloy.Globals.initialUserSetup = function(e){
 		xhr.setRequestHeader("Content-type", "application/json");
 	    xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
 		xhr.send();
+};
+
+Alloy.Globals.getCreditDebitSID = function(name) {
+	var data = [];
+	var indexsid = Titanium.App.Properties.getString("indexsid");
+	var url = "https://spreadsheets.google.com/feeds/list/"+indexsid+"/od6/private/full";
+	console.log("Alloy.Globals.getCreditDebitSID:url: "+url);
+	var xhr = Ti.Network.createHTTPClient({
+		    onload: function(ee) {
+			    	var xml = Titanium.XML.parseString(this.responseText);
+			    	console.log("Alloy.Globals.getCreditDebitSID this xml is: " +xml);
+			    	var feed = xml.documentElement.getElementsByTagName("feed");
+					var entry = xml.documentElement.getElementsByTagName("entry");
+					console.log("Alloy.Globals.getCreditDebitSID::this entry length is: " +entry.length);
+			    	for (i=1;i<entry.length;i++){
+						var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
+						var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text;
+						var idtag = entry.item(i).getElementsByTagName("id").item(0).text.replace(':','yCoLoNy');
+						var link = entry.item(i).getElementsByTagName("link");
+						for (y=0;y<link.length;y++){			
+			    			var listitem = link.item(y);
+			    			if (listitem.getAttribute("rel") == "edit"){ var edithref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+			    			if (listitem.getAttribute("rel") == "self"){ var selfhref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+		    			}
+						data.push({"col1":col1,"col2":col2});
+						console.log("Alloy.Globals.getCreditDebitSID: data :"+JSON.stringify(data));
+						console.log("Alloy.Globals.getCreditDebitSID data :"+col1+" url:"+idtag+" "+edithref);
+						if(col1 && col2){
+							eval("Titanium.App.Properties.setString(\""+col1+"\",col2)");
+							if(col1== name+"_credit"){Titanium.App.Properties.setString("creditsid",col2); };
+							if(col1== name+"_debit"){Titanium.App.Properties.setString("debitsid",col2);};
+							if(col1== "parentid"){Titanium.App.Properties.setString("parentid",col2);};
+							console.log("alloy::getCreditDebitSID:: Titanium.App.Properties.getString("+col1+"): "+eval("Titanium.App.Properties.getString(col1)"));						
+						}	
+					}
+					
+			}	
+		});			
+		xhr.onerror = function(e){
+			console.log("Alloy.Globals.getCreditDebitSID:::Unable to connect to the network. The info displayed here is NOT the latest.");
+		};
+		xhr.open("GET", url);
+		xhr.send();
+		Ti.API.info("Alloy.Globals.getCreditDebitSID:Data were successfuly downloaded from "+url+". Please proceed.");
 };

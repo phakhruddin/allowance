@@ -33,14 +33,15 @@ $.lastdebit_button.addEventListener ("click", function(e){
 });
 
 function debitAction(e){
-	var url="https://spreadsheets.google.com/feeds/list/11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE/od6/public/basic?hl=en_US&alt=json";
+	var debitsid = "11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE";
+	var url="https://spreadsheets.google.com/feeds/list/"+debitsid+"/od6/public/basic?hl=en_US&alt=json";
 	var type="debitmodel";
 	Alloy.Globals.updateType(url,type);
 }
 
 function creditAction(e){
-	var sid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
-	var url="https://spreadsheets.google.com/feeds/list/"+sid+"/od6/public/basic?hl=en_US&alt=json";
+	var creditsid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
+	var url="https://spreadsheets.google.com/feeds/list/"+creditsid+"/od6/public/basic?hl=en_US&alt=json";
 	var type="creditmodel";
 	Alloy.Globals.updateType(url,type);
 }
@@ -133,7 +134,7 @@ function getEmail(e){
 			}
 			});
 		xhr.onerror = function(e){
-			console.log('main::getEmail:: unable to get info for '+e);
+			console.log('main::getEmail:: unable to get info for '+JSON.stringify(e));
 		};
 		console.log('main::getEmail:: URL:: https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
 		xhr.open("GET", 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json');
@@ -146,7 +147,7 @@ function getEmail(e){
 function login(e) {
 	//check if user is authorized. If authorized, load user info, and create datastore if not yet existed.
 	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
-	if (e.source.title == "LOGIN") {
+	if (e.source.title == "LOGIN" || e.source.title == "REFRESH") {
 		googleAuthSheet.isAuthorized(function() {
 			console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 			Titanium.App.Properties.setString('needAuth',"false");
@@ -155,21 +156,24 @@ function login(e) {
 			Alloy.Globals.getMaster(); // Load user info
 			getEmail();
 			Alloy.Globals.initialUserSetup(); //setup datastore if it is not yet done
-			alert("Logged in successfully with "+Titanium.App.Properties.getString('emailid')+" ");
+			var emailid = Titanium.App.Properties.getString('emailid');
+			alert("Logged in successfully with "+emailid+" ");
 			$.main_window.login="yes";
 			$.status_view.height="1";
 			$.status_view.backgroundColor="green";
+			var name = emailid.split('@')[0].trim();
+			Alloy.Globals.getCreditDebitSID(name);		
 		}, function() {
 			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
 			googleAuthSheet.authorize();
-			$.login_button.title="LOGOUT";
+			$.status_label.text="Please click again to refresh data.";
+			$.login_button.title="REFRESH";
 			someInfo.set({"namecolor": "#13CA13"});
 			getEmail();
 			alert("Logged in successfully with "+Titanium.App.Properties.getString('emailid')+" ");
-			$.main_window.login="yes";
-			$.status_view.height="1";
-			$.status_view.backgroundColor="green";
+			$.main_window.login="no";
+			$.status_view.backgroundColor="orange";
 			}
 		);
 	} else {
