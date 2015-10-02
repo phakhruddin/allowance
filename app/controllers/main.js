@@ -33,17 +33,22 @@ $.lastdebit_button.addEventListener ("click", function(e){
 });
 
 function debitAction(e){
+	var type="debitmodel";
+	var sid = Titanium.App.Properties.getString("debitsid");
+	Alloy.Globals.privateSStoDB(type,sid);
+	/*
 	var debitsid = "11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE";
 	var url="https://spreadsheets.google.com/feeds/list/"+debitsid+"/od6/public/basic?hl=en_US&alt=json";
-	var type="debitmodel";
-	Alloy.Globals.updateType(url,type);
+	Alloy.Globals.updateType(url,type);*/
 }
 
 function creditAction(e){
-	var creditsid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
-	var url="https://spreadsheets.google.com/feeds/list/"+creditsid+"/od6/public/basic?hl=en_US&alt=json";
 	var type="creditmodel";
-	Alloy.Globals.updateType(url,type);
+	var sid = Titanium.App.Properties.getString("creditsid");
+	Alloy.Globals.privateSStoDB(type,sid);
+	/*var creditsid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
+	var url="https://spreadsheets.google.com/feeds/list/"+creditsid+"/od6/public/basic?hl=en_US&alt=json";
+	Alloy.Globals.updateType(url,type);*/
 }
 
 //checkng data last credit information

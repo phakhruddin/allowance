@@ -688,3 +688,49 @@ Alloy.Globals.getCreditDebitSID = function(name) {
 		xhr.send();
 		Ti.API.info("Alloy.Globals.getCreditDebitSID:Data were successfuly downloaded from "+url+". Please proceed.");
 };
+
+
+Alloy.Globals.privateSStoDB = function(type,sid) {
+	var data = [];
+	eval("Alloy.Collections."+type+".deleteAll()"); // cleanup data. overwrite existing.
+	var url = "https://spreadsheets.google.com/feeds/list/"+sid+"/od6/private/full";
+	console.log("Alloy.Globals.privateSStoDB:url: "+url);
+	var xhr = Ti.Network.createHTTPClient({
+		    onload: function(ee) {
+			    	var xml = Titanium.XML.parseString(this.responseText);
+			    	console.log("Alloy.Globals.privateSStoDB this xml is: " +xml);
+			    	var feed = xml.documentElement.getElementsByTagName("feed");
+					var entry = xml.documentElement.getElementsByTagName("entry");
+					console.log("Alloy.Globals.privateSStoDB::this entry length is: " +entry.length);
+			    	for (i=1;i<entry.length;i++){
+						var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text || "none";
+						var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text || "none";
+						var col3 = entry.item(i).getElementsByTagName("gsx:col3").item(0).text || "none";
+						var col4 = entry.item(i).getElementsByTagName("gsx:col4").item(0).text || "none";
+						var col5 = entry.item(i).getElementsByTagName("gsx:col5").item(0).text || "none";
+						var col6 = entry.item(i).getElementsByTagName("gsx:col6").item(0).text || "none";
+						var col7 = entry.item(i).getElementsByTagName("gsx:col7").item(0).text || "none";
+						var col8 = entry.item(i).getElementsByTagName("gsx:col8").item(0).text || "none";
+						var col9 = entry.item(i).getElementsByTagName("gsx:col9").item(0).text || "none";
+						var idtag = entry.item(i).getElementsByTagName("id").item(0).text.replace(':','yCoLoNy');
+						var link = entry.item(i).getElementsByTagName("link");
+						for (y=0;y<link.length;y++){			
+			    			var listitem = link.item(y);
+			    			if (listitem.getAttribute("rel") == "edit"){ var edithref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+			    			if (listitem.getAttribute("rel") == "self"){ var selfhref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+		    			}
+						data.push({"col1":col1,"col2":col2});
+						console.log("Alloy.Globals.privateSStoDB: data :"+JSON.stringify(data));
+						console.log("Alloy.Globals.privateSStoDB data :"+col1+" url:"+idtag+" "+edithref);
+						Alloy.Globals.updatemodelTable(type,col1,col2,col3,col4,col5,col6,col7,col8,col9);
+					}
+					
+			}	
+		});			
+		xhr.onerror = function(e){
+			console.log("Alloy.Globals.privateSStoDB:::Unable to connect to the network. The info displayed here is NOT the latest.");
+		};
+		xhr.open("GET", url);
+		xhr.send();
+		Ti.API.info("Alloy.Globals.privateSStoDB:Data were successfuly downloaded from "+url+". Please proceed.");
+};
