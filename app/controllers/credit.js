@@ -6,7 +6,8 @@ exports.openMainWindow = function(_tab) {
 //intial var
 $.credit_window.data = {"totalcredit":"","creditamount":"","bal":"","lastcredit":""};
 var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
-var sid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
+var sid = Titanium.App.Properties.getString("creditsid");
+//var sid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
 var bal=Titanium.App.Properties.getInt('bal',0);
 var balalert = Titanium.App.Properties.getInt('balalert',100);
 var totalspent=Titanium.App.Properties.getInt('totalspent'); // feed the data to window

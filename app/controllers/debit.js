@@ -5,7 +5,8 @@ exports.openMainWindow = function(_tab) {
 };
 
 //intial var
-var sid = '11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE';
+var sid = Titanium.App.Properties.getString("debitsid");
+//var sid = '11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE';
 var creditamount=0; var lastcredit=0;
 var bal=Titanium.App.Properties.getInt('bal',0);
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);
@@ -251,7 +252,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		$.notes_textarea.totalspent = totalspent;
 		console.log("updateDummy("+totalspent+","+amount+","+dateMDY+")");
 		updateDummy(bal,totalspent,amount,dateMDY,color) ;
-		
+		Alloy.Globals.updateSpreadsheet(sid,dateMDY,dateMDY,catselected,amount,"0","0","0","0","0");	//update spreadsheet
 	}
 });
 
