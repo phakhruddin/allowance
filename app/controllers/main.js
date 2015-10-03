@@ -90,8 +90,10 @@ console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
 Alloy.Globals.setBalColor(bal);
 
 someInfo.set({"id":"1234",
-	"namecolor": "black",
+	"namecolor": "#0F81C3",
 	"name": Titanium.App.Properties.getString('name'),
+	"firstname": Titanium.App.Properties.getString('name').split(' ')[0]||Titanium.App.Properties.getString('firstname',"Firstname"),
+	"lastname": Titanium.App.Properties.getString('name').split(' ')[1]||Titanium.App.Properties.getString('lastname',"Lastname"),
 	"emailid": Titanium.App.Properties.getString('emailid')
 });
 someInfo.fetch();
@@ -225,6 +227,8 @@ function enterName(){
 	$.firstname_tf.show();
 	$.lastname_tf.show();
 	$.test_button.currentstate="nametf";
+	$.name.currentstate="nametf";
+	$.cancelname_button.show();
 }
 
 function displayName(){
@@ -232,10 +236,13 @@ function displayName(){
 	$.lastname_tf.hide();
 	$.name.show();
 	$.test_button.currentstate="name";
+	$.name.currentstate="name";
+	$.cancelname_button.hide();
 }
 
 $.firstname_tf.hide(); //hide first when launched.
 $.lastname_tf.hide();
+$.cancelname_button.hide();
 function TFCheck(e) {
 	console.log("main.js:: TFCheck: JSON.stringify(e)" +JSON.stringify(e));
 	if(e.source.currentstate=="name") {
@@ -285,4 +292,15 @@ $.firstname_tf.addEventListener('blur', function(e) {
 	}
  });
  
+function editName(e) {
+	console.log("main.js:: editName: JSON.stringify(e)" +JSON.stringify(e));
+	if(e.source.currentstate=="name") {
+		enterName();
+	} else {
+		displayName();
+	}
+}
 
+function cancelNameEdit(e){
+	displayName();
+}

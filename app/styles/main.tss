@@ -90,4 +90,9 @@
 	font: {
 		fontSize: '12'
 	}
+},
+"Button" : {
+	font: {
+		fontSize: '20'
+	}
 }

@@ -8,9 +8,9 @@
 	  	<RightNavButton id="login_rightnavbutton" platform="ios">
 	   		<Button id="login_button" title="LOGIN" color="green" onClick="login"/>
 		</RightNavButton>
-		<LeftNavButton>
+		<!--LeftNavButton>
 			<Button id="test_button" title="Test" onClick="TFCheck"/>
-		</LeftNavButton>	
+		</LeftNavButton-->	
 		<TableView backgroundColor="transparent">
 			<HeaderView id="main_headerview">
 				<View height="5%" id="status_view" backgroundColor="red">
@@ -19,10 +19,11 @@
 			</HeaderView>
 			<TableViewSection id="name_section" headerTitle="Name">			
 				<TableViewRow  color="white" Title="Identification" height="100">
-					<TextField id="firstname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="20" hintText="FirstName" />
-					<TextField id="lastname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="210" hintText="LastName" />
-	   		  		<Label id="name" color="{info.namecolor}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="{info.name}"/>
+					<TextField id="firstname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="20" hintText="{info.firstname}" />
+					<TextField id="lastname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="210" hintText="{info.lastname}" />
+	   		  		<Label id="name" color="{info.namecolor}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="{info.name}" onClick="editName" />
 			   		<Label id="studentid" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="65" text="id: {info.emailid}" />
+			   		<Button id="cancelname_button" title="Cancel" top="65" right="5%" onClick="cancelNameEdit" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Account Status">
