@@ -226,7 +226,6 @@ function enterName(){
 	$.name.hide();
 	$.firstname_tf.show();
 	$.lastname_tf.show();
-	$.test_button.currentstate="nametf";
 	$.name.currentstate="nametf";
 	$.cancelname_button.show();
 }
@@ -235,7 +234,6 @@ function displayName(){
 	$.firstname_tf.hide();
 	$.lastname_tf.hide();
 	$.name.show();
-	$.test_button.currentstate="name";
 	$.name.currentstate="name";
 	$.cancelname_button.hide();
 }
@@ -243,14 +241,6 @@ function displayName(){
 $.firstname_tf.hide(); //hide first when launched.
 $.lastname_tf.hide();
 $.cancelname_button.hide();
-function TFCheck(e) {
-	console.log("main.js:: TFCheck: JSON.stringify(e)" +JSON.stringify(e));
-	if(e.source.currentstate=="name") {
-		enterName();
-	} else {
-		displayName();
-	}
-}
 
 $.firstname_tf.addEventListener('blur', function(e) {
 	Titanium.App.Properties.setString('firstname',"");

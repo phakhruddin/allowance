@@ -8,9 +8,6 @@
 	  	<RightNavButton id="login_rightnavbutton" platform="ios">
 	   		<Button id="login_button" title="LOGIN" color="green" onClick="login"/>
 		</RightNavButton>
-		<!--LeftNavButton>
-			<Button id="test_button" title="Test" onClick="TFCheck"/>
-		</LeftNavButton-->	
 		<TableView backgroundColor="transparent">
 			<HeaderView id="main_headerview">
 				<View height="5%" id="status_view" backgroundColor="red">
@@ -28,7 +25,7 @@
 			</TableViewSection>
 			<TableViewSection headerTitle="Account Status">
 				<TableViewRow  color="white" Title="Identification" height="110">
-				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789" onClick="TFCheck"/>
+				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789"/>
 					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="32" text="BAL" />
 	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="{dummy.bal}" />
 				</TableViewRow>
