@@ -88,12 +88,16 @@ var totalspent = Titanium.App.Properties.getInt('totalspent',0);//get from persi
 console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
 (Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = parseFloat(totalcredit)-parseFloat(totalspent);
 Alloy.Globals.setBalColor(bal);
+// initial user info if exists
+var name = Titanium.App.Properties.getString('name'," ");
+var firstname = Titanium.App.Properties.getString('firstname'," ");
+var lastname = Titanium.App.Properties.getString('lastname'," ");
 
 someInfo.set({"id":"1234",
 	"namecolor": "#0F81C3",
-	"name": Titanium.App.Properties.getString('name'),
-	"firstname": Titanium.App.Properties.getString('name').split(' ')[0]||Titanium.App.Properties.getString('firstname',"Firstname"),
-	"lastname": Titanium.App.Properties.getString('name').split(' ')[1]||Titanium.App.Properties.getString('lastname',"Lastname"),
+	"name": name,
+	"firstname": (name)?name.split(' ')[0]:firstname||"FirstName",
+	"lastname": (name)?name.split(' ')[1]:Titanium.App.Properties.getString('lastname',"Lastname"),
 	"emailid": Titanium.App.Properties.getString('emailid')
 });
 someInfo.fetch();

@@ -63,6 +63,7 @@ function setDate(e){
 	var date = e.value;
 	$.notes_textarea.datedebit = date;
 	var dateFormat = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
+	$.dateLabel.left= "20";
 	$.dateLabel.text= dateFormat;
 	//$.donebutton.date = dateFormat;
 
@@ -179,7 +180,7 @@ Titanium.App.Properties.setInt('totalspent',totalspent);
 console.log("debit.js: after row display totalspent: "+totalspent);
 
 var picker = Ti.UI.createPicker({
-  top:90
+  top:93
   
 });
 var data = []; var cat = [];
@@ -194,9 +195,10 @@ $.catLabel.color="red";
 picker.addEventListener('change',function(e){
   console.log("JSON stringify picker(e): "+JSON.stringify(e));
   var catselected = e.row.title;
+  $.catLabel.left="20";
   $.catLabel.text=catselected;
   $.notes_textarea.category = catselected;
-  $.catLabel.color="blue";
+  $.catLabel.color="#0F81C3";
   //$.input_view.remove(picker);
 });
 
@@ -226,7 +228,7 @@ function Done(e){
 $.dateLabel.addEventListener('click',function(e){
   console.log("JSON stringify dateLabel(e): "+JSON.stringify(e));
   $.input_view.add($.date_picker);
-  $.dateLabel.color="blue";
+  $.dateLabel.color="#0F81C3";
 });
 
 $.notes_textarea.addEventListener("blur",function(e){
