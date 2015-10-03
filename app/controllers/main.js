@@ -32,10 +32,28 @@ $.lastdebit_button.addEventListener ("click", function(e){
 	tabViewOneController.openMainWindow($.main_tab);	
 });
 
+
+function RefResh(){
+	$.status_label.text="Please click again to refresh data.";
+	$.login_button.title="REFRESH";
+	someInfo.set({"namecolor": "#13CA13"});
+	$.main_window.login="no";
+	$.status_view.backgroundColor="orange";
+}
+
 function debitAction(e){
+	console.log("main.js:debitAction::JSON.stringify(e): "+JSON.stringify(e));
 	var type="debitmodel";
+	var name= e.row.name || Titanium.App.Properties.getString("name");
 	var sid = Titanium.App.Properties.getString("debitsid");
-	Alloy.Globals.privateSStoDB(type,sid);
+	if(sid){
+		Alloy.Globals.privateSStoDB(type,sid);
+	} else {
+		console.log("main.js:: debitAction: sid does not exists: "+sid+" rerun Alloy.Globals.getCreditDebitSID("+name+")");
+		RefResh();
+		Alloy.Globals.getCreditDebitSID(name);
+	}; 
+	
 	/*
 	var debitsid = "11zxiijjENT69g_97R8nvLZvv_hfBC1tdsJrJ6skNBVE";
 	var url="https://spreadsheets.google.com/feeds/list/"+debitsid+"/od6/public/basic?hl=en_US&alt=json";
@@ -43,9 +61,20 @@ function debitAction(e){
 }
 
 function creditAction(e){
+	console.log("main.js:creditAction::JSON.stringify(e): "+JSON.stringify(e));
 	var type="creditmodel";
+	var name= e.row.name || Titanium.App.Properties.getString("name");
 	var sid = Titanium.App.Properties.getString("creditsid");
-	Alloy.Globals.privateSStoDB(type,sid);
+		if(sid){
+		Alloy.Globals.privateSStoDB(type,sid);
+	} else {
+		RefResh();
+		console.log("main.js:: creditAction: sid does not exists: "+sid+" rerun Alloy.Globals.getCreditDebitSID("+name+")");
+		Alloy.Globals.getCreditDebitSID(name);
+	};
+	
+	
+	///Alloy.Globals.privateSStoDB(type,sid);
 	/*var creditsid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
 	var url="https://spreadsheets.google.com/feeds/list/"+creditsid+"/od6/public/basic?hl=en_US&alt=json";
 	Alloy.Globals.updateType(url,type);*/
@@ -96,7 +125,8 @@ var lastname = Titanium.App.Properties.getString('lastname'," ");
 someInfo.set({"id":"1234",
 	"namecolor": "#0F81C3",
 	"name": name,
-	"firstname": (name)?name.split(' ')[0]:firstname||"FirstName",
+	//"firstname": (name)?name.split(' ')[0]:firstname||"FirstName",
+	"firstname": firstname,
 	"lastname": (name)?name.split(' ')[1]:Titanium.App.Properties.getString('lastname',"Lastname"),
 	"emailid": Titanium.App.Properties.getString('emailid')
 });
@@ -128,13 +158,14 @@ var googleAuthSheet = new GoogleAuth({
 
 console.log('main.js:: googleAuthSheet.getAccessToken() Token: ' + googleAuthSheet.getAccessToken());
 
+
 //get email address used to login 
 function getEmail(e){
 			var xhr = Ti.Network.createHTTPClient({
 		    onload: function(e) {
 		    try {
 		    		var json = JSON.parse(this.responseText);
-		    		Ti.API.info("response is: "+JSON.stringify(json));
+		    		Ti.API.info("getEmail::response is: "+JSON.stringify(json));
 		    		var emailid = json.email;
 		    		var firstname = json.given_name;
 		    		var lastname = json.family_name;
@@ -169,7 +200,8 @@ function login(e) {
 			function AuthorizeActivity(){
 				console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 			}	
-			setTimeout(AuthorizeActivity(),2000); // wait 2 secs	
+			//setTimeout(AuthorizeActivity(),2000); // wait 2 secs	
+			AuthorizeActivity();
 			$.login_activity.hide();
 			Titanium.App.Properties.setString('needAuth',"false");
 			$.login_button.title="LOGOUT";
@@ -183,12 +215,19 @@ function login(e) {
 			$.status_view.backgroundColor="green";
 			if (emailid != null){
 				var name = emailid.split('@')[0].trim();
+				Titanium.App.Properties.setString('name',"");
+				$.lastcredit_row.name=name;
+				$.lastdebit_row.name=name;
 				Alloy.Globals.getCreditDebitSID(name);
 				 $.studentid.color="#336600";
-			} else $.studentid.color="red";	
+			} else {
+				$.studentid.color="red";
+				RefResh();
+			} 	
 			//change display name based on googe info
 			 someInfo.set({"id":"1234",
-				"name": Titanium.App.Properties.getString('firstname') +" "+Titanium.App.Properties.getString('lastname')
+				"name": Titanium.App.Properties.getString('firstname'," ") +" "+Titanium.App.Properties.getString('lastname'," "),
+				"emailid": emailid
 			});
 			someInfo.fetch();
 			
@@ -206,15 +245,12 @@ function login(e) {
 			console.log("main.js b4 checking emailid");		
 			if (!emailid) {
 				console.log("main.js:: emailid is empty, execute it again");	
-				setTimeout(gettingEmailID(),3000); // wait 2 secs
+				//setTimeout(gettingEmailID(),3000); // wait 2 secs
+				gettingEmailID();
 			} else console.log(" main.js:: emailis is: "+emailid);
 			$.login_activity.hide();
-			/*
-			$.status_label.text="Please click again to refresh data.";
-			$.login_button.title="REFRESH";
-			someInfo.set({"namecolor": "#13CA13"});
-			$.main_window.login="no";
-			$.status_view.backgroundColor="orange";*/
+			//Orange
+			RefResh();
 			}
 		);
 	} else {
@@ -222,6 +258,7 @@ function login(e) {
 		googleAuthSheet.deAuthorize();
 		$.login_button.title="LOGIN";
 		someInfo.set({"namecolor": "red"});
+		Alloy.Globals.resetVar();
 	}
 
 }
@@ -253,8 +290,8 @@ $.firstname_tf.addEventListener('blur', function(e) {
 	   var firstname = e.value.trim();
 	    Ti.API.info("settings:: entered is: "+firstname);
 	    Titanium.App.Properties.setString('firstname',firstname);
-	    Ti.API.info("settings:: firstname obtained is: "+Titanium.App.Properties.getString('firstname'));
-	    var lastname = Titanium.App.Properties.getString('lastname',"");
+	    Ti.API.info("settings:: firstname obtained is: "+Titanium.App.Properties.getString('firstname'," "));
+	    var lastname = Titanium.App.Properties.getString('lastname'," ");
 	    someInfo.set({"id":"1234",
 			"name": firstname +" "+lastname
 		});
@@ -273,7 +310,7 @@ $.firstname_tf.addEventListener('blur', function(e) {
 	   var lastname = e.value.trim();
 	    Ti.API.info("settings:: entered is: "+lastname);
 	    Titanium.App.Properties.setString('lastname',lastname);
-	    Ti.API.info("settings:: lastname obtained is: "+Titanium.App.Properties.getString('lastname'));
+	    Ti.API.info("settings:: lastname obtained is: "+Titanium.App.Properties.getString('lastname'," "));
 	    var firstname = Titanium.App.Properties.getString('firstname',"");
 	    someInfo.set({"id":"1234",
 			"name": firstname +" "+lastname

@@ -18,6 +18,20 @@ Alloy.Globals.emailid = Titanium.App.Properties.getString('emailid',"Please ente
 Alloy.Globals.license = "demo";
 var bootstrapid =  "1mcGGarLWUy83OXdexMili5ghQ-sGBkJFSMZysU8vF-k";
 
+
+Alloy.Globals.resetVar=function(){
+	Titanium.App.Properties.setInt('balalert',100);
+	var vartobeNull = ["name", "emailid", "publicrepo", "privaterepo","debitsid","creditsid", "indexsid"];
+	for (i=0;i<vartobeNull.length;i++){
+		//Titanium.App.Properties.removeProperty("firstname");
+		Titanium.App.Properties.removeProperty(""+vartobeNull[i]+"");
+		//console.log("Successfully removing : Titanium.App.Properties.removeString("+vartobeNull[i]+"): "+eval("Titanium.App.Properties.getString("+vartobeNull[i]+")"));
+	}
+	Titanium.App.Properties.setString("firstname","FirstName");
+	Titanium.App.Properties.setString("lastname","LastName");
+};
+
+
 //Grab bootstrap variable
 Alloy.Globals.getMaster = function() {
 	var url="https://spreadsheets.google.com/feeds/list/"+bootstrapid+"/od6/public/basic?hl=en_US&alt=json";
@@ -576,6 +590,7 @@ Alloy.Globals.locateIndexCreateSpreadsheet = function(name){
 	};
 	var filename = name+"_index";
 	var rawquerystring = '?q=title+%3D+\''+filename+'\'+and+mimeType+%3D+\'application%2Fvnd.google-apps.spreadsheet\'+and+trashed+%3D+false&fields=items(id%2CmimeType%2Clabels%2Cparents%2Ctitle)';
+	console.log("alloy.js::Alloy.Globals.locateIndexCreateSpreadsheet: get rawquerystring is: "+rawquerystring);
 	xhr.open("GET", 'https://www.googleapis.com/drive/v2/files'+rawquerystring);
 	xhr.setRequestHeader("Content-type", "application/json");
     xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
@@ -647,7 +662,9 @@ Alloy.Globals.initialUserSetup = function(e){
 
 Alloy.Globals.getCreditDebitSID = function(name) {
 	var data = [];
+	console.log("Alloy.Globals.getCreditDebitSID:: executing with name: "+name);
 	var indexsid = Titanium.App.Properties.getString("indexsid");
+	if (indexsid) {} else {console.log("alloy::Alloy.Globals.getCreditDebitSID: is null");Alloy.Globals.locateIndexCreateSpreadsheet(name);}; //run again if indexsid is null
 	var url = "https://spreadsheets.google.com/feeds/list/"+indexsid+"/od6/private/full";
 	console.log("Alloy.Globals.getCreditDebitSID:url: "+url);
 	var xhr = Ti.Network.createHTTPClient({

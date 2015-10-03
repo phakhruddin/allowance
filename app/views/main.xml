@@ -31,14 +31,14 @@
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">
-				<TableViewRow  color="white" Title="lastcredit_row" onClick="creditAction" height="64">
+				<TableViewRow  color="white" id="lastcredit_row" onClick="creditAction" height="64">
 	   		  		<Label id="creditamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="{dummy.dcreditamount}"/>
 			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="last credit on: {dummy.lastcredit}"/>
 			   		<Button id="lastcredit_button" right="60" image="right242.png" width="30" height="30"/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Debit">
-				<TableViewRow  color="white" Title="lastdebit_row" onClick="debitAction" height="64">
+				<TableViewRow  color="white" id="lastdebit_row" onClick="debitAction" height="64">
 		   		  	<Label id="debitamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5"text="{dummy.debitamount}" />
 			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="Last Debit on: {dummy.lastdebit}" />
 			   		<Button id="lastdebit_button" right="60" image="right242.png" width="30" height="30" />
