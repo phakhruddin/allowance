@@ -210,8 +210,8 @@ function login(e) {
 
 }
 
-		$.firstname_tf.hide();
-		$.lastname_tf.hide();
+$.firstname_tf.hide(); //hide first when launched.
+$.lastname_tf.hide();
 function TFCheck(e) {
 	console.log("main.js:: TFCheck: JSON.stringify(e)" +JSON.stringify(e));
 	if(e.source.currentstate=="name") {
