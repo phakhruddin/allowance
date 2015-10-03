@@ -63,7 +63,7 @@ $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"credi
 //function to capture balance data for main summary screen
 function updateDummy(bal,totalcredit,creditamount,lastcredit,color) {
 	var someDummy = Alloy.Models.dummy;
-	someDummy.set({'id':'1234','bal':bal,'totalcredit': totalcredit,'dcreditamount':creditamount,"lastcredit":lastcredit,"color":color});
+	someDummy.set({'id':'1234','bal':Alloy.Globals.numberWithCommas(bal),'totalcredit': totalcredit,'dcreditamount':creditamount,"lastcredit":lastcredit,"color":color});
 	someDummy.fetch();
 	console.log("credit.js ::updateDummy:: stringify dummy :"+JSON.stringify(someDummy));
 }
@@ -205,10 +205,10 @@ $.notes_textarea.addEventListener("blur",function(e){
 		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0","0");//update local DB
 		var totalcredit = parseFloat(creditamount)+ parseFloat(e.source.data.totalcredit);
 		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
-		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);
+		var bal = (parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount));
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
-		var bal = parseFloat(totalcredit)-parseFloat(e.source.data.totalspent);
+		var bal = (parseFloat(totalcredit)-parseFloat(e.source.data.totalspent));
 		var color = Alloy.Globals.setBalColor(bal); 
 		Titanium.App.Properties.setInt('bal',bal);
 		$.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; // feed data to window
@@ -246,7 +246,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 //Action when the user move away from the active screen
 $.credit_window.addEventListener("close",function(e){
 	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
-	var bal = parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent);
+	var bal = (parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent));
 	var color = Alloy.Globals.setBalColor(bal); 
 	Titanium.App.Properties.setInt('bal',bal);
 	updateDummy(bal,e.source.data.totalcredit,e.source.data.creditamount,e.source.data.lastcredit,color);

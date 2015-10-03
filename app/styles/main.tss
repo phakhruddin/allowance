@@ -67,7 +67,7 @@
 },
 "#balance": {
 	font: {
-		fontSize: '48',
+		fontSize: '68',
 		fontStyle: 'bold'
 	}
 },

@@ -15,7 +15,7 @@
 				</View>
 			</HeaderView>
 			<TableViewSection id="name_section" headerTitle="Name">			
-				<TableViewRow  color="white" Title="Identification" height="100">
+				<TableViewRow id="name_row"  color="white" Title="Identification" height="100">
 					<TextField id="firstname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="20" hintText="{info.firstname}" />
 					<TextField id="lastname_tf" borderStyle="Titanium.UI.INPUT_BORDERSTYLE_ROUNDED" left="210" hintText="{info.lastname}" />
 	   		  		<Label id="name" color="{info.namecolor}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="25" text="{info.name}" onClick="editName" />
@@ -24,21 +24,21 @@
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Account Status">
-				<TableViewRow  color="white" Title="Identification" height="110">
-				  	<Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789"/>
-					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="32" text="BAL" />
-	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="46" text="{dummy.bal}" />
+				<TableViewRow id="bal_row" color="white" Title="Identification" height="110">
+				  	<!--Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789"/-->
+					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="BAL" />
+	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="26" text="{dummy.bal}" />
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">
-				<TableViewRow  color="white" id="lastcredit_row" onClick="creditAction" height="64">
+				<TableViewRow  id="lastcredit_row" onClick="creditAction" height="64">
 	   		  		<Label id="creditamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5" text="{dummy.dcreditamount}"/>
 			   		<Label id="lastcredit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="last credit on: {dummy.lastcredit}"/>
 			   		<Button id="lastcredit_button" right="60" image="right242.png" width="30" height="30"/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Debit">
-				<TableViewRow  color="white" id="lastdebit_row" onClick="debitAction" height="64">
+				<TableViewRow  id="lastdebit_row" onClick="debitAction" height="64">
 		   		  	<Label id="debitamount" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="5"text="{dummy.debitamount}" />
 			   		<Label id="lastdebit" color="gray" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="33" text="Last Debit on: {dummy.lastdebit}" />
 			   		<Button id="lastdebit_button" right="60" image="right242.png" width="30" height="30" />

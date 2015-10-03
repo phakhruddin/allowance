@@ -751,3 +751,7 @@ Alloy.Globals.privateSStoDB = function(type,sid) {
 		xhr.send();
 		Ti.API.info("Alloy.Globals.privateSStoDB:Data were successfuly downloaded from "+url+". Please proceed.");
 };
+
+Alloy.Globals.numberWithCommas = function (x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};

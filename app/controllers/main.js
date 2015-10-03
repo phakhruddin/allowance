@@ -39,6 +39,16 @@ function RefResh(){
 	someInfo.set({"namecolor": "#13CA13"});
 	$.main_window.login="no";
 	$.status_view.backgroundColor="orange";
+	$.status_view.height="5%";
+	var row = ["lastcredit_row", "lastdebit_row" , "bal_row", "name_row", "transaction_view"];
+	for (i=0;i<row.length;i++){
+		eval("$."+row[i]+".backgroundColor=\"#F7F3EB\"");
+	}
+	/*
+	$.lastcredit_row.backgroundColor="#FDE9C5";
+	$.lastdebit_row.backgroundColor="#FDE9C5";
+	$.bal_row.backgroundColor="#FDE9C5";
+	$.name_row.backgroundColor="#FDE9C5";*/
 }
 
 function debitAction(e){
@@ -115,7 +125,7 @@ console.log("main.js: lastdebit: "+lastdebit+", debitamount: "+debitamount);
 var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);//get from persistent memory
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);//get from persistent memory
 console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
-(Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = parseFloat(totalcredit)-parseFloat(totalspent);
+(Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = (parseFloat(totalcredit)-parseFloat(totalspent));
 Alloy.Globals.setBalColor(bal);
 // initial user info if exists
 var name = Titanium.App.Properties.getString('name'," ");
@@ -134,7 +144,7 @@ someInfo.fetch();
 console.log("main.js:: stringify info :"+JSON.stringify(someInfo));
 
 someDummy.set({"id":"1234",
-	"bal":bal,
+	"bal":Alloy.Globals.numberWithCommas(bal),
 	"dcreditamount":creditamount,
 	"lastcredit":lastcredit,
 	"lastdebit":lastdebit,
@@ -219,7 +229,12 @@ function login(e) {
 				$.lastcredit_row.name=name;
 				$.lastdebit_row.name=name;
 				Alloy.Globals.getCreditDebitSID(name);
-				 $.studentid.color="#336600";
+				$.studentid.color="#336600";
+				$.lastcredit_row.backgroundColor="white";
+				$.lastdebit_row.backgroundColor="white";
+				$.bal_row.backgroundColor="white";
+				$.name_row.backgroundColor="white";
+				$.transaction_view.backgroundColor="white";
 			} else {
 				$.studentid.color="red";
 				RefResh();
