@@ -130,7 +130,11 @@ function getEmail(e){
 		    		var json = JSON.parse(this.responseText);
 		    		Ti.API.info("response is: "+JSON.stringify(json));
 		    		var emailid = json.email;
+		    		var firstname = json.given_name;
+		    		var lastname = json.family_name;
 		    		Titanium.App.Properties.setString('emailid',emailid);
+		    		Titanium.App.Properties.setString('firstname',firstname);
+		    		Titanium.App.Properties.setString('lastname',lastname);
 		    		console.log("main.js::args inside getEmail: emailid "+emailid+" :: "+JSON.stringify(e));
 		    	} catch(e){
 					Ti.API.info("cathing e: "+JSON.stringify(e));
@@ -176,6 +180,12 @@ function login(e) {
 				Alloy.Globals.getCreditDebitSID(name);
 				 $.studentid.color="#336600";
 			} else $.studentid.color="red";	
+			//change display name based on googe info
+			 someInfo.set({"id":"1234",
+				"name": Titanium.App.Properties.getString('firstname') +" "+Titanium.App.Properties.getString('lastname')
+			});
+			someInfo.fetch();
+			
 		}, function() {
 			$.login_activity.show();
 			googleAuthSheet.authorize();
@@ -210,20 +220,69 @@ function login(e) {
 
 }
 
+function enterName(){
+	$.name.hide();
+	$.firstname_tf.show();
+	$.lastname_tf.show();
+	$.test_button.currentstate="nametf";
+}
+
+function displayName(){
+	$.firstname_tf.hide();
+	$.lastname_tf.hide();
+	$.name.show();
+	$.test_button.currentstate="name";
+}
+
 $.firstname_tf.hide(); //hide first when launched.
 $.lastname_tf.hide();
 function TFCheck(e) {
 	console.log("main.js:: TFCheck: JSON.stringify(e)" +JSON.stringify(e));
 	if(e.source.currentstate=="name") {
-		$.name.hide();
-		$.firstname_tf.show();
-		$.lastname_tf.show();
-		$.test_button.currentstate="nametf";
+		enterName();
 	} else {
-		$.firstname_tf.hide();
-		$.lastname_tf.hide();
-		$.name.show();
-		$.test_button.currentstate="name";
+		displayName();
 	}
 }
+
+$.firstname_tf.addEventListener('blur', function(e) {
+	Titanium.App.Properties.setString('firstname',"");
+	console.log("settings:: JSON of textfield: "+JSON.stringify(e));
+	if (e.value){
+	   var firstname = e.value.trim();
+	    Ti.API.info("settings:: entered is: "+firstname);
+	    Titanium.App.Properties.setString('firstname',firstname);
+	    Ti.API.info("settings:: firstname obtained is: "+Titanium.App.Properties.getString('firstname'));
+	    var lastname = Titanium.App.Properties.getString('lastname',"");
+	    someInfo.set({"id":"1234",
+			"name": firstname +" "+lastname
+		});
+		someInfo.fetch();
+		console.log("main.js:: stringify dummy :"+JSON.stringify(someInfo));
+		if (lastname){
+			displayName();
+		}	
+	}
+ });
+ 
+ $.lastname_tf.addEventListener('blur', function(e) {
+ 	Titanium.App.Properties.setString('lastname',"");
+	console.log("settings:: JSON of textfield: "+JSON.stringify(e));
+	if (e.value){
+	   var lastname = e.value.trim();
+	    Ti.API.info("settings:: entered is: "+lastname);
+	    Titanium.App.Properties.setString('lastname',lastname);
+	    Ti.API.info("settings:: lastname obtained is: "+Titanium.App.Properties.getString('lastname'));
+	    var firstname = Titanium.App.Properties.getString('firstname',"");
+	    someInfo.set({"id":"1234",
+			"name": firstname +" "+lastname
+		});
+		someInfo.fetch();
+		console.log("main.js:: stringify dummy :"+JSON.stringify(someInfo));
+		if (firstname){
+			displayName();
+		}	
+	}
+ });
+ 
 
