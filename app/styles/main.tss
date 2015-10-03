@@ -15,6 +15,18 @@
         fontFamily:'Helvetica',
         fontWeight: 'normal'	}
 },
+"TextField": {
+	width: "45%",
+	top :"25",
+	color: "gray",
+	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	font: {
+		fontSize: "24",
+        fontFamily:'Helvetica',
+        fontWeight: 'normal'	
+        }
+},
 "TableViewRow": {
 	width: Ti.UI.SIZE,
 	height: "36",

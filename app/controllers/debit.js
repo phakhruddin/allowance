@@ -12,7 +12,7 @@ var bal=Titanium.App.Properties.getInt('bal',0);
 var totalspent = Titanium.App.Properties.getInt('totalspent',0);
 var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);
 var balalert = Titanium.App.Properties.getInt('balalert',100);
-$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
+
 
 $.debit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('debitmodel');
@@ -28,16 +28,17 @@ var content=Alloy.Globals.fetchingData('debitmodel');
 console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
 
 //updated debitamount
-if(content.length>1){
+if(content.length>0){
 	var lastdebit=content[(content.length-1)].col1;
 	var debitamount=content[(content.length-1)].col4;
 } else {
-	var lastdebit=0/0/0;
-	var debitamount=0;
+	var lastdebit="0/0/0";
+	var debitamount="0";
 }
 console.log("debit.js::debitamount: "+debitamount);
 $.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit}; //feed var to window
 
+$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
 function updateDummy(bal,totalspent,amount,lastdebit,color) {
 	var someDummy = Alloy.Models.dummy;
 	someDummy.set({'id':'1234','bal':bal,'totalspent': totalspent,'debitamount':amount,"lastdebit":lastdebit,"color":color});

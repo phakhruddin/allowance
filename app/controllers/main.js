@@ -70,14 +70,15 @@ console.log("main.js: lastcredit: "+lastcredit+", creditamount: "+creditamount);
 var debitmodel = Alloy.Collections.instance('debitmodel');
 debitmodel.fetch();
 var content = debitmodel.toJSON();
+console.log("main.js:: JSON.stringify(content.col1):"+JSON.stringify(content.col1));
 if(content.length>0){
 	var maxrec=content.length-1;
 	var lastdebit=content[maxrec].col1;
 	var debitamount=content[maxrec].col4;
 	var lastdebit = content[maxrec].col1;
 } else {
-	var debitamount=0;
-	var lastdebit=0/0/0;
+	var debitamount="0";
+	var lastdebit="0/0/0";
 }
 console.log("main.js: lastdebit: "+lastdebit+", debitamount: "+debitamount);
 	
@@ -154,31 +155,50 @@ function login(e) {
 	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
 	if (e.source.title == "LOGIN" || e.source.title == "REFRESH") {
 		googleAuthSheet.isAuthorized(function() {
-			console.log('Access Token: ' + googleAuthSheet.getAccessToken());
+			$.login_activity.show();
+			function AuthorizeActivity(){
+				console.log('Access Token: ' + googleAuthSheet.getAccessToken());
+			}	
+			setTimeout(AuthorizeActivity(),2000); // wait 2 secs	
+			$.login_activity.hide();
 			Titanium.App.Properties.setString('needAuth',"false");
 			$.login_button.title="LOGOUT";
 			someInfo.set({"namecolor": "#13CA13"});
 			Alloy.Globals.getMaster(); // Load user info
 			getEmail();
 			Alloy.Globals.initialUserSetup(); //setup datastore if it is not yet done
-			var emailid = Titanium.App.Properties.getString('emailid');
-			alert("Logged in successfully with "+emailid+" ");
+			var emailid = Titanium.App.Properties.getString('emailid');		
 			$.main_window.login="yes";
 			$.status_view.height="1";
 			$.status_view.backgroundColor="green";
-			var name = emailid.split('@')[0].trim();
-			Alloy.Globals.getCreditDebitSID(name);		
+			if (emailid != null){
+				var name = emailid.split('@')[0].trim();
+				Alloy.Globals.getCreditDebitSID(name);
+				 $.studentid.color="#336600";
+			} else $.studentid.color="red";	
 		}, function() {
+			$.login_activity.show();
+			googleAuthSheet.authorize();
 			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
-			googleAuthSheet.authorize();
+			function gettingEmailID(){		
+				getEmail();
+				var emailid = Titanium.App.Properties.getString('emailid');
+				return emailid;
+			}
+			var emailid = gettingEmailID();		
+			console.log("main.js b4 checking emailid");		
+			if (!emailid) {
+				console.log("main.js:: emailid is empty, execute it again");	
+				setTimeout(gettingEmailID(),3000); // wait 2 secs
+			} else console.log(" main.js:: emailis is: "+emailid);
+			$.login_activity.hide();
+			/*
 			$.status_label.text="Please click again to refresh data.";
 			$.login_button.title="REFRESH";
 			someInfo.set({"namecolor": "#13CA13"});
-			getEmail();
-			alert("Logged in successfully with "+Titanium.App.Properties.getString('emailid')+" ");
 			$.main_window.login="no";
-			$.status_view.backgroundColor="orange";
+			$.status_view.backgroundColor="orange";*/
 			}
 		);
 	} else {
@@ -188,5 +208,22 @@ function login(e) {
 		someInfo.set({"namecolor": "red"});
 	}
 
+}
+
+		$.firstname_tf.hide();
+		$.lastname_tf.hide();
+function TFCheck(e) {
+	console.log("main.js:: TFCheck: JSON.stringify(e)" +JSON.stringify(e));
+	if(e.source.currentstate=="name") {
+		$.name.hide();
+		$.firstname_tf.show();
+		$.lastname_tf.show();
+		$.test_button.currentstate="nametf";
+	} else {
+		$.firstname_tf.hide();
+		$.lastname_tf.hide();
+		$.name.show();
+		$.test_button.currentstate="name";
+	}
 }
 

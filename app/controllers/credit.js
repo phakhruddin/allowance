@@ -49,7 +49,7 @@ var totalcredit=displayRow();
 $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
 
 //updated creditamount
-if(content.length>1){
+if(content.length>0){
 	var lastcredit=content[(content.length-1)].col1;
 	var creditamount=content[(content.length-1)].col3;
 } else {

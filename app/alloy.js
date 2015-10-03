@@ -702,7 +702,7 @@ Alloy.Globals.privateSStoDB = function(type,sid) {
 			    	var feed = xml.documentElement.getElementsByTagName("feed");
 					var entry = xml.documentElement.getElementsByTagName("entry");
 					console.log("Alloy.Globals.privateSStoDB::this entry length is: " +entry.length);
-			    	for (i=1;i<entry.length;i++){
+			    	for (i=0;i<entry.length;i++){
 						var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text || "none";
 						var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text || "none";
 						var col3 = entry.item(i).getElementsByTagName("gsx:col3").item(0).text || "none";
