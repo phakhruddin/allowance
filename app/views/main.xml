@@ -8,6 +8,9 @@
 	  	<RightNavButton id="login_rightnavbutton" platform="ios">
 	   		<Button id="login_button" title="LOGIN" color="green" onClick="login"/>
 		</RightNavButton>
+		<LeftNavButton id="logout_leftnavbutton" platform="ios">
+	   		<Button id="logout_button" title="LOGOUT" color="green" onClick="logout"/>
+		</LeftNavButton>
 		<TableView backgroundColor="transparent">
 			<HeaderView id="main_headerview">
 				<View height="5%" id="status_view" backgroundColor="red">
@@ -27,7 +30,7 @@
 				<TableViewRow id="bal_row" color="white" Title="Identification" height="110">
 				  	<!--Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789"/-->
 					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="BAL" />
-	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="26" text="{dummy.bal}" />
+	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="26" text="{dummy.bal}"/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">

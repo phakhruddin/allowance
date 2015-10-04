@@ -2,7 +2,7 @@
 	<Tab id="settings_tab" title="Settings" icon="gear">
   <Window id="settings_window" backgroundColor="white" title="settings">
  	<RightNavButton platform="ios">
-	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
+ 		<Button id="refresh_button" image="refresh30.png" right="3%" width="13" height="13"/>
 	</RightNavButton>
  	  <TableView id="settings_table" backgroundColor="transparent" style= "Titanium.UI.iPhone.TableViewStyle.PLAIN" 
  	  	separatorStyle="Ti.UI.iPhone.TableViewSeparatorStyle.NONE">
@@ -15,6 +15,14 @@
  	  	<TableViewSection headerTitle="GMail Account">
  	  		<TableViewRow>
  	  			<TextField id="emailid_tf" width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value=""/>
+ 	  		</TableViewRow>
+ 	  	</TableViewSection>
+ 	  	<TableViewSection headerTitle="Notification">
+ 	  		<TableViewRow>
+ 	  			<TextField id="notifemailid_tf" width="Ti.UI.Fill" left="20" hintText="email: David.Smith@gmail.com" value=""/>
+ 	  		</TableViewRow>
+	  		<TableViewRow>
+ 	  			<TextField id="notifphone_tf" width="Ti.UI.Fill" left="20" hintText="Phone: 858-215-3636" value=""/>
  	  		</TableViewRow>
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="Utilities">

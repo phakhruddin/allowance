@@ -10,7 +10,7 @@ var sid = Titanium.App.Properties.getString("creditsid");
 //var sid="1on0tH2DzdepwpCFWhpczS5qG3QO7BQJE-bGZCikzepg";
 var bal=Titanium.App.Properties.getInt('bal',0);
 var balalert = Titanium.App.Properties.getInt('balalert',100);
-var totalspent=Titanium.App.Properties.getInt('totalspent'); // feed the data to window
+var totalspent=Titanium.App.Properties.getString('totalspent'); // feed the data to window
 
 // Whenever the tab is active, pull data from DB
 $.credit_tab.addEventListener("focus",function(e){
@@ -38,7 +38,7 @@ function displayRow(e){
 	for(i=0;i<content.length;i++){
 		creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
 		var totalcredit = parseFloat(content[i].col3)+ parseFloat(totalcredit);
-		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
+		Titanium.App.Properties.setString('totalcredit', totalcredit);//write to persistent memory
 		$.notes_textarea.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
 		//$.credit_window.data.totalcredit = totalcredit;	
 		$.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
@@ -63,6 +63,9 @@ $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"credi
 //function to capture balance data for main summary screen
 function updateDummy(bal,totalcredit,creditamount,lastcredit,color) {
 	var someDummy = Alloy.Models.dummy;
+	console.log("credit.js::bal b4: "+bal);
+	if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(2)+" mil";}
+	console.log("credit.js::bal after: "+bal);
 	someDummy.set({'id':'1234','bal':Alloy.Globals.numberWithCommas(bal),'totalcredit': totalcredit,'dcreditamount':creditamount,"lastcredit":lastcredit,"color":color});
 	someDummy.fetch();
 	console.log("credit.js ::updateDummy:: stringify dummy :"+JSON.stringify(someDummy));
@@ -113,15 +116,16 @@ function creditDetailAddRow (date,dateadded,creditamount) {
                 top : "50",
                 text : date.toLocaleString()
        });
+        (creditamount>10000)?fontsz = 18:fontsz=24;
         var amountlabel = Ti.UI.createLabel ({
                 color : "#333",
                 font : {
-                	fontSize : 24
+                	fontSize : fontsz
                 },
-                right  : "100",
-                textAlign : "Ti.UI.TEXT_ALIGNMENT_LEFT",
+                right  : "40",
+                textAlign : "Ti.UI.TEXT_ALIGNMENT_RIGHT",
                 top : "50",
-                text : "$"+creditamount
+                text : Alloy.Globals.numberWithCommas(creditamount.toLocaleString())
           });
         var blueline = Ti.UI.createImageView ({
                 left  : "20",
@@ -199,17 +203,17 @@ $.notes_textarea.addEventListener("blur",function(e){
 		var date = e.source.datepaid;
 		var lastcredit=(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
 	} else alert("Please select date");
-	(e.value)?creditamount=e.value.trim():alert("Please enter value");
+	(e.value)?creditamount=parseFloat(e.value.trim()).toFixed(2):alert("Please enter value");
 	if (lastcredit && creditamount) {
 		var timestamp = Date.now();
 		creditDetailAddRow(lastcredit,lastcredit,creditamount);//add row here with DATE and AMOUNT
 		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0",timestamp);//update local DB
 		var totalcredit = parseFloat(creditamount)+ parseFloat(e.source.data.totalcredit);
-		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
-		var bal = (parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount));
+		Titanium.App.Properties.setString('totalcredit', totalcredit);//write to persistent memory
+		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
-		var bal = (parseFloat(totalcredit)-parseFloat(e.source.data.totalspent));
+		var bal = parseFloat(totalcredit)-parseFloat(e.source.data.totalspent);
 		var color = Alloy.Globals.setBalColor(bal); 
 		Titanium.App.Properties.setInt('bal',bal);
 		$.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; // feed data to window
@@ -248,7 +252,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 //Action when the user move away from the active screen
 $.credit_window.addEventListener("close",function(e){
 	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
-	var bal = (parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent));
+	var bal = (parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent)).toFixed(2);
 	var color = Alloy.Globals.setBalColor(bal); 
 	Titanium.App.Properties.setInt('bal',bal);
 	updateDummy(bal,e.source.data.totalcredit,e.source.data.creditamount,e.source.data.lastcredit,color);
@@ -260,3 +264,17 @@ $.credit_tab.addEventListener("blur",function(e){
 $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
 $.notes_textarea.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
 
+var refresh = Ti.UI.createRefreshControl({
+    tintColor:'orange'
+});
+
+$.credit_table.refreshControl=refresh;
+
+refresh.addEventListener('refreshstart',function(e){
+	setTimeout(function(){
+        console.log('credit::refresh:: JSON.stringify(e): '+JSON.stringify(e));
+        var content=Alloy.Globals.fetchingData('creditmodel');
+		console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
+        refresh.endRefreshing();
+    }, 2000);
+});

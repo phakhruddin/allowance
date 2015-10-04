@@ -755,3 +755,12 @@ Alloy.Globals.privateSStoDB = function(type,sid) {
 Alloy.Globals.numberWithCommas = function (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+/*
+Alloy.Globals.isBalLarge = function() {
+	var someDummy = Alloy.Models.dummy;
+	someDummy.fetch();
+	console.log("alloy.js ::someDummy :"+JSON.stringify(someDummy));
+	var bal = someDummy.bal;
+	if (bal>100000) {return true;} else return false;
+};*/

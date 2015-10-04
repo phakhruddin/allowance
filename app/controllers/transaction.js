@@ -88,7 +88,23 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 
 //fething DB
 var content=Alloy.Globals.fetchingData('debitmodel');
-console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
-for(i=0;i<content.length;i++){
+console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
+if(content.length>10){var latest=11;} else var latest=(content.length-1); // display only last 10 xsaction
+for(i=latest;i>0;i--){
 	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4); //display row
 }
+
+var refresh = Ti.UI.createRefreshControl({
+    tintColor:'orange'
+});
+
+$.transaction_table.refreshControl=refresh;
+
+refresh.addEventListener('refreshstart',function(e){
+	setTimeout(function(){
+        console.log('transaction::refresh:: JSON.stringify(e): '+JSON.stringify(e));
+        var content=Alloy.Globals.fetchingData('debitmodel');
+		console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
+        refresh.endRefreshing();
+    }, 2000);
+});

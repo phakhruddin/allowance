@@ -52,3 +52,16 @@ function gotoAdvance(e){
 	var tabViewOneController = Alloy.createController("advance");
 	tabViewOneController.openMainWindow($.settings_tab);
 }
+
+var refresh = Ti.UI.createRefreshControl({
+    tintColor:'orange'
+});
+
+$.settings_table.refreshControl=refresh;
+
+refresh.addEventListener('refreshstart',function(e){
+	setTimeout(function(){
+        console.log('refresh:: JSON.stringify(e): '+JSON.stringify(e));
+        refresh.endRefreshing();
+    }, 2000);
+});

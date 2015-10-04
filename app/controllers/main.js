@@ -1,4 +1,5 @@
 //reset var
+var autostyle="false";
 var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
 var someDummy = Alloy.Models.dummy;
 var someInfo = Alloy.Models.info;
@@ -122,8 +123,8 @@ if(content.length>0){
 console.log("main.js: lastdebit: "+lastdebit+", debitamount: "+debitamount);
 	
 //calculate initial balance when app launched
-var totalcredit = Titanium.App.Properties.getInt('totalcredit',0);//get from persistent memory
-var totalspent = Titanium.App.Properties.getInt('totalspent',0);//get from persistent memory
+var totalcredit = Titanium.App.Properties.getString('totalcredit',0);//get from persistent memory
+var totalspent = Titanium.App.Properties.getString('totalspent',0);//get from persistent memory
 console.log("main.js: totalcredit: "+totalcredit+", totalspent: "+totalspent);
 (Titanium.App.Properties.getInt('bal'))?bal="NONE":bal = (parseFloat(totalcredit)-parseFloat(totalspent));
 Alloy.Globals.setBalColor(bal);
@@ -142,7 +143,17 @@ someInfo.set({"id":"1234",
 });
 someInfo.fetch();
 console.log("main.js:: stringify info :"+JSON.stringify(someInfo));
-
+/*
+var style = $.createStyle({
+        classes: '.hugenumber',
+        apiName: 'Label',
+    });    
+//make the font small if the Bal > 1mil.
+if (bal>1000000){
+	var autostyle="true";
+	$.balance.applyProperties(style);
+} else var autostyle="false";*/
+if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(0)+" mil";}
 someDummy.set({"id":"1234",
 	"bal":Alloy.Globals.numberWithCommas(bal),
 	"dcreditamount":creditamount,
@@ -154,7 +165,10 @@ someDummy.set({"id":"1234",
 	"color": "#13CA13"
 });
 someDummy.fetch();
+
+
 console.log("main.js:: stringify dummy :"+JSON.stringify(someDummy));
+
 
 
 //Google Auth Local
@@ -276,6 +290,11 @@ function login(e) {
 		Alloy.Globals.resetVar();
 	}
 
+}
+
+function logout(e){
+	googleAuthSheet.deAuthorize();
+	$.logout_button.title = "Please click login ->";
 }
 
 function enterName(){

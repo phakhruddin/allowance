@@ -20,6 +20,7 @@
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 	font: {
         fontFamily:'Helvetica',
         fontWeight: 'normal'	}
