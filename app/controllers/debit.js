@@ -233,6 +233,7 @@ $.dateLabel.addEventListener('click',function(e){
 
 $.notes_textarea.addEventListener("blur",function(e){
 	//update date and debit entered.
+	var timestamp = Date.now();
 	console.log("JSON stringify notes_textarea blur(e): "+JSON.stringify(e));
 	if (e.source.datedebit) {
 		var date = e.source.datedebit;
@@ -242,7 +243,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 	(e.value)?amount=e.value.trim():alert("Please enter value");
 	if (dateMDY && amount) {
 		debitDetailAddRow(dateMDY,dateMDY,catselected,amount);//add row
-		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,dateMDY,catselected,amount,"0","0","0","0","0");//update local DB
+		Alloy.Globals.updatemodelTable("debitmodel",dateMDY,dateMDY,catselected,amount,"0","0","0","0",timestamp);//update local DB
 		var totalspent = parseFloat(amount)+ parseFloat(e.source.totalspent);
 		console.log("debit.js: e.source.totalspent:  "+e.source.totalspent+" totalspent: "+totalspent+" amount: "+amount);
 		Titanium.App.Properties.setInt('totalspent', totalspent);//write to persistent memory
@@ -255,7 +256,8 @@ $.notes_textarea.addEventListener("blur",function(e){
 		$.notes_textarea.totalspent = totalspent;
 		console.log("updateDummy("+totalspent+","+amount+","+dateMDY+")");
 		updateDummy(bal,totalspent,amount,dateMDY,color) ;
-		Alloy.Globals.updateSpreadsheet(sid,dateMDY,dateMDY,catselected,amount,"0","0","0","0","0");	//update spreadsheet
+		Alloy.Globals.updateSpreadsheet(sid,dateMDY,dateMDY,catselected,amount,"0","0","0","0",timestamp);	//update spreadsheet
+		var timestamp=0;
 	}
 });
 

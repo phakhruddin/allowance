@@ -53,8 +53,8 @@ if(content.length>0){
 	var lastcredit=content[(content.length-1)].col1;
 	var creditamount=content[(content.length-1)].col3;
 } else {
-	var lastcredit=0/0/0;
-	var creditamount=0;
+	var lastcredit="0/0/0";
+	var creditamount="0";
 }
 console.log("credit.js::creditamount: "+creditamount);
 //$.credit_window.data.creditamount=creditamount; //feed var to window
@@ -201,8 +201,9 @@ $.notes_textarea.addEventListener("blur",function(e){
 	} else alert("Please select date");
 	(e.value)?creditamount=e.value.trim():alert("Please enter value");
 	if (lastcredit && creditamount) {
+		var timestamp = Date.now();
 		creditDetailAddRow(lastcredit,lastcredit,creditamount);//add row here with DATE and AMOUNT
-		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0","0");//update local DB
+		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0",timestamp);//update local DB
 		var totalcredit = parseFloat(creditamount)+ parseFloat(e.source.data.totalcredit);
 		Titanium.App.Properties.setInt('totalcredit', totalcredit);//write to persistent memory
 		var bal = (parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount));
@@ -219,7 +220,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		var xmldatastring = '<entry xmlns=\'http://www.w3.org/2005/Atom\' xmlns:gsx=\'http://schemas.google.com/spreadsheets/2006/extended\'>'
 		+'<gsx:col1>'+lastcredit+'</gsx:col1><gsx:col2>'+lastcredit+'</gsx:col2><gsx:col3>'
 		+creditamount+'</gsx:col3><gsx:col4>'+zero+'</gsx:col4><gsx:col5>'
-		+zero+'</gsx:col5><gsx:col6>'+zero+'</gsx:col6><gsx:col7>'+zero+'</gsx:col7><gsx:col8>'+zero+'</gsx:col8><gsx:col9>'+zero
+		+zero+'</gsx:col5><gsx:col6>'+zero+'</gsx:col6><gsx:col7>'+zero+'</gsx:col7><gsx:col8>'+zero+'</gsx:col8><gsx:col9>'+timestamp
 		+'</gsx:col9></entry>';
 		Ti.API.info('xmldatastring to POST: '+xmldatastring);
 		var xhr =  Titanium.Network.createHTTPClient({
@@ -240,6 +241,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		//xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuth.getAccessToken());
 		xhr.send(xmldatastring);
 		Ti.API.info('done POSTed');
+		var timestamp;
 	}
 });
 
