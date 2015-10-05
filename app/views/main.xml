@@ -11,7 +11,7 @@
 		<LeftNavButton id="logout_leftnavbutton" platform="ios">
 	   		<Button id="logout_button" title="LOGOUT" color="green" onClick="logout"/>
 		</LeftNavButton>
-		<TableView backgroundColor="transparent">
+		<TableView id="main_table" backgroundColor="transparent">
 			<HeaderView id="main_headerview">
 				<View height="5%" id="status_view" backgroundColor="red">
 					<Label id="status_label" color="white" text="Please click login above" textAlign="right"/>				

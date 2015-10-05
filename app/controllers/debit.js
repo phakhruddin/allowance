@@ -29,7 +29,7 @@ console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
 
 //updated debitamount
 if(content.length>0){
-	var lastdebit=(parseFloat(content[(content.length-1)].col1)).toFixed(2);
+	var lastdebit=content[(content.length-1)].col1;
 	var debitamount=(parseFloat(content[(content.length-1)].col4)).toFixed(2);
 } else {
 	var lastdebit="0/0/0";

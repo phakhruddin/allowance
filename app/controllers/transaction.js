@@ -1,4 +1,5 @@
 console.log("transaction.js")
+var content=[]; //reset content value
 function debitDetailAddRow (date,dateadded,category,amount) {
 		console.log("transaction.js::debitDetailAddRow: date: "+date+"  dateadded: "+dateadded);
 	    var debitrow = Ti.UI.createTableViewRow ({
@@ -86,13 +87,18 @@ function debitDetailAddRow (date,dateadded,category,amount) {
       $.transaction_table.appendRow(debitrow);
 };
 
-//fething DB
-var content=Alloy.Globals.fetchingData('debitmodel');
-console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
-if(content.length>10){var latest=11;} else var latest=(content.length-1); // display only last 10 xsaction
-for(i=latest;i>0;i--){
-	debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4); //display row
+//fething DB and redraw table
+function redrawTable(){
+	var content=Alloy.Globals.fetchingData('debitmodel');
+	console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
+	if(content.length>10){var oldest=parseFloat(content.length-10);} else var oldest=0; // display only last 10 xsaction
+	for(i=(content.length-1);i>oldest;i--){
+		debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4); //display row
+	}
+	var content=[];
 }
+
+redrawTable();
 
 var refresh = Ti.UI.createRefreshControl({
     tintColor:'orange'
@@ -103,8 +109,11 @@ $.transaction_table.refreshControl=refresh;
 refresh.addEventListener('refreshstart',function(e){
 	setTimeout(function(){
         console.log('transaction::refresh:: JSON.stringify(e): '+JSON.stringify(e));
-        var content=Alloy.Globals.fetchingData('debitmodel');
-		console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
+        $.transaction_table.setData([]);//reset table view before refresh
+        //var content=Alloy.Globals.fetchingData('debitmodel');
+		//console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
+		redrawTable();//redraw table
         refresh.endRefreshing();
     }, 2000);
+    var content=[];
 });

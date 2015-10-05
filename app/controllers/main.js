@@ -228,7 +228,7 @@ function login(e) {
 			AuthorizeActivity();
 			$.login_activity.hide();
 			Titanium.App.Properties.setString('needAuth',"false");
-			$.login_button.title="LOGOUT";
+			$.login_button.title="LOGOUT";$.logout_button.title=""; //RightNav is a logout now. Hide LeftNav button.
 			someInfo.set({"namecolor": "#13CA13"});
 			Alloy.Globals.getMaster(); // Load user info
 			getEmail();
@@ -369,3 +369,79 @@ function editName(e) {
 function cancelNameEdit(e){
 	displayName();
 }
+
+var refresh = Ti.UI.createRefreshControl({
+    tintColor:'orange'
+});
+
+$.main_table.refreshControl=refresh;
+
+refresh.addEventListener('refreshstart',function(e){
+	setTimeout(function(){
+        console.log('main:refresh:: JSON.stringify(e): '+JSON.stringify(e));
+			googleAuthSheet.isAuthorized(function() {
+			$.login_activity.show();
+			function AuthorizeActivity(){
+				console.log('Access Token: ' + googleAuthSheet.getAccessToken());
+			}	
+			//setTimeout(AuthorizeActivity(),2000); // wait 2 secs	
+			AuthorizeActivity();
+			$.login_activity.hide();
+			Titanium.App.Properties.setString('needAuth',"false");
+			$.login_button.title="LOGOUT";$.logout_button.title=""; //RightNav is a logout now. Hide LeftNav button.
+			someInfo.set({"namecolor": "#13CA13"});
+			Alloy.Globals.getMaster(); // Load user info
+			getEmail();
+			Alloy.Globals.initialUserSetup(); //setup datastore if it is not yet done
+			var emailid = Titanium.App.Properties.getString('emailid');		
+			$.main_window.login="yes";
+			$.status_view.height="1";
+			$.status_view.backgroundColor="green";
+			if (emailid != null){
+				var name = emailid.split('@')[0].trim();
+				Titanium.App.Properties.setString('name',"");
+				$.lastcredit_row.name=name;
+				$.lastdebit_row.name=name;
+				Alloy.Globals.getCreditDebitSID(name);
+				$.studentid.color="#336600";
+				$.lastcredit_row.backgroundColor="white";
+				$.lastdebit_row.backgroundColor="white";
+				$.bal_row.backgroundColor="white";
+				$.name_row.backgroundColor="white";
+				$.transaction_view.backgroundColor="white";
+			} else {
+				$.studentid.color="red";
+				RefResh();
+			} 	
+			//change display name based on googe info
+			 someInfo.set({"id":"1234",
+				"name": Titanium.App.Properties.getString('firstname'," ") +" "+Titanium.App.Properties.getString('lastname'," "),
+				"emailid": emailid
+			});
+			someInfo.fetch();
+			
+		}, function() {
+			$.login_activity.show();
+			googleAuthSheet.authorize();
+			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
+			Titanium.App.Properties.setString('needAuth',"true");
+			function gettingEmailID(){		
+				getEmail();
+				var emailid = Titanium.App.Properties.getString('emailid');
+				return emailid;
+			}
+			var emailid = gettingEmailID();		
+			console.log("main.js b4 checking emailid");		
+			if (!emailid) {
+				console.log("main.js:: emailid is empty, execute it again");	
+				//setTimeout(gettingEmailID(),3000); // wait 2 secs
+				gettingEmailID();
+			} else console.log(" main.js:: emailis is: "+emailid);
+			$.login_activity.hide();
+			//Orange
+			RefResh();
+			}
+		);
+        refresh.endRefreshing();
+    }, 2000);
+});
