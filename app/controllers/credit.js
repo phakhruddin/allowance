@@ -194,6 +194,7 @@ $.dateLabel.addEventListener('click',function(e){
   console.log("JSON stringify dateLabel(e): "+JSON.stringify(e));
   $.input_view.add($.date_picker);
   $.dateLabel.color="#0066CC";
+ 
 });
 
 $.notes_textarea.addEventListener("blur",function(e){
