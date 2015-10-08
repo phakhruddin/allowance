@@ -5,11 +5,9 @@
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 	font: {
-		color: "#5C5E61",
-        fontWeight: 'normal',
-        fontSize:"48"	
+        fontSize:"18"	
         }
 },
 "TableViewRow": {

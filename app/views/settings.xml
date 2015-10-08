@@ -1,9 +1,6 @@
 <Alloy>
 	<Tab id="settings_tab" title="Settings" icon="gear">
   <Window id="settings_window" backgroundColor="white" title="settings">
- 	<RightNavButton platform="ios">
- 		<Button id="refresh_button" image="refresh30.png" right="3%" width="13" height="13"/>
-	</RightNavButton>
  	  <TableView id="settings_table" backgroundColor="transparent" style= "Titanium.UI.iPhone.TableViewStyle.PLAIN" 
  	  	separatorStyle="Ti.UI.iPhone.TableViewSeparatorStyle.NONE">
  	  	<TableViewSection headerTitle="User Profile"/>
@@ -17,12 +14,20 @@
  	  			<TextField id="emailid_tf" width="Ti.UI.Fill" left="20" hintText="email: Zachary.Smith@gmail.com" value=""/>
  	  		</TableViewRow>
  	  	</TableViewSection>
- 	  	<TableViewSection headerTitle="Notification">
+ 	  	<TableViewSection headerTitle="Notification on low balance">
  	  		<TableViewRow>
  	  			<TextField id="notifemailid_tf" width="Ti.UI.Fill" left="20" hintText="email: David.Smith@gmail.com" value=""/>
  	  		</TableViewRow>
 	  		<TableViewRow>
  	  			<TextField id="notifphone_tf" width="Ti.UI.Fill" left="20" hintText="Phone: 858-215-3636" value=""/>
+ 	  		</TableViewRow>
+ 	  		<TableViewRow>
+ 	  			<Label id="warning_label" color="#F7C388" text="Warning when balance below: " left="20"/>
+ 	  			<TextField id="warning_tf" width="80" left="280" hintText="100" value=""/>
+ 	  		</TableViewRow>
+ 	  		<TableViewRow>
+ 	  			<Label id="critical_label" color="#DE8F9C" text="Critical when balance below: " left="20"/>
+ 	  			<TextField id="critical_tf" width="80" left="280" hintText="20" value=""/>
  	  		</TableViewRow>
  	  	</TableViewSection>
  	  	<TableViewSection headerTitle="Utilities">

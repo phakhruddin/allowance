@@ -27,10 +27,11 @@
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Account Status">
-				<TableViewRow id="bal_row" color="white" Title="Identification" height="110">
+				<TableViewRow id="bal_row" color="white" Title="Identification" height="115">
 				  	<!--Label id="accountnumber" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Account #: A1232789"/-->
 					<Label id="baltext" color="#404040" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="BAL" />
 	   		  		<Label id="balance" color="{dummy.color}" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="26" text="{dummy.bal}"/>
+	   		  		<ImageView id="action_button" image="actionbutton.gif" top="100" right="30" height="10" width="50"/>
 				</TableViewRow>
 			</TableViewSection>
 			<TableViewSection headerTitle="Last Credit">

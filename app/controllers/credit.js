@@ -1,7 +1,8 @@
+var args = arguments[0] || {};
 exports.openMainWindow = function(_tab) {
   _tab.open($.credit_window);
   Ti.API.info("This is child widow credit.js" +JSON.stringify(_tab));
- 
+  updateFunction(bal);
 };
 //intial var
 $.credit_window.data = {"totalcredit":"","creditamount":"","bal":"","lastcredit":""};
@@ -36,7 +37,7 @@ console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
 function displayRow(e){
 	var totalcredit=0;
 	for(i=0;i<content.length;i++){
-		creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,'$'+content[i].col4);
+		creditDetailAddRow(content[i].col1,content[i].col2,content[i].col3,+content[i].col4);
 		var totalcredit = parseFloat(content[i].col3)+ parseFloat(totalcredit);
 		Titanium.App.Properties.setString('totalcredit', totalcredit);//write to persistent memory
 		$.notes_textarea.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; 
@@ -214,11 +215,9 @@ $.notes_textarea.addEventListener("blur",function(e){
 		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
-		var bal = parseFloat(totalcredit)-parseFloat(e.source.data.totalspent);
-		var color = Alloy.Globals.setBalColor(bal); 
-		Titanium.App.Properties.setInt('bal',bal);
+		var color = Alloy.Globals.setBalColor(bal); //set balance color if it falls below threshold
 		$.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"creditamount":creditamount,"bal":bal,"lastcredit":lastcredit}; // feed data to window
-		console.log("updateDummy("+totalcredit+","+creditamount+","+lastcredit+")");
+		console.log("credit.js::notes_textarea:blur: updateDummy("+bal+","+totalcredit+","+creditamount+","+lastcredit+")");
 		updateDummy(bal,totalcredit,creditamount,lastcredit,color);
 		// test write spreadsheet
 		var zero = 0;
@@ -250,6 +249,8 @@ $.notes_textarea.addEventListener("blur",function(e){
 	}
 });
 
+var updateFunction = args.updateFunction;
+
 //Action when the user move away from the active screen
 $.credit_window.addEventListener("close",function(e){
 	console.log("credit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
@@ -257,6 +258,7 @@ $.credit_window.addEventListener("close",function(e){
 	var color = Alloy.Globals.setBalColor(bal); 
 	Titanium.App.Properties.setInt('bal',bal);
 	updateDummy(bal,e.source.data.totalcredit,e.source.data.creditamount,e.source.data.lastcredit,color);
+	updateFunction(bal);
 });
 $.credit_tab.addEventListener("blur",function(e){
 	console.log("credit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));

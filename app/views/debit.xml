@@ -2,8 +2,8 @@
 	<Tab  id="debit_tab" title="Debit"  icon="debit.png">
   <Window id="debit_window" backgroundColor="white" title="Debit">
  	<TableView id="debit_table" height="Ti.UI.FILL" backgroundColor="transparent" editable="true" moveable="true" >
-		<TableViewSection headerTitle="Please enter paid amount:">	
-		  	<FooterView>
+		<TableViewSection id="debit_section" headerTitle="Please enter paid amount:">	
+		  	<FooterView id="debit_footerview">
 		        <View id="input_view" height="300" backgroundColor="white">
 			    	<ImageView top="25" left="20" image="blueline.png"/>
 			    	<Label id="dateLabel" color="red" top="35" left="25%" text="Date"/>

@@ -8,6 +8,8 @@ $.main_window.login="no";
 
 $.main_window.addEventListener ("open", function(e){
 	console.log("main.js:: main_window open JSON.stringify(e)" +JSON.stringify(e));
+	var bal=Titanium.App.Properties.getInt('bal');actionButton(bal);
+	//LOGIN/LOGOUT/REFRESH
 	if (e.source.login = "no"){
 		$.status_view.show();
 		$.status_label.text="Please click login above.";
@@ -23,13 +25,13 @@ $.main_window.addEventListener ("open", function(e){
 
 $.lastcredit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
-	var tabViewOneController = Alloy.createController("credit");
+	var tabViewOneController = Alloy.createController("credit",{updateFunction: actionButton});
 	tabViewOneController.openMainWindow($.main_tab);	
 });
 
 $.lastdebit_button.addEventListener ("click", function(e){
 	console.log("main.js:: JSON.stringify(e)" +JSON.stringify(e));
-	var tabViewOneController = Alloy.createController("debit");
+	var tabViewOneController = Alloy.createController("debit",{updateFunction: actionButton});
 	tabViewOneController.openMainWindow($.main_tab);	
 });
 
@@ -445,3 +447,11 @@ refresh.addEventListener('refreshstart',function(e){
         refresh.endRefreshing();
     }, 2000);
 });
+
+function actionButton(bal) {
+	//if balance below threshold. Display action button.
+	console.log("main.js::checking bal: "+bal+" Json: "+JSON.stringify(bal));
+	if (bal<100){
+		$.action_button.show();
+	} else $.action_button.hide();
+}

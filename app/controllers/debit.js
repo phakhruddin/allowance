@@ -1,6 +1,13 @@
+var args = arguments[0] || {};
 exports.openMainWindow = function(_tab) {
   _tab.open($.debit_window);
   Ti.API.info("This is child widow debit.js" +JSON.stringify(_tab));
+  
+  var totalspent=displayRow();
+$.notes_textarea.totalspent = totalspent;
+$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
+Titanium.App.Properties.setString('totalspent',totalspent);
+console.log("debit.js: after row display totalspent: "+totalspent);
  
 };
 
@@ -16,6 +23,7 @@ var balalert = Titanium.App.Properties.getInt('balalert',100);
 
 $.debit_tab.addEventListener("focus",function(e){
 	var content=Alloy.Globals.fetchingData('debitmodel');
+	console.log("debit.js:debit_tab event::JSON stringify content: "+JSON.stringify(content));
 	console.log("debit.js: tab focus: JSON.stringify(e)"+JSON.stringify(e));
 	console.log("debit.js::JSON stringify content after tab is focus: "+JSON.stringify(content));
 	var totalspent=displayRow();
@@ -172,12 +180,7 @@ function displayRow(e){
 	}	
 	return totalspent;
 }
-var totalspent=displayRow();
-$.notes_textarea.totalspent = totalspent;
-$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":debitamount,"bal":bal,"lastdebit":lastdebit};
 
-Titanium.App.Properties.setString('totalspent',totalspent);
-console.log("debit.js: after row display totalspent: "+totalspent);
 
 var picker = Ti.UI.createPicker({
   top:93
@@ -254,19 +257,21 @@ $.notes_textarea.addEventListener("blur",function(e){
 		//updateDUmmy
 		$.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debitamount":amount,"bal":bal,"lastdebit":lastdebit,"color":color};
 		$.notes_textarea.totalspent = totalspent;
-		console.log("updateDummy("+totalspent+","+amount+","+dateMDY+")");
+		console.log("debit.js::notes_textarea:blur: updateDummy("+bal+","+totalspent+","+amount+","+dateMDY+")");
 		updateDummy(bal,totalspent,amount,dateMDY,color) ;
 		Alloy.Globals.updateSpreadsheet(sid,dateMDY,dateMDY,catselected,amount,"0","0","0","0",timestamp);	//update spreadsheet
 		var timestamp=0;
 	}
 });
 
+var updateFunction = args.updateFunction;
 $.debit_window.addEventListener("close",function(e){
 	console.log("debit.js: close window: JSON.stringify(e)"+JSON.stringify(e));
 	var bal = (parseFloat(e.source.data.totalcredit)-parseFloat(e.source.data.totalspent)).toFixed(2);
 	var color = Alloy.Globals.setBalColor(bal);
 	Titanium.App.Properties.setInt('bal',bal);
 	updateDummy(bal,e.source.data.totalspent,e.source.data.debitamount,e.source.data.lastdebit,color);
+	updateFunction(bal);
 });
 $.debit_tab.addEventListener("blur",function(e){
 	console.log("debit.js: tab blur: JSON.stringify(e)"+JSON.stringify(e));

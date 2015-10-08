@@ -65,3 +65,10 @@ refresh.addEventListener('refreshstart',function(e){
         refresh.endRefreshing();
     }, 2000);
 });
+$.warning_tf.addEventListener("blur",function(e){
+	var warning = e.value; Titanium.App.Properties.setString("warning",warning);
+});
+$.critical_tf.addEventListener("blur",function(e){
+	var critical = e.value; Titanium.App.Properties.setString("critical",critical);
+});
+
