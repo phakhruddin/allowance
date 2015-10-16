@@ -764,3 +764,60 @@ Alloy.Globals.isBalLarge = function() {
 	var bal = someDummy.bal;
 	if (bal>100000) {return true;} else return false;
 };*/
+
+Alloy.Globals.getPrivateMaster = function() {
+	console.log("alloy.js::executing Alloy.Globals.getPrivateMaster");	
+	var data = [];
+	var maxdebug = 1;
+	var mindebug = 1;
+	var bootstrapid =  "1XajtTX5pdo5yMM_v9cC5-hgHOFlH1n0SN9McS3qElgQ";
+	//var bootstrapid =  "1VYoqBhH5b9lVTnpjiXUikFJ51HzNj-6rPGQ_eNIRQ84";
+	var url = "https://spreadsheets.google.com/feeds/list/"+bootstrapid+"/od6/public/full";
+	//var url = "https://spreadsheets.google.com/feeds/list/"+bootstrapid+"/od6/private/full";
+	var thefile = "gss"+bootstrapid+".xml";
+	var xhr = Ti.Network.createHTTPClient({
+	    onload: function(e) {
+	    try {
+			var xml = Titanium.XML.parseString(this.responseText);
+			if(maxdebug==1){console.log("alloy.js::getPrivateMaster:: response txt is: "+this.responseText);};
+			if(maxdebug==1){console.log("alloy.js::getPrivateMaster:: this xml is: " +xml);	};   
+			var feed = xml.documentElement.getElementsByTagName("feed");
+			var entry = xml.documentElement.getElementsByTagName("entry"); 
+			(mindebug == 1) && console.log("alloy.js::this entry length is: " +entry.length);
+			for (i=1;i<entry.length;i++){
+				var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
+				var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text;
+				var col3 = entry.item(i).getElementsByTagName("gsx:col3").item(0).text;
+				var idtag = entry.item(i).getElementsByTagName("id").item(0).text.replace(':','yCoLoNy');
+				var link = entry.item(i).getElementsByTagName("link");
+				if(col1 && col2){
+					eval("Titanium.App.Properties.setString(\""+col1+"\",col2)");
+					if(col1=="freeuser"){Titanium.App.Properties.setString("freeuser",col2); };
+					if(col1=="paiduser"){Titanium.App.Properties.setString("paiduser",col2);};
+					if(col1=="paidbasic"){Titanium.App.Properties.setString("paidbasic",col2);};
+					if(col1=="paidpremium"){Titanium.App.Properties.setString("paidpremium",col2);};
+					if(col1=="paidunlimited"){Titanium.App.Properties.setString("paidunlimited",col2);};
+					console.log("alloy::getMaster:: Titanium.App.Properties.getString("+col1+"): "+eval("Titanium.App.Properties.getString(col1)"));
+					//console.log("alloy::getMaster:: Titanium.App.Properties.getString(freeuser): "+Titanium.App.Properties.getString("freeuser"));						
+				}	
+				for (y=0;y<link.length;y++){			
+	    			var listitem = link.item(y);
+	    			if (listitem.getAttribute("rel") == "edit"){ var edithref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+	    			if (listitem.getAttribute("rel") == "self"){ var selfhref = listitem.getAttribute("href").replace(':','yCoLoNy');}
+    			}
+			}
+			Ti.API.info(" Alloy.Globals.getPrivateMaster:Data were successfuly downloaded from "+url+". Please proceed.");
+			} catch(e){
+				Ti.API.info("Alloy.Globals.getPrivateMaster:: cathing e: "+JSON.stringify(e));
+			}
+		}
+	});
+	xhr.onerror = function(e){
+		//alert(e);
+		console.log("alloy.js::Alloy.Globals.getPrivateMaster::Unable to connect to the network.url: "+url+" with error: "+JSON.stringify(e));
+	};
+	xhr.open("GET", url);
+	xhr.send();
+	
+};
+

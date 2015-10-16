@@ -9,6 +9,8 @@
  	  		<TableViewRow id="setprivate_row" backgroundColor="transparent" opacity="0" title="Set Private" onClick="setPrivate"/>
  	  		<TableViewRow id="checkinfo_row" backgroundColor="transparent" opacity="0" title="Check Info" onClick="checkInfo"/>
  	  		<TableViewRow id="createcreditdebit_row" backgroundColor="transparent" opacity="0" title="Create Credit and Debit" onClick="createCreditDebit"/>
+ 	  		<TableViewRow id="unrelatedtest_row" backgroundColor="transparent" opacity="0" title="unrelated test" onClick="unrelatedtest"/>
+ 	  		<TableViewRow id="getMaster_row" backgroundColor="transparent" opacity="0" title="get Master" onClick="getMaster"/>
  	  	</TableViewSection>
 	  </TableView>
   </Window>

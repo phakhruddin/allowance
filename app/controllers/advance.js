@@ -37,3 +37,11 @@ function createCreditDebit() {
 	console.log("advance::checkInfo: name: "+name);
 	Alloy.Globals.locateIndexCreateSpreadsheet(name);
 }
+
+function unrelatedtest() {
+	Alloy.Globals.getPrivateMaster();
+}
+
+function getMaster() {
+	Alloy.Globals.getMaster();
+}

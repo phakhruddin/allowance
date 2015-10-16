@@ -1,6 +1,7 @@
 //reset var
 var autostyle="false";
-var bal=0;var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
+var creditamount=0; var lastcredit=0; var totalspent = 0; var totalcredit=0;
+var bal = Titanium.App.Properties.getInt('bal',0);
 var someDummy = Alloy.Models.dummy;
 var someInfo = Alloy.Models.info;
 var balalert = Titanium.App.Properties.getInt('balalert',100);
@@ -35,6 +36,30 @@ $.lastdebit_button.addEventListener ("click", function(e){
 	tabViewOneController.openMainWindow($.main_tab);	
 });
 
+//Refresh and loading screen
+var loadingLabel = Ti.UI.createLabel({
+  color: '#FCF9F9',
+  font: { fontSize:18 },
+  text: 'Connecting to google. Please wait ...',
+  textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+  top: "50%",
+  width: Ti.UI.SIZE, height: Ti.UI.SIZE
+});
+var loadingView = Titanium.UI.createView({
+   borderRadius:10,
+   backgroundColor:'#514F4F',
+   width:Ti.UI.FILL,
+   height:Ti.UI.FILL
+});
+loadingView.add(loadingLabel);
+
+var refreshView = Titanium.UI.createView({
+   borderRadius:10,
+   opacity:"0.5",
+   backgroundColor:'#514F4F',
+   width:Ti.UI.FILL,
+   height:Ti.UI.FILL
+});
 
 function RefResh(){
 	$.status_label.text="Please click again to refresh data.";
@@ -221,8 +246,10 @@ function login(e) {
 	//check if user is authorized. If authorized, load user info, and create datastore if not yet existed.
 	console.log("main.js:: login/logout: JSON.stringify(e)" +JSON.stringify(e));
 	if (e.source.title == "LOGIN" || e.source.title == "REFRESH") {
-		googleAuthSheet.isAuthorized(function() {
-			$.login_activity.show();
+		$.login_button.title="";
+		$.main_window.add(loadingView);
+		googleAuthSheet.isAuthorized(function() {			
+			$.login_activity.show();	
 			function AuthorizeActivity(){
 				console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 			}	
@@ -261,9 +288,10 @@ function login(e) {
 				"emailid": emailid
 			});
 			someInfo.fetch();
-			
+			setTimeout(function(){$.main_window.remove(loadingView);},2000);	//after 5 secs load back main screen	
 		}, function() {
 			$.login_activity.show();
+			$.main_window.add(refreshView);
 			googleAuthSheet.authorize();
 			console.log('isAuthorized:NOT:Fr AlloyGlobal Authorized first, see next window: '+(new  Date()));
 			Titanium.App.Properties.setString('needAuth',"true");
@@ -279,9 +307,13 @@ function login(e) {
 				//setTimeout(gettingEmailID(),3000); // wait 2 secs
 				gettingEmailID();
 			} else console.log(" main.js:: emailis is: "+emailid);
-			$.login_activity.hide();
-			//Orange
-			RefResh();
+			$.login_activity.hide();			
+			setTimeout(function(){
+				$.main_window.remove(refreshView);
+				$.main_window.remove(loadingView);
+				//Orange
+				RefResh();
+			},10000);	//after 5 secs load back main screen
 			}
 		);
 	} else {
