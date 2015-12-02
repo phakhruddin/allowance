@@ -115,7 +115,7 @@ var GoogleAuth = function(o) {
 		});
 
 		win.add(spinner);
-		win.rightNavButton = close;
+		win.leftNavButton = close;
 
 		close.addEventListener('click', function() {
 			win1.close({transition:Titanium.UI.iPhone.AnimationStyle.CURL_DOWN});
