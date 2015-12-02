@@ -19,7 +19,7 @@
 	        			</Toolbar>
 	        		</KeyboardToolbar>
 	        		</TextArea>	  
-			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME"/>
+			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE"/>
 		        </View>
 		    </FooterView>
 	    </TableViewSection>

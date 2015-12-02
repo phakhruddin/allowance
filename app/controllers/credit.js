@@ -24,7 +24,7 @@ $.credit_tab.addEventListener("focus",function(e){
 
 function fetchingData(type){
 	eval("var "+type+" = Alloy.Collections.instance(type);");
-	eval(type+".fetch();");
+	eval(type+".fetch().sort();");
 	eval("var content = "+type+".toJSON();");
 	return content;
 }

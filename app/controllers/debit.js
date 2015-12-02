@@ -70,7 +70,7 @@ function setDate(e){
 	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
 	var date = e.value;
 	$.notes_textarea.datedebit = date;
-	var dateFormat = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+Alloy.Globals.formatAMPM(date);
+	var dateFormat = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
 	$.dateLabel.left= "20";
 	$.dateLabel.text= dateFormat;
 	//$.donebutton.date = dateFormat;
