@@ -30,8 +30,10 @@ function fetchingData(type){
 }
 //pulling data from the sqlite
 var content=Alloy.Globals.fetchingData('creditmodel');
+var contentsort = content.sort(function(a,b) { return (new Date(a.col1)) - (new Date(b.col1)) ;} );
 //var content=fetchingData('creditmodel');
 console.log("credit.js::JSON stringify content: "+JSON.stringify(content));
+console.log("credit.js::JSON stringify contentsort: "+JSON.stringify(contentsort));
 
 //Table row contents and updated balance
 function displayRow(e){
@@ -82,7 +84,7 @@ function setDate(e){
 	console.log("JSON stringify setDate(e): "+JSON.stringify(e));
 	var date = e.value;
 	$.dateLabel.text= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
-	$.timeLabel.text= Alloy.Globals.formatAMPM(date);
+	//$.timeLabel.text= Alloy.Globals.formatAMPM(date);
 	console.log("credit.js:: put date to notest_textare: "+date);
 	$.notes_textarea.datepaid = date; // feeding date to notes_textare
 }
@@ -212,7 +214,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0",timestamp);//update local DB
 		var totalcredit = parseFloat(creditamount)+ parseFloat(e.source.data.totalcredit);
 		Titanium.App.Properties.setString('totalcredit', totalcredit);//write to persistent memory
-		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);
+		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);if(bal == "NaN") { var bal = "";}; //Don't display a NaN balance.
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
 		var color = Alloy.Globals.setBalColor(bal); //set balance color if it falls below threshold

@@ -90,9 +90,11 @@ function debitDetailAddRow (date,dateadded,category,amount) {
 //fething DB and redraw table
 function redrawTable(){
 	var content=Alloy.Globals.fetchingData('debitmodel');
+	var contentsort = content.sort(function(a,b) { return (new Date(b.col1)) - (new Date(a.col1)) ;} );
 	console.log("transaction.js::JSON stringify content: "+JSON.stringify(content));
-	if(content.length>10){var oldest=parseFloat(content.length-10);} else var oldest=0; // display only last 10 xsaction
-	for(i=(content.length-1);i>oldest;i--){
+	if(content.length>10){var oldest=parseFloat(content.length-10);} else var oldest=content.length; // display only last 10 xsaction
+	//for(i=(content.length-1);i>oldest;i--){
+	for(i=0;i<oldest;i++){
 		debitDetailAddRow(content[i].col1,content[i].col2,content[i].col3,content[i].col4); //display row
 	}
 	var content=[];

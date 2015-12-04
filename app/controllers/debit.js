@@ -33,7 +33,9 @@ $.debit_tab.addEventListener("focus",function(e){
 
 //fething DB
 var content=Alloy.Globals.fetchingData('debitmodel');
+var contentsort = content.sort(function(a,b) { return (new Date(a.col1)) - (new Date(b.col1)) ;} );
 console.log("debit.js::JSON stringify content: "+JSON.stringify(content));
+console.log("debit.js::JSON stringify contentsort: "+JSON.stringify(contentsort));
 
 //updated debitamount
 if(content.length>0){
@@ -250,7 +252,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		var totalspent = parseFloat(amount)+ parseFloat(e.source.totalspent);
 		console.log("debit.js: e.source.totalspent:  "+e.source.totalspent+" totalspent: "+totalspent+" amount: "+amount);
 		Titanium.App.Properties.setString('totalspent', totalspent);//write to persistent memory
-		var bal = ((parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount))).toFixed(2);
+		var bal = ((parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount))).toFixed(2);if(bal == "NaN") { var bal = "";}; //Don't display a NaN balance.
 		var color = Alloy.Globals.setBalColor(bal); 
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("debit.js:: notes_textarea totalspent: "+totalspent);

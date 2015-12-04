@@ -9,7 +9,7 @@
 		        <View id="input_view" height="300" backgroundColor="white">
 			    	<ImageView top="25" left="20" image="blueline.png"/>
 			    	<Label id="dateLabel" color="red" top="58" left="30" text="Date"/>
-			    	<Label id="timeLabel" color="#0066CC" top="66" left="140" text=""/>
+			    	<!--Label id="timeLabel" color="#0066CC" top="66" left="140" text=""/-->
 			    	<Label id="costLabel" color="#0066CC" top="55" left="68%" text="Cost"/>
 		        	<TextArea id="notes_textarea" width="100" left="65%" height="44" top="45" borderWidth="1" borderColor="red" borderRadius="5" 
 	        		color="#888" textAlign="left" value=" " hintText="100" keyboardType="Ti.UI.KEYBOARD_DECIMAL_PAD" onFocus="notesAreaFocus">
@@ -21,7 +21,7 @@
 	        			</Toolbar>
 	        		</KeyboardToolbar>
 	        		</TextArea>	  
-			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME"/>
+			    	<Picker id="date_picker" top="90" onChange="setDate" type="Titanium.UI.PICKER_TYPE_DATE"/>
 		        </View>
 		    </FooterView>
 	    </TableViewSection>
