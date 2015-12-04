@@ -67,7 +67,7 @@ $.credit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"credi
 function updateDummy(bal,totalcredit,creditamount,lastcredit,color) {
 	var someDummy = Alloy.Models.dummy;
 	console.log("credit.js::bal b4: "+bal);
-	if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(2)+" mil";}
+	if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(2)+" mil";};if(isNaN(bal)){var bal="";}
 	console.log("credit.js::bal after: "+bal);
 	someDummy.set({'id':'1234','bal':Alloy.Globals.numberWithCommas(bal),'totalcredit': totalcredit,'dcreditamount':creditamount,"lastcredit":lastcredit,"color":color});
 	someDummy.fetch();
@@ -214,7 +214,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		Alloy.Globals.updatemodelTable("creditmodel",lastcredit,lastcredit,creditamount,"0","0","0","0","0",timestamp);//update local DB
 		var totalcredit = parseFloat(creditamount)+ parseFloat(e.source.data.totalcredit);
 		Titanium.App.Properties.setString('totalcredit', totalcredit);//write to persistent memory
-		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);if(bal == "NaN") { var bal = "";}; //Don't display a NaN balance.
+		var bal = parseFloat(Titanium.App.Properties.getInt('bal'))+parseFloat(creditamount);if(isNaN(bal)){ var bal = "";}; //Don't display a NaN balance.
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("credit.js:: notes_textarea totalcredit: "+totalcredit);
 		var color = Alloy.Globals.setBalColor(bal); //set balance color if it falls below threshold

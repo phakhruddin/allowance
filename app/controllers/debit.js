@@ -50,7 +50,7 @@ $.debit_window.data = {"totalspent":totalspent,"totalcredit":totalcredit,"debita
 
 function updateDummy(bal,totalspent,amount,lastdebit,color) {
 	var someDummy = Alloy.Models.dummy;
-	if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(2)+" mil";}
+	if(bal>1000000){var bal = (parseFloat(bal)/1000000).toFixed(2)+" mil";};if(isNaN(bal)){var bal="";}
 	someDummy.set({'id':'1234','bal':Alloy.Globals.numberWithCommas(bal),'totalspent': totalspent,'debitamount':amount,"lastdebit":lastdebit,"color":color});
 	someDummy.fetch();
 	console.log("debit.js :: stringify dummy :"+JSON.stringify(someDummy));
@@ -252,7 +252,7 @@ $.notes_textarea.addEventListener("blur",function(e){
 		var totalspent = parseFloat(amount)+ parseFloat(e.source.totalspent);
 		console.log("debit.js: e.source.totalspent:  "+e.source.totalspent+" totalspent: "+totalspent+" amount: "+amount);
 		Titanium.App.Properties.setString('totalspent', totalspent);//write to persistent memory
-		var bal = ((parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount))).toFixed(2);if(bal == "NaN") { var bal = "";}; //Don't display a NaN balance.
+		var bal = ((parseFloat(Titanium.App.Properties.getInt('bal'))-parseFloat(amount))).toFixed(2);if(isNaN(bal)){ var bal = "";}; //Don't display a NaN balance.
 		var color = Alloy.Globals.setBalColor(bal); 
 		Titanium.App.Properties.setInt('bal', bal);//write to persistent memory
 		console.log("debit.js:: notes_textarea totalspent: "+totalspent);
